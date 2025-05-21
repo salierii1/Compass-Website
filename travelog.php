@@ -171,9 +171,9 @@ nav a:hover {
   <section class="hero">
     <h1>Create a Travelog</h1>
     <p><strong>New Member:</strong><br>Keep all your wildest adventures online! Start your personal Travelog. <br></p>
-    <a href="#">CREATE >></a>
+    <a href="register.php">CREATE >></a>
     <p><strong>Current Member:</strong><br>If you're one of the members who already started a personal Travelog, this is the place to update, edit, and add to the adventures. <br></p>
-    <a href="#">CREATE >></a>
+    <a href="index.php">CREATE >></a>
   </section>
 
   <section class="entries">
