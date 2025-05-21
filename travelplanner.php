@@ -425,11 +425,16 @@ body, html {
 
 
 
+.map-container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 
-
-
-
-
+    object {
+      width: 100%;
+      height: auto;
+    }
 
 
 
@@ -455,10 +460,9 @@ body, html {
 
     <!-- Clickable Map -->
     <div class="map-container">
-      <img src="pictures/image.png" usemap="#continents" alt="World Map" style="max-width: 100%; height: auto;">
-    </div>
+    <object id="worldMap" type="image/svg+xml" data="pictures/world.svg"></object>
+</div>
 
-    <!-- Destination Form -->
 
 
 
@@ -546,8 +550,51 @@ body, html {
 
 
   <script>
+const objectEl = document.getElementById('worldMap');
 
-    </script>
+objectEl.addEventListener('load', () => {
+  const svgDoc = objectEl.contentDocument;
+  const paths = svgDoc.querySelectorAll('path');
+
+  paths.forEach(path => {
+    path.style.cursor = 'pointer';
+    path.style.transition = 'fill 0.2s ease';
+
+    // Store original fill
+    const originalFill = path.getAttribute('fill') || '';
+
+    path.addEventListener('mouseenter', () => {
+      path.setAttribute('data-original-fill', originalFill); // backup
+      path.setAttribute('fill', '#ffa500'); // orange on hover
+    });
+
+    path.addEventListener('mouseleave', () => {
+      const prev = path.getAttribute('data-original-fill');
+      if (prev) {
+        path.setAttribute('fill', prev);
+      } else {
+        path.removeAttribute('fill'); // fallback
+      }
+    });
+
+    path.addEventListener('click', () => {
+      const country = path.getAttribute('title') || path.id || 'Unknown';
+
+      // Fill in the country field
+      const countryInput = document.getElementById('country');
+      if (countryInput) {
+        countryInput.value = country;
+
+        // Submit the form
+        countryInput.form.submit();
+      } else {
+        alert('Country input field not found.');
+      }
+    });
+  });
+});
+</script>
+
 
 
 
