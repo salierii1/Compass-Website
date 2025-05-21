@@ -240,7 +240,7 @@ nav a:hover {
 
 
 
-@charset "UTF-8";
+
 
 body {
     margin: 0;

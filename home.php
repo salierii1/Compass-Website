@@ -64,13 +64,13 @@ body {
   background: 
     linear-gradient(to bottom, rgba(255,255,255,0) 50%, #fff 100%),
     url('https://images4.alphacoders.com/656/656354.jpg') no-repeat center center/cover;
-  height: 100vh;
+  height: 120vh;
   position: relative;
 }
 
 .hero-overlay {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0));
-  height: 80%;
+  height: 70%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -140,7 +140,8 @@ body {
 
 .featured-overlay p {
   color: orange;
-  font-size: 1rem;
+  font-size: 1.5rem;
+  padding: 0rem 40rem 0rem 0rem ;
   text-shadow: 1px 1px 2px black;
   margin-bottom: 1rem;
 }
@@ -205,10 +206,10 @@ body {
 .card {
   flex: 1 1 250px;
   height: 300px;
-  margin: 1rem;
+  margin: 1rem 1rem 5rem 1rem;
   background-size: cover;
   background-position: center;
-  border-radius: 12px;
+  border-radius: 12px 12px 0 0;
   overflow: hidden;
   position: relative;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -224,7 +225,6 @@ body {
   bottom: 0;
   width: 100%;
   color: #ff9800;
-  padding: 1rem;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
   text-align: center;
 }
@@ -234,12 +234,14 @@ body {
   font-size: 2.1rem;
   font-weight: bold;
   text-shadow: 1px 1px 2px black;
+  padding: 1rem;
 }
 
 .card-overlay p {
-  margin: 0.5rem 0 0;
-  font-size: 0.95rem;
-  color: #444;
+  margin: 0.5rem ;
+  font-size: 1rem;
+  color: orange;
+  text-shadow: 1px 1px 2px black;
 }
 
 /* RESPONSIVE */
