@@ -1,0 +1,53 @@
+kapag nalagay niyo na simple_page.sql eto na lalagay niyo copy paste niyo lang sa sql(katabi ng browse and structure sa taas banda sa gilid) and press go
+
+
+USE simple_page;
+
+-- Table for activities
+CREATE TABLE IF NOT EXISTS activities (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+-- Table for information preferences
+CREATE TABLE IF NOT EXISTS info_types (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+-- Table for destinations (and simulated packages)
+CREATE TABLE IF NOT EXISTS travel_packages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    city VARCHAR(100) NOT NULL,
+    country VARCHAR(100) NOT NULL,
+    activity_id INT,
+    info_type_id INT,
+    description TEXT,
+    FOREIGN KEY (activity_id) REFERENCES activities(id),
+    FOREIGN KEY (info_type_id) REFERENCES info_types(id)
+);
+
+-- Insert sample activities (only if not already present)
+INSERT INTO activities (name) VALUES 
+('Hiking'), 
+('Mountain Biking'), 
+('Kayaking'), 
+('Skiing'), 
+('Fishing'), 
+('Surfing');
+
+-- Insert sample information types (only if not already present)
+INSERT INTO info_types (name) VALUES 
+('Transportation'), 
+('Health'), 
+('Weather'), 
+('Gear'), 
+('Political Info'), 
+('Activity Specific');
+
+-- Insert sample travel packages
+INSERT INTO travel_packages (city, country, activity_id, info_type_id, description) VALUES
+('Denver', 'USA', 1, 3, 'Hiking in the Rockies with weather guidance.'),
+('Zurich', 'Switzerland', 4, 4, 'Skiing with gear and equipment recommendations.'),
+('Manila', 'Philippines', 6, 6, 'Surfing experience with local info.'),
+('Reykjavik', 'Iceland', 5, 3, 'Fishing in icy lakes with weather updates.');
