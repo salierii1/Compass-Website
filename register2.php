@@ -7,20 +7,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sName = $_POST['sName'] ?? '';
     $stdID = mysqli_real_escape_string($conn, $_POST['stdID']);
     $mail = mysqli_real_escape_string($conn, $_POST['mail']);
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
     // Password complexity validation
-    $password_pattern = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/";
-    if (!preg_match($password_pattern, $password)) {
-        die("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
+    $uppercase = preg_match('/[A-Z]/', $password);
+    $lowercase = preg_match('/[a-z]/', $password);
+    $number    = preg_match('/[0-9]/', $password);
+    $special   = preg_match('/[!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?~`]/', $password);
+    
+    if (!$uppercase || !$lowercase || !$number || !$special || strlen($password) < 8) {
+        $error_message = "Password must be at least 8 characters long and contain uppercase, lowercase, number, and special character.";
+        echo "<script>window.location.href='register.php?error=" . urlencode($error_message) . "'</script>";
+        exit();
     }
 
-    $checkUsername = "SELECT * FROM users WHERE stdID='$stdID'";
+    $checkUsername = "SELECT * FROM users WHERE username='$username'";
     $result = $conn->query($checkUsername);
 
     if ($result->num_rows > 0) {
-        echo "Username already has an account";
+        $error_message = "Username already taken. Please choose a different username.";
+        echo "<script>window.location.href='register.php?error=" . urlencode($error_message) . "'</script>";
+        exit();
+    } 
+    
+    $checkStdID = "SELECT * FROM users WHERE stdID='$stdID'";
+    $result2 = $conn->query($checkStdID);
+
+    if ($result2->num_rows > 0) {
+        $error_message = "Student ID already has an account";
+        echo "<script>window.location.href='register.php?error=" . urlencode($error_message) . "'</script>";
+        exit();
     } else {
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
     
@@ -28,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 VALUES ('$fName', '$mName', '$sName', '$stdID', '$mail', '$username', '$hashed_password')";
     
         if ($conn->query($sql) === TRUE) {
-            echo "<script>(' Account Created!!! '); window.location.href = 'welcome.php';</script>";
+            echo "<script>alert('Account Created Successfully!'); window.location.href = 'login.php';</script>";
         } else {
             echo "Error: " . $conn->error;
         }

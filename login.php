@@ -234,24 +234,16 @@ button:active {
     width: 10px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.error-message {
+        background-color: rgba(255, 0, 0, 0.1);
+        border: 1px solid #ff0000;
+        color: #ff0000;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        text-align: center;
+        font-size: 14px;
+    }
 
 @media (max-width: 768px) {
     .login-box {
@@ -296,24 +288,6 @@ button:active {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </style>
 </head>
 <body>
@@ -325,7 +299,6 @@ button:active {
         <p class="tagline">Navigate your way with COMPASS</p>
     </div>
 
-
     <div class="user-section">
         <img src="./pictures/users.png" alt="users" class="logo2">
         <a href="" class="logo2">User</a>
@@ -333,88 +306,44 @@ button:active {
 </div>
 
 <div class="header2">
-    <img src="./pictures/signin.png" alt="signin" class="signin">
+    <img src="./pictures/signin.png" alt="signin" class="signin">~
     <p class="welcome-text">Welcome back, User</p>
 </div>
 
-
-
-
 <div class="login-container">
-        <form class="login-box" action="login2.php" method="POST">
-            <label for="username">Username:</label>
-            <input type="text" name="username" placeholder="Username" required>
-
-            <a href="register.php" class="create-account">No username? Create an account.</a>
-
-            <label for="password">Password:</label>
-
-            <div class="password-container">
-                <input type="password" id="password" name="password" placeholder="Password" required>
-                <button type="button" id="togglePassword">👁️</button>
+    <form class="login-box" action="login2.php" method="POST">
+        <?php if(isset($_GET['error'])): ?>
+            <div class="error-message">
+                <?php echo htmlspecialchars($_GET['error']); ?>
             </div>
+        <?php endif; ?>
+        <label for="username">Username:</label>
+        <input type="text" name="username" placeholder="Username" required>
 
-            <button type="submit">Login</button>
+        <a href="register.php" class="create-account">No username? Create an account.</a>
 
-            <a href="forget.php" class="forgot-password">Forgot Password?</a>
-        </form>
-    </div>
+        <label for="password">Password:</label>
 
+        <div class="password-container">
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button type="button" id="togglePassword">👁️</button>
+        </div>
+
+        <button type="submit">Login</button>
+
+        <a href="forget.php" class="forgot-password">Forgot Password?</a>
+    </form>
+</div>
+
+<div id="error-message" style="color: red; margin-top: 10px; text-align: center;">
     <?php
-    
+    if (isset($_GET['error'])) {
+        echo htmlspecialchars($_GET['error']);
+    }
     ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
 
 <script>
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     const togglePassword = document.getElementById("togglePassword");
     const passwordInput = document.getElementById("password");
   
@@ -423,36 +352,7 @@ button:active {
       passwordInput.type = type;
       togglePassword.textContent = type === "password" ? "👁️" : "🙈";
     });
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-
-
-  
-
-
-
-  
-    
-  
-  
-  
-  
-  </script>
-
-
-
-
-
+</script>
 
 </body>
 </html>
