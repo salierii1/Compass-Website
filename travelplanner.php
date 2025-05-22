@@ -390,16 +390,18 @@ body, html {
 
 
 
-.map-container {
+    .map-container {
       width: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
+      max-width: 100%;
+      overflow: visible;
     }
 
-    object {
-      width: 100%;
-      height: auto;
+    object#worldMap {
+      width: 1100px;
+      height: 80vh; /* Adjust this height as needed */
+      display: block;
     }
+
 
 </style>
 
@@ -499,11 +501,8 @@ body, html {
                         <?php
                         // Redirect logic
                         $redirects = [
-                            2 => 'zurich.php',
-                            3 => 'manila.php',
-                            4 => 'reykjavik.php',
-                            5 => 'pasig.php',
-                            6 => 'gateway.php'
+                            6 => 'gateway.php',
+                            7 => 'newzealand.php'
                         ];
                         $targetPage = $redirects[$package['id']] ?? 'gateway.php?id=' . $package['id'];
                         ?>
