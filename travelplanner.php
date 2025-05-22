@@ -527,7 +527,6 @@ body, html {
       display: block;
     }
 
-
     @keyframes fadeSlideUp {
   0% {
     opacity: 0;
