@@ -63,42 +63,48 @@ body, html {
 background: linear-gradient(to bottom, rgb(219, 136, 52) 20%,#000000  70%);
 }
 
-/* Header */
+/* Navbar */
 .navbar {
-  background-color: #1b1b1b;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #00CEC3;
   padding: 1rem 2rem;
+  color: white;
+  animation: slideDown 0.8s ease-in-out;
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
+  text-shadow: 1px 1px 2px black;
 }
 
-nav ul {
+.navbar nav ul {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
-nav a {
-  color: white;
+.navbar nav ul li a {
   text-decoration: none;
-  font-weight: 500;
+  color: white;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
 }
 
-nav a:hover {
-  color: orange;
+.navbar nav ul li a:hover {
+  color: rgb(1, 119, 113);
+  transform: scale(1.05);
 }
+
 
 /* Main Container */
 .planner-container {
   padding: 30px 20px;
   max-width: 1000px;
-  margin: auto;
-  
+  margin: 50px auto;
   border-radius: 10px;
 }
 
@@ -124,103 +130,6 @@ nav a:hover {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
-}
-
-/* Form Sections */
-.form-section {
-  background-color:rgb(219, 136, 52);
-  padding: 20px;
-  margin-bottom: 25px;
-  border-radius: 10px;
-  color: black;
-}
-
-.form-section h2 {
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-}
-
-/* Input Group */
-.input-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.input-group input {
-  flex: 1;
-  min-width: 200px;
-  padding: 10px;
-  border-radius: 6px;
-  border: none;
-  font-size: 1rem;
-}
-
-/* Checkbox Group */
-.checkbox-group {
-  display: flex;
-  gap: 10px;
-}
-
-.checkbox-group label {
-  flex: 20px;
-  font-size: 1rem;
-}
-
-/* Submit Button */
-.submit-btn {
-  background-color: #fba434;
-  color: black;
-  font-weight: bold;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
-  display: block;
-  margin: 20px auto 0 auto;
-}
-
-.submit-btn:hover {
-  background-color: #e59429;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  nav {
-    margin-top: 10px;
-  }
-
-  .checkbox-group {
-    flex-direction: column;
-  }
-
-  .input-group {
-    flex-direction: column;
-  }
-
-  .planner-container h1 {
-    font-size: 1.5rem;
-  }
-
-  .form-section h2 {
-    font-size: 1.1rem;
-  }
-}
-
-
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    color: #212529;
-    background-color: #fff;
 }
 
 .container {
@@ -250,6 +159,7 @@ body {
 }
 
 
+
 /* Base Reset */
 * {
   margin: 0;
@@ -273,11 +183,11 @@ body, html {
 
 /* Form Sections */
 .form-section {
-  background-color: rgb(219, 136, 52);
+  background-color: #00CEC3;
   padding: 20px;
   margin-bottom: 25px;
   border-radius: 10px;
-  color: black;
+  font-weight: bold;
 }
 
 /* Destination Box: City & Country Grouped */
@@ -290,7 +200,7 @@ body, html {
   flex: 1;
   padding: 10px;
   border-radius: 6px;
-  border: 1px solid black;
+  border: #00CEC3;
   font-size: 1rem;
 }
 
@@ -298,34 +208,85 @@ body, html {
 .activity-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 1rem;
 }
 
 .activity-box {
-  background-color: none;
-  padding: 15px;
-  border-radius: 8px;
-  flex: 1;
-  min-width: 50px;
-  text-align: center;
-  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  position: relative;
 }
+
+/* Hide the checkbox */
+.activity-box input[type="checkbox"] {
+  display: none;
+}
+
+/* Style the visual button (span) */
+.activity-box span {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  font-weight: bold;
+  background-color: #f0f0f0;
+  color: #333;
+  border: 2px solid #ccc;
+  transition: all 0.3s ease;
+}
+
+/* When checkbox is checked, keep color */
+.activity-box input[type="checkbox"]:checked + span {
+  background-color: rgb(1, 119, 113);
+  color: white;
+  border-color: #00CEC3;
+}
+.activity-box:hover span {
+  background-color: rgb(1, 119, 113);
+  color: white;
+  border-color: #00CEC3;
+}
+
 
 /* Information Preferences: Each Preference in Separate Box */
 .info-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 1rem;
 }
 
 .info-box {
-  background-color: none;
-  padding: 15px;
-  border-radius: 8px;
-  flex: 1;
-  min-width: 50px;
-  text-align: center;
+  cursor: pointer;
+  border: none;
+  position: relative;
+}
+
+/* Hide the checkbox */
+.info-box input[type="checkbox"] {
+  display: none;
+}
+
+/* Style the visual button (span) */
+.info-box span {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
   font-weight: bold;
+  background-color: #f0f0f0;
+  color: #333;
+  border: 2px solid #ccc;
+  transition: all 0.3s ease;
+}
+
+/* When checkbox is checked, keep color */
+.info-box input[type="checkbox"]:checked + span {
+  background-color: rgb(1, 119, 113);
+  color: white;
+  border-color: #00CEC3;
+}
+.info-box:hover span {
+  background-color: rgb(1, 119, 113);
+  color: white;
+  border-color: #00CEC3;
 }
 
 /* Checkbox Group (Horizontal Layout) */
@@ -343,8 +304,9 @@ body, html {
 
 /* Submit Button */
 .btn-primary {
-  background-color: #fba434;
-  color: black;
+  background-color: #00CEC3;
+  text-shadow: 1px 1px 5px black;
+  color: white;
   font-weight: bold;
   padding: 12px 24px;
   border: none;
@@ -356,7 +318,31 @@ body, html {
 }
 
 .btn-primary:hover {
-  background-color: #e59429;
+  background-color: #00CEC3;
+}
+
+.row .card {
+  border-radius: 20px;
+  box-shadow: 0 5px 25px rgba(0, 206, 195, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: white;
+}
+
+.row .card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 35px rgba(0, 206, 195, 0.6);
+}
+
+.row .card h5 {
+  font-size: 1.5rem;
+  color: #00CEC3;
+  margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+}
+
+.row .card p {
+  font-size: 1rem;
+  color: #333;
 }
 
 /* Responsive */
@@ -378,6 +364,7 @@ body, html {
     flex-direction: column;
   }
 }
+
 
 
 .map-container {
@@ -431,33 +418,38 @@ body, html {
         </div>
 
         <div class="mb-3 form-section">
-            <label class="form-label">Activity</label>
-            <div class="activity-container">
-                <?php while ($row = mysqli_fetch_assoc($activities)) : ?>
-                    <div class="activity-box">
-                        <input type="checkbox" name="activities[]" value="<?= $row['id'] ?>"
-                            <?= in_array($row['id'], $selected_activities) ? 'checked' : '' ?>>
-                        <?= $row['name'] ?>
-                    </div>
-                <?php endwhile; ?>
-            </div>
-        </div>
+    <label class="form-label">Activity</label>
+    <div class="activity-container">
+        <?php while ($row = mysqli_fetch_assoc($activities)) : ?>
+            <label class="activity-box">
+  <input type="checkbox" name="activities[]" value="<?= $row['id'] ?>"
+    <?= in_array($row['id'], $selected_activities) ? 'checked' : '' ?>>
+  <span><?= $row['name'] ?></span>
+</label>
+
+        <?php endwhile; ?>
+    </div>
+</div>
+
 
         <div class="mb-3 form-section">
-            <label class="form-label">Information</label>
-            <div class="info-container">
-                <?php while ($row = mysqli_fetch_assoc($infos)) : ?>
-                    <div class="info-box">
-                        <input type="checkbox" name="info[]" value="<?= $row['id'] ?>"
-                            <?= in_array($row['id'], $selected_infos) ? 'checked' : '' ?>>
-                        <?= $row['name'] ?>
-                    </div>
-                <?php endwhile; ?>
-            </div>
-        </div>
+    <label class="form-label">Information</label>
+    <div class="info-container">
+        <?php while ($row = mysqli_fetch_assoc($infos)) : ?>
+            <label class="info-box">
+                <input type="checkbox" name="info[]" value="<?= $row['id'] ?>"
+                    <?= in_array($row['id'], $selected_infos) ? 'checked' : '' ?>>
+                <span><?= $row['name'] ?></span>
+            </label>
+        <?php endwhile; ?>
+    </div>
+</div>
 
-        <button type="submit" class="btn-primary">SUBMIT</button>
-    </form>
+//button 
+    <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
 
     <hr>
 

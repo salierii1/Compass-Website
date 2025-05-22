@@ -21,7 +21,7 @@
   /* General Reset */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   background: #fff;
 }
 
@@ -30,13 +30,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: orange;
+  background-color: #00CEC3;
   padding: 1rem 2rem;
   color: white;
 }
 
 .logo {
+  font-size: 2rem;
   font-weight: bold;
+  text-shadow: 1px 1px 2px black;
 }
 
 .navbar nav ul {
@@ -50,13 +52,14 @@ body {
 .navbar nav ul li a {
   text-decoration: none;
   color: white;
+  font-size: 1.2rem;
   transition: color 0.3s;
   font-weight: bold;
   text-shadow: 1px 1px 2px black;
 }
 
 .navbar nav ul li a:hover {
-  color: black;
+  color: rgb(1, 119, 113);
 }
 
 /* HERO WELCOME */
@@ -64,7 +67,7 @@ body {
   background: 
     linear-gradient(to bottom, rgba(255,255,255,0) 50%, #fff 100%),
     url('https://images4.alphacoders.com/656/656354.jpg') no-repeat center center/cover;
-  height: 120vh;
+  height: 70vh;
   position: relative;
 }
 
@@ -99,8 +102,8 @@ body {
   
 }
 .feature h2 {
-  font-size: 1.5rem;
-  color: orange;
+  font-size: 2.5rem;
+  color: rgb(1, 119, 113);
   text-shadow: 1px 1px 2px black;
 }
 .featured-card {
@@ -122,7 +125,7 @@ body {
   bottom: 0;
   width: 100%;
   height: 100%;
-  color: #fff;
+  color: #00CEC3;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.5));
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0));
   padding: 2rem;
@@ -133,14 +136,16 @@ body {
 
 .featured-overlay h2 {
   font-size: 2rem;
-  color: orange;
-  text-shadow: 1px 1px 2px black;
+  color: #00CEC3;
+  font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
 .featured-overlay p {
   color: orange;
   font-size: 1.5rem;
+  color: #00CEC3;
+  font-weight: bold;
   padding: 0rem 40rem 0rem 0rem ;
   text-shadow: 1px 1px 2px black;
   margin-bottom: 1rem;
@@ -151,7 +156,7 @@ body {
   padding: 0.5rem 0rem;
   background: transparent;
   border: none;
-  color: #f0a500;
+  color: #00CEC3;
   font-weight: bold;
   text-decoration: underline;
   text-shadow: 1px 1px 2px black;
@@ -192,8 +197,7 @@ body {
 }
 .learn h2 {
   font-size: 1.5rem;
-  color: orange;
-  text-shadow: 1px 1px 2px black;
+  color: rgb(1, 119, 113);
 }
 
 .cards-section {
@@ -224,7 +228,7 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  color: #ff9800;
+  color: #00CEC3;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
   text-align: center;
 }
@@ -239,8 +243,8 @@ body {
 
 .card-overlay p {
   margin: 0.5rem ;
-  font-size: 1rem;
-  color: orange;
+  font-size: 1.2rem;
+  color: rgb(1, 119, 113);
   text-shadow: 1px 1px 2px black;
 }
 

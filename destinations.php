@@ -2,150 +2,255 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Featured Destination</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compass Destinations</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
 
 <style>
-    * {
+  /* Reset */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
-background: linear-gradient(to bottom, #000000 40%, #8F5B1A 100%);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: white;
+  color: #333;
+  overflow-x: hidden;
 }
 
-/* HEADER */
+/* Navbar */
 .navbar {
-  background-color: #1b1b1b;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #00CEC3;
   padding: 1rem 2rem;
+  color: white;
+  animation: slideDown 0.8s ease-in-out;
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
+  text-shadow: 1px 1px 2px black;
 }
 
-nav ul {
+.navbar nav ul {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
-nav a {
-  color: white;
+.navbar nav ul li a {
   text-decoration: none;
-  font-weight: 500;
-}
-
-nav a:hover {
-  color: orange;
-}
-
-/* HERO SECTION */
-.featured-hero {
-  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0, 0, 0, 0.9)),
-              url('pictures/sunset\ 1.png') center/cover no-repeat;
-  padding: 4rem;
-  height: 90vh;
-  text-align: left;
-}
-
-.featured-hero h1 {
-  font-size: 3.5rem;
+  color: white;
+  font-size: 1.2rem;
+  transition: color 0.3s;
   font-weight: bold;
-  margin-top: 6.5rem;
-  margin-bottom: 2rem;
-  text-align: left;
+  text-shadow: 1px 1px 2px black;
 }
 
-.featured-hero p {
-  font-size: 1.9rem;
+.navbar nav ul li a:hover {
+  color: rgb(1, 119, 113);
+  transform: scale(1.05);
+}
+
+/* Hero Banner */
+.featured-hero {
+  background-image: url('https://cdn.tatlerasia.com/asiatatler/i/my/2018/11/05085630-thegreatoceanroad_cover_1920x1200.jpg');
+  background-size: cover;
+  min-height: 550px;
+  margin: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.hero-text {
+  flex: 1 1 300px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  animation: fadeUp 1.2s ease-in-out;
+}
+
+.hero-text h1 {
+  font-size: 4.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  font-size: 1.5rem;
+  font-weight: bold;
   max-width: 1000px;
- 
-  
 }
 
-/* DESTINATION CARDS */
+.hero-img {
+  flex: 1 1 250px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-img img {
+  max-width: 300px;
+  border-radius: 10px;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Destination Cards */
 .destinations {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
   padding: 2rem;
 }
 
 .card {
-  background-size: cover;
-  background-position: center;
+  background: white;
   padding: 2rem;
-  height: 450px; /* Increased height for longer card */
+  border-radius: 20px;
   display: flex;
-  align-items: flex-end;
-  position: relative;
-  border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 5px 30px #00CEC3;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  min-width: 400px;
+  
+  width: 100%;
+  opacity: 0;
+  animation: fadeInCard 1s ease forwards;
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.2));
-  z-index: 0;
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 40px #00cec390;
+}
+
+.card:nth-child(1) { animation-delay: 0.2s; }
+.card:nth-child(2) { animation-delay: 0.4s; }
+.card:nth-child(3) { animation-delay: 0.6s; }
+
+
+
+.card img {
+  width: 300px;
+  height: auto;
+  object-fit: cover;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .card-content {
-  position: relative;
-  z-index: 1;
-  max-width: 500px;
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.card h2 {
+.card-content h2 {
+  font-size: 3.3rem;
+  color: #00CEC3;
+  margin-bottom: 0.3rem;
+  text-shadow: 1px 1px 2px black;
+}
+
+.details {
   font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.card .price {
-  font-size: 1.4rem;
+  margin-bottom: 2.5rem;
   font-weight: bold;
-  margin-bottom: 0.2rem;
 }
 
-.card .details {
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
-  opacity: 0.9;
-}
-
-.card .desc {
-  font-size: 0.95rem;
+.desc {
+  font-size: 1.2rem;
   margin-bottom: 0.8rem;
-}
-
-.card a {
-  color: #fff;
   font-weight: bold;
-  text-decoration: underline;
-  font-size: 0.95rem;
 }
 
-.card a:hover {
-  color: #8F5B1A;
+.card-content a {
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: #00CEC3;
+  text-shadow: 1px 1px 2px black;
+  transition: all 0.3s ease;
 }
 
+.card-content a:hover {
+  color: rgb(1, 119, 113);
+  transform: translateX(5px);
+}
 
+/* Responsive */
+@media (max-width: 768px) {
+  .featured-hero {
+    flex-direction: column;
+    text-align: left;
+    padding: 2rem;
+  }
 
+  .hero-img {
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .card {
+    flex-direction: column;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .card-content {
+    padding: 2rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInCard {
+  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(30px); }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
 
 </style>
+
+<body>
 
   <header class="navbar">
     <div class="logo">🧭 COMPASS</div>
@@ -160,43 +265,46 @@ nav a:hover {
   </header>
 
   <section class="featured-hero">
-    <div class="hero-content">
+    <div class="hero-text">
       <h1>FEATURED DESTINATION</h1>
-      <p>Compass works hard to bring you the best possible trips for your rugged lifestyle. Here's our latest getaway packages suited for the adventurous spirit.</p>
+      <p>Compass works hard to bring you the best possible trips for your rugged lifestyle. Here's our latest travel packages suited for the adventurous spirit.</p>
     </div>
   </section>
 
   <section class="destinations">
-    <div class="card" style="background-image: url('pictures/image\ 9.png');">
+    <div class="card">
+      <img src="https://www.mrporter.com/content/images/cms/ycm/resource/blob/476344/b6ef6d47026243d09813d1de1bc73623/e2be9882-43f0-471f-84d6-d3a6d414808e-data.jpg" alt="Surfing Safari" />
       <div class="card-content">
-        <h2>California Surfing Safari</h2>
-        <p class="price">$960</p>
-        <p class="details">includes lodging,<br>food,<br>and airfare</p>
+        <h2>California Surfing Safari <span style="color: rgb(1, 119, 113);">$960</span></h2>
+        <p class="details">Includes lodging,<br>food,<br>and airfare</p>
         <p class="desc">Be ready to go pro in a California surf town. We will catch some waves by morning and sip icy wet smoothies in the sun after lunch.</p>
         <a href="california.php">MORE DETAILS...</a>
       </div>
     </div>
 
-    <div class="card" style="background-image: url('pictures/image\ 10.png');">
+    <div class="card">
+      <img src="https://www.luxuryadventures.co.nz/wp-content/uploads/2023/03/NZMountainBiking4.jpg" alt="Bike New Zealand" />
       <div class="card-content">
-        <h2>Bike New Zealand</h2>
-        <p class="price">$1490</p>
-        <p class="details">includes lodging,<br>food,<br>and airfare</p>
+        <h2>Bike New Zealand <span style="color: rgb(1, 119, 113);">$1090</span></h2>
+        <p class="details">Includes lodging,<br>food,<br>and airfare</p>
         <p class="desc">Shred NZ’s scenery, mountains, and hidden trails suited for adrenaline-fueled riders. Push your legs to the limit.</p>
         <a href="newzealand.php">MORE DETAILS...</a>
       </div>
     </div>
 
-    <div class="card" style="background-image: url('pictures/image\ 11.png');">
+    <div class="card">
+      <img src="https://i.natgeofe.com/n/422a0bc7-4e2f-479c-93dc-56672c035241/devils-tower.jpg" alt="Devil's Tower" />
       <div class="card-content">
-        <h2>Devil’s Tower Rock Climb</h2>
-        <p class="price">$740</p>
-        <p class="details">includes lodging,<br>food,<br>and airfare</p>
+        <h2>Devil’s Tower Rock Climb <span style="color: rgb(1, 119, 113);">$740</span></h2>
+        <p class="details">Includes lodging,<br>food,<br>and airfare</p>
         <p class="desc">Take on the steep pitch and test the impossible cliffs of the beautiful Devil’s Tower, Wyoming.</p>
         <a href="gateway.php">MORE DETAILS...</a>
       </div>
     </div>
   </section>
+
+</body>
+</html>
 
 </body>
 </html>
