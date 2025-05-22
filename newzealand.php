@@ -12,144 +12,266 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #1b2130 0%, #f5f5f5 100%);
-      color: #fff;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      background-color: #fff;
+      color: #333;
     }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #222;
-    padding: 1rem 2rem;
-    flex-wrap: wrap;
-}
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #00CEC3;
+      padding: 1rem 2rem;
+      color: white;
+      animation: slideDown 1.2s ease-in-out;
+    }
 
-.navbar {
-  background-color: #1b1b1b;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-}
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px black;
+    }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
+    .navbar nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-}
-
-nav a {
+    .navbar nav ul li a {
+      text-decoration: none;
   color: white;
-  text-decoration: none;
-  font-weight: 500;
-}
+  font-size: 1.2rem;
+  transition: color 0.3s;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
+    }
 
-nav a:hover {
-  color: orange;
-}
+    .navbar nav ul li a:hover {
+      color: rgb(1, 119, 113);
+      transform: scale(1.05);
+    }
 
     .hero {
-    background: 
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 30%, rgba(142,89,24,1) 100%),
-      url('https://www.newzealand.com/assets/Cycling-Great-Rides/Alps-2-Ocean/Alps2Ocean_Cycle_Trail__aWxvdmVrZWxseQo_CropResizeWzUwMCxudWxsLDg1LCJqcGciXQ.jpg') no-repeat center center/cover;
-      height: 400px;
-      display: flex;
-      align-items: flex-end;
-      padding: 20px;
-      color: #fff;
+      position: relative;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+        url('https://content.roaradventures.com/system/tours/tour_content_images/145/large/haka_tours_dirtseeker_mtb_crown_ridge@2x.jpg?1558070094')
+        no-repeat center center/cover;
+      color: white;
+      height: 60vh;
+      text-align: center;
+      padding: 5rem 1rem;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 0.2s;
+      opacity: 0;
     }
 
     .hero h1 {
-      font-size: 28px;
-      padding: 10px;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 1px 1px 5px black;
     }
 
-    .content {
-      background-color: #8E5918;
-    padding: 10px 30px;
+    .price {
+      font-size: 2.8rem;
+      color: #00CEC3;
+      text-shadow: 1px 1px 5px black;
+      font-weight: bold;
+      animation: pop 1s ease-in-out;
     }
 
-    .content h2 {
-      margin-bottom: 10px;
+    .hero button {
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #00CEC3;
+      border: none;
+      border-radius: 6px;
       color: white;
+      text-shadow: 1px 1px 5px black;
+      font-size: 1.3rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .hero button:hover {
+      background-color: rgb(1, 119, 113);
+    }
+
+    .photo-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+      position: relative;
+      top: -100px;
+      z-index: 2;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 0.4s;
+      opacity: 0;
+      
+    }
+
+    .photo-strip img {
+      max-width: 100%;
+      height: 200px;
+      width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .photo-strip img:hover {
+      transform: scale(1.05);
+    }
+
+    .view-text {
+      width: 100%;
+      text-align: right;
+      padding: 1rem;
+    }
+
+    .view-text a {
+      font-size: 1.2rem;
+      color: rgb(1, 119, 113);
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .view-text a:hover {
+      color: #00CEC3;
+    }
+
+    .description-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 2rem;
+      margin-top: -60px;
+      position: relative;
+      z-index: 3;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 0.6s;
+      opacity: 0;
+    }
+
+    .description-section > div {
+      flex: 1 1 300px;
+      font-size: 1.5rem;
+      line-height: 1.5;
+      border-right: 2px solid rgb(1, 119, 113);
+      padding-right: 1rem;
+    }
+
+    .description-section > div:last-child {
+      border-right: none;
     }
 
     .package {
+      padding: 2rem;
+      background: #fff;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 0.8s;
+      opacity: 0;
+    }
+
+    .package h3 {
+      font-size: 2rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .badges {
       display: flex;
-      gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 20px;
+      gap: 1rem;
     }
 
-    .package div {
-      background-color: #000;
-      color: #f4b942;
-      padding: 10px;
-      border-radius: 5px;
-      font-weight: bold;
-    }
-
-    .description {
-      margin-bottom: 30px;
-      font-size: 24px;
-      color: #ddd;
-    }
-
-    .other-things {
-      background-color: #111;
-      padding: 20px;
-      border-radius: 10px;
-    }
-
-    .other-things h3 {
-      margin-bottom: 10px;
-      color: #f4b942;
-    }
-    .other-things a {
-      margin-top: 10px;
+    .badge {
+      padding: 1rem 2rem;
+      background-color: rgb(1, 119, 113);
+      font-size: 1.4rem;
       color: white;
-    text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: transform 0.3s ease;
     }
 
-    .other-things a:hover {
-      text-decoration: underline;
-      color: #f4b942;
-    }
-    
-
-    .image-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: 10px;
+    .badge:hover {
+      transform: scale(1.05);
     }
 
-    .image-grid img {
-      width: 100%;
-      border-radius: 5px;
-    }
-
-    @media (max-width: 600px) {
-      nav a {
-        margin-left: 10px;
-        font-size: 12px;
+    @keyframes pop {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
       }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
 
-      .hero {
-        height: 250px;
-        padding: 10px;
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideDown {
+      0% {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar nav ul {
+        flex-direction: column;
+        gap: 1rem;
       }
 
       .hero h1 {
-        font-size: 20px;
+        font-size: 2rem;
       }
-      
+
+      .price {
+        font-size: 2rem;
+      }
+
+      .hero button {
+        font-size: 1rem;
+      }
+
+      .photo-strip {
+        flex-direction: column;
+        top: 0;
+      }
+
+      .description-section {
+        flex-direction: column;
+      }
+
+      .description-section > div {
+        border-right: none;
+        border-bottom: 2px solid rgb(1, 119, 113);
+        padding-bottom: 1rem;
+      }
+
+      .description-section > div:last-child {
+        border-bottom: none;
+      }
     }
   </style>
 </head>
@@ -158,7 +280,7 @@ nav a:hover {
     <div class="logo">🧭 COMPASS</div>
     <nav>
       <ul>
-        <li><a href="home.php">Home</a></li>
+        <li><a href="#">Home</a></li>
         <li><a href="travelplanner.php">Travel Planner</a></li>
         <li><a href="destinations.php">Destinations</a></li>
         <li><a href="travelog.php">Travel Logs</a></li>
@@ -166,34 +288,37 @@ nav a:hover {
     </nav>
   </header>
 
-
   <section class="hero">
-    <h1>BIKE NEW ZEALAND - $1490 / 3 Days</h1>
+    <h1>Bike New Zealand</h1>
+    <div class="price">$1040</div>
+    <a href="travelplanner.php"><button>Add to the Planner</button></a>
   </section>
 
-  <section class="content">
-    <h2>Package Includes:</h2>
-    <div class="package">
-      <div>✈️ Airfare</div>
-      <div>🏨 Lodging</div>
-      <div>🍲 Food</div>
-      <div>👩‍✈️ Local Guide</div>
-    </div>
-    <div class="description">
+  <div class="photo-strip">
+    <img src="https://www.newzealand.com/assets/Digital-Platform-Use-Only/TBD-assets-on-nonlistings/img-1536123364-8942-7505-p-9FA59912-C16E-B4B4-3C715FC5421C557A-2544003__aWxvdmVrZWxseQo_CropResizeWzE5MDAsMTAwMCw3NSwianBnIl0.jpg" alt="Surf 1">
+    <img src="https://bikepacking.com/wp-content/uploads/2024/05/Going-Your-Own-Way-New-Zealand-Matt-Bark_48-2000x1334.jpg" alt="Surf 2">
+    <img src="https://www.mountainbikeworldwide.com/wp-content/uploads/2023/09/New-Zealand-hero-image.jpg" alt="Surf 3">
+    <img src="https://res.cloudinary.com/activeadventures/image/upload/f_auto/q_auto/v1744001418/dl9zcoxwvi2jhlbliqz5?_a=BAAAV6DQ" alt="Surf 4">
+    <div class="view-text"><a href="#">View Photos &gt;&gt;</a></div>
+  </div>
+
+  <section class="description-section">
+    <div>
       The Karapoti Trail, home to the Trek Karapoti Classic, twists around the Akatarawa Range and delivers 31 miles of technical single track and challenging fire road climbs. During the ride, there are several vistas to soothe those eyes while you reward your burning legs by taking a quick breather.
     </div>
-    <div class="description">
-      Upper Hutt is New Zealand's mountain biking hub, and if you'r looking for a group ride, stop by Mountain Trails bike shop. Or if you want a number plate on your handlebar, the trek karapoti Classic is scheduled for March 4, 2001.
+    <div>
+      Upper Hutt is New Zealand's mountain biking hub, and if you're looking for a group ride, stop by Mountain Trails bike shop. Or if you want a number plate on your handlebar, the Trek Karapoti Classic is scheduled for March 4, 2001.
     </div>
-    <section class="other-things">
-      <h3>Other Things To Do:  <a href="">View Photos...</a></h3>
-      <div class="image-grid">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNYkqnCa5FVl-VkTiKbVQC5BqnuNL_LgW1XA&s" alt="Surfing Image 1">
-        <img src="https://www.nzcycletrail.com/assets/New-Homepage-Landing-Page/Lake-Dunstan-Cycle-Trail-Image-2-cropped-copyright-bennettandslater__ScaleWidthWzk2MF0.co.nz.jpg" alt="Surfing Image 2">
-        <img src="https://www.luxuryadventures.co.nz/wp-content/uploads/2023/03/NZMountainBiking4.jpg" alt="Surfing Image 3">
-        <img src="https://c02.purpledshub.com/uploads/sites/39/2019/03/1395058659590-2y51bz96zkq1-9d27503.jpg?w=1029&webp=1" alt="Surfing Image 4">
-      </div>
-    </section>
+  </section>
+
+  <section class="package">
+    <h3>Package Includes:</h3>
+    <div class="badges">
+      <div class="badge">✈️ Airfare</div>
+      <div class="badge">🍽️ Food</div>
+      <div class="badge">🏨 Lodging</div>
+      <div class="badge">🗺️ Local Guide</div>
+    </div>
   </section>
 </body>
 </html>

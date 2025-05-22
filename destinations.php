@@ -24,7 +24,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   background-color: white;
   color: #333;
   overflow-x: hidden;
@@ -56,7 +56,8 @@ body {
 .navbar nav ul li a {
   text-decoration: none;
   color: white;
-  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  transition: color 0.3s;
   font-weight: bold;
   text-shadow: 1px 1px 2px black;
 }
@@ -70,7 +71,7 @@ body {
 .featured-hero {
   background-image: url('https://cdn.tatlerasia.com/asiatatler/i/my/2018/11/05085630-thegreatoceanroad_cover_1920x1200.jpg');
   background-size: cover;
-  min-height: 450px;
+  min-height: 550px;
   margin: 2rem;
   display: flex;
   justify-content: space-between;
@@ -84,7 +85,8 @@ body {
 
 .hero-text {
   flex: 1 1 300px;
-  text-shadow: 1px 1px 2px #00CEC3;
+  color: white;
+  text-shadow: 1px 1px 2px black;
   animation: fadeUp 1.2s ease-in-out;
 }
 
@@ -95,6 +97,7 @@ body {
 
 .hero-text p {
   font-size: 1.5rem;
+  font-weight: bold;
   max-width: 1000px;
 }
 
@@ -126,7 +129,9 @@ body {
   overflow: hidden;
   box-shadow: 0 5px 30px #00CEC3;
   transition: transform 0.5s ease, box-shadow 0.5s ease;
-  min-height: 160px;
+  min-width: 400px;
+  
+  width: 100%;
   opacity: 0;
   animation: fadeInCard 1s ease forwards;
 }
@@ -140,18 +145,11 @@ body {
 .card:nth-child(2) { animation-delay: 0.4s; }
 .card:nth-child(3) { animation-delay: 0.6s; }
 
-.card.reverse {
-  flex-direction: row-reverse;
-}
 
-.card.reverse .card-content {
-  text-align: left;
-  align-items: flex-start;
-}
 
 .card img {
   width: 300px;
-  height: 420px;
+  height: auto;
   object-fit: cover;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
@@ -171,13 +169,13 @@ body {
 }
 
 .details {
-  font-size: 1rem;
+  font-size: 1.5rem;
   margin-bottom: 2.5rem;
   font-weight: bold;
 }
 
 .desc {
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   margin-bottom: 0.8rem;
   font-weight: bold;
 }
@@ -280,7 +278,7 @@ body {
         <h2>California Surfing Safari <span style="color: rgb(1, 119, 113);">$960</span></h2>
         <p class="details">Includes lodging,<br>food,<br>and airfare</p>
         <p class="desc">Be ready to go pro in a California surf town. We will catch some waves by morning and sip icy wet smoothies in the sun after lunch.</p>
-        <a href="#">MORE DETAILS...</a>
+        <a href="california.php">MORE DETAILS...</a>
       </div>
     </div>
 
@@ -290,7 +288,7 @@ body {
         <h2>Bike New Zealand <span style="color: rgb(1, 119, 113);">$1090</span></h2>
         <p class="details">Includes lodging,<br>food,<br>and airfare</p>
         <p class="desc">Shred NZ’s scenery, mountains, and hidden trails suited for adrenaline-fueled riders. Push your legs to the limit.</p>
-        <a href="#">MORE DETAILS...</a>
+        <a href="newzealand.php">MORE DETAILS...</a>
       </div>
     </div>
 
@@ -300,7 +298,7 @@ body {
         <h2>Devil’s Tower Rock Climb <span style="color: rgb(1, 119, 113);">$740</span></h2>
         <p class="details">Includes lodging,<br>food,<br>and airfare</p>
         <p class="desc">Take on the steep pitch and test the impossible cliffs of the beautiful Devil’s Tower, Wyoming.</p>
-        <a href="#">MORE DETAILS...</a>
+        <a href="gateway.php">MORE DETAILS...</a>
       </div>
     </div>
   </section>

@@ -21,7 +21,7 @@
   /* General Reset */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   background: #fff;
 }
 
@@ -52,6 +52,7 @@ body {
 .navbar nav ul li a {
   text-decoration: none;
   color: white;
+  font-size: 1.2rem;
   transition: color 0.3s;
   font-weight: bold;
   text-shadow: 1px 1px 2px black;
@@ -66,7 +67,7 @@ body {
   background: 
     linear-gradient(to bottom, rgba(255,255,255,0) 50%, #fff 100%),
     url('https://images4.alphacoders.com/656/656354.jpg') no-repeat center center/cover;
-  height: 80vh;
+  height: 70vh;
   position: relative;
 }
 
@@ -80,9 +81,8 @@ body {
 
 .hero-content {
   text-align: left;
-  color: #dedede;
+  color: white;
   padding: 8rem;
-  text-shadow: 1px 1px 2px black;
   animation: fadeInUp 1.5s ease-in-out;
 }
 
@@ -92,7 +92,7 @@ body {
 }
 
 .hero-content p {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
 }
 
 /* MAIN SECTION */
@@ -102,14 +102,14 @@ body {
   
 }
 .feature h2 {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   color: rgb(1, 119, 113);
   text-shadow: 1px 1px 2px black;
 }
 .featured-card {
   position: relative;
   margin: 1rem;
-  width: auto;
+  width: 98%;
   max-width: 2000px;
   height: 250px;
   background-size: cover;
@@ -123,28 +123,29 @@ body {
 .featured-overlay {
   position: absolute;
   bottom: 0;
-  max-width: 100%;
+  width: 100%;
   height: 100%;
-  color: #fff;
+  color: #00CEC3;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.5));
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0));
   padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  
 }
 
 .featured-overlay h2 {
   font-size: 2rem;
   color: #00CEC3;
-  text-shadow: 1px 1px 2px black;
+  font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
 .featured-overlay p {
+  color: orange;
+  font-size: 1.5rem;
   color: #00CEC3;
-  font-size: 1.2rem;
+  font-weight: bold;
   padding: 0rem 40rem 0rem 0rem ;
   text-shadow: 1px 1px 2px black;
   margin-bottom: 1rem;
@@ -164,7 +165,7 @@ body {
 }
 
 .details-btn:hover {
-  color: rgb(1, 119, 113);
+  color: White;
 }
 
 /* Responsive */
@@ -197,7 +198,6 @@ body {
 .learn h2 {
   font-size: 1.5rem;
   color: rgb(1, 119, 113);
-  text-shadow: 1px 1px 2px black;
 }
 
 .cards-section {
@@ -243,7 +243,7 @@ body {
 
 .card-overlay p {
   margin: 0.5rem ;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: rgb(1, 119, 113);
   text-shadow: 1px 1px 2px black;
 }

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>California Surfing Safari</title>
   <style>
     * {
@@ -12,153 +12,181 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #1b2130 0%, #f5f5f5 100%);
-      color: #fff;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      background-color: #fff;
+      color: #333;
     }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #222;
-    padding: 1rem 2rem;
-    flex-wrap: wrap;
-}
-
-.navbar {
-  background-color: #1b1b1b;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-nav a:hover {
-  color: orange;
-}
-
-    .hero {
-    background: 
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 30%, rgba(142,89,24,1) 100%),
-      url('pictures/image 12.png') no-repeat center center/cover;
-      height: 80vh;
+    /* NAVBAR */
+    .navbar {
       display: flex;
-      align-items: flex-end;
-      padding: 20px;
-      color: #fff;
+      flex-direction: column;
+      align-items: center;
+      background-color: #00CEC3;
+      padding: 1rem 2rem;
+      color: white;
+      animation: slideDown 1.2s ease-in-out;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px black;
+      margin-bottom: 0.5rem;
+    }
+
+    .navbar nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0;
+    }
+
+    .navbar nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: color 0.3s;
+      text-shadow: 1px 1px 2px black;
+    }
+
+    .navbar nav ul li a:hover {
+      color: rgb(1, 119, 113);
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+        url('https://endlesstrailexpeditions.com/wp-content/uploads/2020/06/7fe1e526-4109-493a-ba86-e1644164108b.jpeg?w=1024')
+        no-repeat center center/cover;
+      color: white;
+      height: 60vh;
+      text-align: center;
+      padding: 5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .hero h1 {
-      font-size: 28px;
-      padding: 10px;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 1px 1px 5px black;
     }
 
-    .content {
-      background-color: #8E5918;
-    padding: 10px 30px;
-    }
-
-    .content h2 {
-      margin-bottom: 10px;
-      color: white;
-    }
-
-    .package {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-
-    .package div {
-      background-color: #000;
-      color: #f4b942;
-      padding: 10px;
-      border-radius: 5px;
+    .price {
+      font-size: 2.8rem;
+      color: #00CEC3;
+      text-shadow: 1px 1px 5px black;
       font-weight: bold;
     }
 
-    .description {
-      margin-bottom: 30px;
-      font-size: 24px;
-      color: #ddd;
-    }
-
-    .other-things {
-      background-color: #111;
-      padding: 20px;
-      border-radius: 10px;
-    }
-
-    .other-things h3 {
-      margin-bottom: 10px;
-      color: #f4b942;
-    }
-    .other-things a {
-      margin-top: 10px;
+    .hero button {
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #00CEC3;
+      border: none;
+      border-radius: 6px;
       color: white;
-    text-decoration: none;
+      font-size: 1.3rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
 
-    .other-things a:hover {
-      text-decoration: underline;
-      color: #f4b942;
-    }
-    
-
-    .image-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: 10px;
+    .hero button:hover {
+      background-color: rgb(1, 119, 113);
     }
 
-    .image-grid img {
+    /* PHOTO STRIP */
+    .photo-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      padding: 2rem 1rem;
+    }
+
+    .photo-strip img {
+      max-width: 100%;
+      width: 300px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .photo-strip img:hover {
+      transform: scale(1.05);
+    }
+
+    .view-text {
       width: 100%;
-      border-radius: 5px;
+      text-align: center;
+      padding-top: 1rem;
     }
 
-    @media (max-width: 600px) {
-      nav a {
-        margin-left: 10px;
-        font-size: 12px;
-      }
+    .view-text a {
+      font-size: 1.2rem;
+      color: rgb(1, 119, 113);
+      font-weight: bold;
+      text-decoration: none;
+    }
 
-      .hero {
-        height: 250px;
-        padding: 10px;
-      }
+    .view-text a:hover {
+      color: #00CEC3;
+    }
 
+    /* MEDIA QUERIES */
+    @media (max-width: 768px) {
       .hero h1 {
-        font-size: 20px;
+        font-size: 2rem;
       }
-      
+
+      .price {
+        font-size: 2rem;
+      }
+
+      .hero button {
+        font-size: 1rem;
+      }
+
+      .photo-strip img {
+        width: 80%;
+      }
+
+      .navbar nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
     }
+
+    /* Animations (optional but preserved) */
+    @keyframes slideDown {
+      0% {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
   </style>
 </head>
 <body>
+
   <header class="navbar">
     <div class="logo">🧭 COMPASS</div>
     <nav>
       <ul>
-        <li><a href="home.php">Home</a></li>
+        <li><a href="#">Home</a></li>
         <li><a href="travelplanner.php">Travel Planner</a></li>
         <li><a href="destinations.php">Destinations</a></li>
         <li><a href="travelog.php">Travel Logs</a></li>
@@ -166,34 +194,19 @@ nav a:hover {
     </nav>
   </header>
 
-
   <section class="hero">
-    <h1>CALIFORNIA SURFING SAFARI  -  $960 / 5 Days</h1>
+    <h1>California Surfing Safari</h1>
+    <div class="price">$940</div>
+    <a href="travelplanner.php"><button>Add to the Planner</button></a>
   </section>
 
-  <section class="content">
-    <h2>Package Includes:</h2>
-    <div class="package">
-      <div>✈️ Airfare</div>
-      <div>🏨 Lodging</div>
-      <div>🍲 Food</div>
-      <div>👩‍✈️ Local Guide</div>
-    </div>
-    <div class="description">
-      Summertime in southern California, what could be better? Let us know what you're looking for and we'll find it and take you there. Do you want big, fast waves or gentle rollers? Do you prefer a slamming beach break or a long, peeling point break? California's got it all so sign up now before summer's gone!
-    </div>
-    <div class="description">
-      You'll stay at the centrally located Newport Bonita in Newport Beach. From there you can strike out to Trestles, Malibu, Salt Creek, The Wedge, San Onofre, and a dozen secret spots. Or, you can just walk out to the local beach breaks.
-    </div>
-    <section class="other-things">
-      <h3>Other Things To Do:  <a href="">View Photos...</a></h3>
-      <div class="image-grid">
-        <img src="https://lushpalm.com/wp-content/uploads/2017/06/vw-bus-road-trip_2-52.jpg" alt="Surfing Image 1">
-        <img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/slocal/acacia_productions_VISIT_SLOCAL_surf_gems_0008_68562bf3_c961_4f6f_9505_f143fe21e350_8efe4aed-3d88-4676-b194-721820d4e9e6.jpg" alt="Surfing Image 2">
-        <img src="https://lapoint.b-cdn.net/image/6ZI0n2lJvAyAfVZVRB8mIB/ffa8af2dbdb587c468cf394875a6fcac/South_Beach_Ericeira.jpg?fm=jpg&fl=progressive&w=1920&q=75" alt="Surfing Image 3">
-        <img src="https://www.bajabound.com/images/content/breaktime.jpg" alt="Surfing Image 4">
-      </div>
-    </section>
-  </section>
+  <div class="photo-strip">
+    <img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/slocal/acacia_productions_VISIT_SLOCAL_surf_gems_0008_68562bf3_c961_4f6f_9505_f143fe21e350_8efe4aed-3d88-4676-b194-721820d4e9e6.jpg" alt="Surf 1">
+    <img src="https://endlesstrailexpeditions.com/wp-content/uploads/2020/06/246b38b0-9e22-47a2-abab-48d425f44cc9_1_201_a.jpeg?w=1024" alt="Surf 2">
+    <img src="https://tpwmagazine.com/archive/2022/nov/scout1_adventures/img/Mustang%20Island_3321.jpg" alt="Surf 3">
+    <img src="https://endlesstrailexpeditions.com/wp-content/uploads/2020/06/7fe1e526-4109-493a-ba86-e1644164108b.jpeg?w=1024" alt="Surf 4">
+    <div class="view-text"><a href="#">View Photos &gt;&gt;</a></div>
+  </div>
+
 </body>
 </html>
