@@ -416,6 +416,10 @@ body {
       <img src="https://i.pravatar.cc/100" alt="Profile" style="border-radius: 50%; width: 80px; height: 80px; border: 2px solid white;">
     </li>
     <h2>@USERNAME</h2>
+    <li><a href="home.php">Home</a></li>
+    <li><a href="travelplanner.php">Travel Planner</a></li>
+    <li><a href="destinations.php">Destinations</a></li>
+    <li><a href="travelog.php">Travel Logs</a></li>
     <li><a href="#" class="h">History</a></li>
     <li><a href="#" class="logout">Log Out</a></li>
   </ul>

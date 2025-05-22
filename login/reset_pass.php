@@ -28,7 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->bind_param("sss", $token, $expires, $email);
         $stmt->execute();
 
-        $resetLink = "http://localhost/activitytwo/set_newpass.php?token=$token";
+        // Update this line to match your project's URL path
+        $resetLink = "http://localhost/Compass%20Website/set_newpass.php?token=$token";
 
         //Send reset email using PHPMailer
         $mail = new PHPMailer(true);

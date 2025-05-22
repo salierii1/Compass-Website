@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compass - Travel Vlogs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    * {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Logs | Compass</title>
+    <style>
+        * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -343,7 +342,139 @@
         flex-direction: column;
       }
     }
-  </style>
+
+    .blog-container {
+            margin: 80px auto 0;
+            padding: 2rem;
+            max-width: 1200px;
+        }
+
+        .create-button {
+            background-color: #00CEC3;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            transition: background-color 0.3s;
+        }
+
+        .create-button:hover {
+            background-color: rgb(1, 119, 113);
+        }
+
+        .blog-feed {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 206, 195, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+
+        .blog-meta {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .blog-title {
+            color: #00CEC3;
+            margin: 0.5rem 0;
+            font-size: 1.5rem;
+        }
+
+        .blog-destination {
+            color: rgb(1, 119, 113);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-description {
+            color: #444;
+            line-height: 1.6;
+        }
+
+        /* Form Styles */
+        .create-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 206, 195, 0.2);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: rgb(1, 119, 113);
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #00CEC3;
+            outline: none;
+        }
+
+        #imagePreview {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: none;
+            margin-top: 1rem;
+        }
+    </style>
 </head>
 <body>
   <script>
@@ -385,6 +516,10 @@
       <img src="https://i.pravatar.cc/100" alt="Profile" style="border-radius: 50%; width: 80px; height: 80px; border: 2px solid white;">
     </li>
     <h2>@USERNAME</h2>
+    <li><a href="home.php">Home</a></li>
+    <li><a href="travelplanner.php">Travel Planner</a></li>
+    <li><a href="destinations.php">Destinations</a></li>
+    <li><a href="travelog.php">Travel Logs</a></li>
     <li><a href="#" class="h">History</a></li>
     <li><a href="#" class="logout">Log Out</a></li>
   </ul>
@@ -397,40 +532,154 @@
     <div class="hero-text">
       <h1>Share Your Thoughts</h1>
       <p>Create, update, edit, and add to the Adventures you experience with our Website.</p>
-      <button>CREATE</button>
     </div>
     <div class="hero-image">
       <img src="pictures/girl.png" alt="Hero">
     </div>
   </section>
 
-  <section class="cards">
-    <div class="card">
-      <img src="https://www.newzealand.com/assets/Tourism-NZ/Nelson/img-1536221079-4393-6462-6778B1E0-0D02-97B2-3D592E45C515F277__aWxvdmVrZWxseQo_CropResizeWzE5MDAsMTAwMCw3NSwianBnIl0.jpg" alt="Kayaking">
-      <div class="avatar1"></div>
-      <div class="card-content">
-        <h3>Conquering the rapids on the Rutan Islands</h3>
-        <p>Definitely our craziest journey ever! A beautiful collage of nature's rapids, waterfalls, and more. Make sure to check out the local village!</p>
-      </div>
-    </div>
+  <main class="blog-container">
+        <div id="blogFeedView">
+            <button class="create-button" onclick="showCreateForm()">✏️ Create New Log</button>
+            <div class="blog-feed">
+                <!-- Hardcoded blog posts will be here -->
+            </div>
+        </div>
 
-    <div class="card">
-      <img src="https://www.reuters.com/resizer/v2/LJ3X5QKUOJLJ5CF2WML2RFV5EI.jpg?auth=0482f5fe094ad55ca895fc36216cbbc1f83e59999e7a8d7faadb13f99cbb2883" alt="Climbing">
-      <div class="avatar2"></div>
-      <div class="card-content">
-        <h3>Scalling the mountain in Manural</h3>
-        <p>Some of the steepest cliffs around! My buddy and I began our day scaling above the majestic raging water of Manural.</p>
-      </div>
-    </div>
+        <div id="createFormView" style="display:none;">
+            <form id="blogForm" onsubmit="handleSubmit(event)" class="create-form">
+                <div class="form-group">
+                    <label for="title">Trip Title</label>
+                    <input type="text" id="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input type="text" id="destination" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date of Travel</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Experience</label>
+                    <textarea id="description" rows="5" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="image">Upload Image</label>
+                    <input type="file" id="image" accept="image/*" required onchange="previewImage(event)">
+                    <img id="imagePreview">
+                </div>
+                <button type="submit" class="create-button">Publish Log</button>
+            </form>
+        </div>
+    </main>
 
-    <div class="card">
-      <img src="https://framerusercontent.com/images/mQcKcyt3Nb25vMYBSbb47aQ9Kw.jpg" alt="Cycling">
-      <div class="avatar3"></div>
-      <div class="card-content">
-        <h3>Cycling the Irma Coastline</h3>
-        <p>Beautiful scenery combined with steep inclines and flat roads allowed for some great cycling. Don’t forget the helmet!</p>
-      </div>
-    </div>
-  </section>
+    <script>
+        // Initial blog data
+        const blogPosts = [
+            {
+                title: "Mountain Climbing in Switzerland",
+                destination: "Swiss Alps",
+                date: "2024-02-15",
+                description: "An incredible journey through the majestic Swiss Alps...",
+                image: "pictures/swiss alps.jpg",
+                avatar: "https://i.pravatar.cc/150?img=1"
+            },
+            {
+                title: "Beach Paradise in Bali",
+                destination: "Nusa Dua, Bali",
+                date: "2024-02-10",
+                description: "Crystal clear waters, pristine beaches, and amazing local culture...",
+                image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3",
+                avatar: "https://i.pravatar.cc/150?img=2"
+            },
+            {
+                title: "Safari Adventure in Kenya",
+                destination: "Masai Mara",
+                date: "2024-01-28",
+                description: "Witnessing the great migration and encountering majestic wildlife...",
+                image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3",
+                avatar: "https://i.pravatar.cc/150?img=3"
+            },
+            {
+                title: "Ancient Temples of Japan",
+                destination: "Kyoto",
+                date: "2024-01-15",
+                description: "Exploring the serene and mystical temples during cherry blossom season...",
+                image: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3",
+                avatar: "https://i.pravatar.cc/150?img=4"
+            },
+            {
+                title: "Northern Lights in Iceland",
+                destination: "Reykjavik",
+                date: "2024-01-05",
+                description: "Chasing the aurora borealis through Iceland's stunning landscapes...",
+                image: "pictures/northern lights.jpg",
+                avatar: "https://i.pravatar.cc/150?img=5"
+            }
+        ];
+
+        // Render blog posts
+        function renderBlogPosts() {
+            const feed = document.querySelector('.blog-feed');
+            feed.innerHTML = blogPosts.map(post => `
+                <article class="blog-card">
+                    <img src="${post.image}" alt="${post.title}" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-header">
+                            <img src="${post.avatar}" alt="Author" class="author-avatar">
+                            <div class="blog-meta">${new Date(post.date).toLocaleDateString()}</div>
+                        </div>
+                        <h2 class="blog-title">${post.title}</h2>
+                        <div class="blog-destination">${post.destination}</div>
+                        <p class="blog-description">${post.description}</p>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function showCreateForm() {
+            document.getElementById('blogFeedView').style.display = 'none';
+            document.getElementById('createFormView').style.display = 'block';
+        }
+
+        function previewImage(event) {
+            const preview = document.getElementById('imagePreview');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function() {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const newPost = {
+                title: document.getElementById('title').value,
+                destination: document.getElementById('destination').value,
+                date: document.getElementById('date').value,
+                description: document.getElementById('description').value,
+                image: document.getElementById('imagePreview').src,
+                avatar: "https://i.pravatar.cc/150?img=" + Math.floor(Math.random() * 70)
+            };
+
+            blogPosts.unshift(newPost);
+            document.getElementById('blogForm').reset();
+            document.getElementById('imagePreview').style.display = 'none';
+            document.getElementById('createFormView').style.display = 'none';
+            document.getElementById('blogFeedView').style.display = 'block';
+            renderBlogPosts();
+        }
+
+        // Initial render
+        renderBlogPosts();
+    </script>
 </body>
 </html>
