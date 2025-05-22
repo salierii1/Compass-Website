@@ -523,7 +523,7 @@ body, html {
 
     object#worldMap {
       width: 1100px;
-      height: 80vh; /* Adjust this height as needed */
+      height: 90vh; /* Adjust this height as needed */
       display: block;
     }
 
