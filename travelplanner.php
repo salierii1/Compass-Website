@@ -539,9 +539,7 @@ body, html {
 }
 
 
-.navbar {
-  animation: fadeSlideUp 0.8s ease-out forwards;
-}
+
 
 .planner-container {
   opacity: 0;
