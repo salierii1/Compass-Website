@@ -35,12 +35,6 @@ $results = mysqli_query($con, "SELECT * FROM travel_packages $where_sql");
 ?>
 
 
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,11 +43,7 @@ $results = mysqli_query($con, "SELECT * FROM travel_packages $where_sql");
   <title>Adventure Planner</title>
   <link rel="stylesheet" href="styles.css">
 
-
-
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-
 
 </head>
 <body>
@@ -225,23 +215,6 @@ nav a:hover {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -275,18 +248,6 @@ body {
     font-size: 1em;
     color: #343a40;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* Base Reset */
@@ -419,12 +380,6 @@ body, html {
 }
 
 
-
-
-
-
-
-
 .map-container {
       width: 100%;
       max-width: 1000px;
@@ -435,10 +390,6 @@ body, html {
       width: 100%;
       height: auto;
     }
-
-
-
-
 
 </style>
 
@@ -463,14 +414,7 @@ body, html {
     <object id="worldMap" type="image/svg+xml" data="pictures/world.svg"></object>
 </div>
 
-
-
-
-
-
-
-
-    
+ 
     <div id="products"></div>
 
 <div class="container py-4">
@@ -535,18 +479,7 @@ body, html {
 </div>
 
 
-
-
-
-
-
-
-
-
   </main>
-
-
-
 
 
   <script>
@@ -595,29 +528,5 @@ objectEl.addEventListener('load', () => {
 });
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>
-
