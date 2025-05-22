@@ -23,6 +23,7 @@ body {
   margin: 0;
   font-family: Georgia, 'Times New Roman', Times, serif;
   background: #fff;
+  overflow-x: hidden;
 }
 
 /* NAVBAR */
@@ -62,10 +63,77 @@ body {
   color: rgb(1, 119, 113);
 }
 
+.sidebar-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
+  transition: color 0.3s;
+}
+
+.navbar nav ul li {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-btn:hover {
+  color: rgb(1, 119, 113);
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 250px;
+  height: 100%;
+  background-color: #00CEC3;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+  padding: 1rem 1rem;
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+  color: white;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+.sidebar h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 1rem 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+  font-weight: bold;
+}
+
+.sidebar ul li a:hover {
+  color: #003f3c;
+}
+
+
 /* HERO WELCOME */
 .hero {
   background: 
-    linear-gradient(to bottom, rgba(255,255,255,0) 0%, #fff 100%),
+    linear-gradient(to bottom, rgba(255,255,255,0) 50%, #fff 100%),
     url('https://images4.alphacoders.com/656/656354.jpg') no-repeat center center/cover;
   height: 80vh;
   position: relative;
@@ -330,6 +398,26 @@ body {
 </style>
 
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('toggleSidebar');
+    const sidebar = document.getElementById('sidebar');
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sidebar.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (e) => {
+      // Close sidebar if click outside
+      if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+        sidebar.classList.remove('open');
+      }
+    });
+  });
+</script>
+
+
 
 <body>
 
@@ -343,8 +431,20 @@ body {
         <li><a href="travelplanner.php">Travel Planner</a></li>
         <li><a href="destinations.php">Destinations</a></li>
         <li><a href="travelog.php">Travel Logs</a></li>
+        <li><button id="toggleSidebar" class="sidebar-btn">☰</button></li>
       </ul>
     </nav>
+
+    <div class="sidebar" id="sidebar">
+  <h3>Quick Links</h3>
+  <ul>
+    <li><a href="#">My Profile</a></li>
+    <li><a href="#">My Bookings</a></li>
+    <li><a href="#">Saved Trips</a></li>
+    <li><a href="#">Log Out</a></li>
+  </ul>
+</div>
+
   </header>
 
   <!-- HERO WELCOME SECTION -->
