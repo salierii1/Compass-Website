@@ -186,7 +186,7 @@
     <div class="logo">🧭 COMPASS</div>
     <nav>
       <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="home.php">Home</a></li>
         <li><a href="travelplanner.php">Travel Planner</a></li>
         <li><a href="destinations.php">Destinations</a></li>
         <li><a href="travelog.php">Travel Logs</a></li>
