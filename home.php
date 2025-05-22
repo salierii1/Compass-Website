@@ -111,11 +111,30 @@ body {
   right: 0;
 }
 
+
 .sidebar h3 {
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  text-align: center;
+}
+
+.sidebar img {
+  margin-top: 1.5rem;
   margin-bottom: 1rem;
   font-size: 1.5rem;
   color: white;
   text-shadow: 1px 1px 2px black;
+  text-align: center;
+}
+
+.sidebar h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  text-align: center;
 }
 
 .sidebar ul {
@@ -133,6 +152,34 @@ body {
   font-size: 1.1rem;
   transition: color 0.2s;
   font-weight: bold;
+  text-shadow: 1px 1px 2px black;
+}
+
+.sidebar ul {
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  justify-content: flex-start;
+}
+
+.sidebar ul li:last-child,
+.sidebar ul li.logout-link {
+  margin-top: auto;
+}
+
+.sidebar ul li.h,
+.sidebar ul li.logout-link {
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .sidebar ul {
+    height: 60vh;
+  }
+}
+.sidebar ul li {
+  margin: 1rem 0;
+  text-align: center;
 }
 
 .sidebar ul li a:hover {
@@ -287,11 +334,11 @@ body {
 
 .card {
   flex: 1 1 250px;
-  height: 300px;
+  height: 500px;
   margin: 1rem 1rem 5rem 1rem;
   background-size: cover;
   background-position: center;
-  border-radius: 12px 12px 0 0;
+  border-radius: 12px;
   overflow: hidden;
   position: relative;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -447,14 +494,15 @@ body {
     </nav>
 
     <div class="sidebar" id="sidebar">
-  <h3>Quick Links</h3>
+  <h3>🧭</h3>
+  <h3>COMPASS</h3>
   <ul>
     <li style="text-align: center;">
       <img src="https://i.pravatar.cc/100" alt="Profile" style="border-radius: 50%; width: 80px; height: 80px; border: 2px solid white;">
     </li>
-    <li><a href="#">My Bookings</a></li>
-    <li><a href="#">Saved Trips</a></li>
-    <li><a href="#">Log Out</a></li>
+    <h2>@USERNAME</h2>
+    <li><a href="#" class="h">History</a></li>
+    <li><a href="#" class="logout">Log Out</a></li>
   </ul>
 </div>
 

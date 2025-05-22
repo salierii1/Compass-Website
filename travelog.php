@@ -18,15 +18,23 @@
       color: #333;
     }
 
-    .navbar {
+/* NAVBAR */
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #00CEC3;
   padding: 1rem 2rem;
   color: white;
-
 }
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
 
 .logo {
   font-size: 2rem;
@@ -38,6 +46,8 @@
   list-style: none;
   display: flex;
   gap: 2rem;
+  padding: 0;
+  margin: 0;
 }
 
 .navbar nav ul li a {
@@ -51,10 +61,123 @@
 
 .navbar nav ul li a:hover {
   color: rgb(1, 119, 113);
-  transform: scale(1.05);
+}
+
+.sidebar-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
+  transition: color 0.3s;
+}
+
+.navbar nav ul li {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-btn:hover {
+  color: rgb(1, 119, 113);
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 250px;
+  height: 100%;
+  background-color: #00CEC3;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+  padding: 1rem 1rem;
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+  color: white;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+
+.sidebar h3 {
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  text-align: center;
+}
+
+.sidebar img {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  text-align: center;
+}
+
+.sidebar h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  text-align: center;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 1rem 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
+}
+
+.sidebar ul {
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  justify-content: flex-start;
+}
+
+.sidebar ul li:last-child,
+.sidebar ul li.logout-link {
+  margin-top: auto;
+}
+
+.sidebar ul li.h,
+.sidebar ul li.logout-link {
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .sidebar ul {
+    height: 60vh;
+  }
+}
+.sidebar ul li {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.sidebar ul li a:hover {
+  color: #003f3c;
 }
 
     .hero {
+      margin: 70px auto;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -223,6 +346,25 @@
   </style>
 </head>
 <body>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('toggleSidebar');
+    const sidebar = document.getElementById('sidebar');
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sidebar.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (e) => {
+      // Close sidebar if click outside
+      if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+        sidebar.classList.remove('open');
+      }
+    });
+  });
+</script>
+  <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo">🧭 COMPASS</div>
     <nav>
@@ -231,8 +373,24 @@
         <li><a href="travelplanner.php">Travel Planner</a></li>
         <li><a href="destinations.php">Destinations</a></li>
         <li><a href="travelog.php">Travel Logs</a></li>
+        <li><button id="toggleSidebar" class="sidebar-btn">☰</button></li>
       </ul>
     </nav>
+
+    <div class="sidebar" id="sidebar">
+  <h3>🧭</h3>
+  <h3>COMPASS</h3>
+  <ul>
+    <li style="text-align: center;">
+      <img src="https://i.pravatar.cc/100" alt="Profile" style="border-radius: 50%; width: 80px; height: 80px; border: 2px solid white;">
+    </li>
+    <h2>@USERNAME</h2>
+    <li><a href="#" class="h">History</a></li>
+    <li><a href="#" class="logout">Log Out</a></li>
+  </ul>
+</div>
+
+
   </header>
 
   <section class="hero">
