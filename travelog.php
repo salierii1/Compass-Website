@@ -10,7 +10,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Roboto', sans-serif;
+      font-family: Georgia, 'Times New Roman', Times, serif;
     }
 
     body {
@@ -73,7 +73,7 @@
 
     .hero-text h1 {
       color: rgb(1, 119, 113);
-      font-size: 5rem;
+      font-size: 4rem;
       margin-bottom: 10px;
       text-shadow: 1px 1px 2px black;
     }
@@ -137,14 +137,14 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      gap: 50px;
       padding: 40px 20px;
     }
 
     .card {
       background: white;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 30px #00CEC3;
       height: 500px;
       width: 350px;
       overflow: hidden;
@@ -162,7 +162,7 @@
     }
 
     .card-content {
-      padding: 15px;
+      padding: 12px;
     }
 
     .card h3 {
