@@ -30,13 +30,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: orange;
+  background-color: #00CEC3;
   padding: 1rem 2rem;
   color: white;
 }
 
 .logo {
+  font-size: 2rem;
   font-weight: bold;
+  text-shadow: 1px 1px 2px black;
 }
 
 .navbar nav ul {
@@ -56,7 +58,7 @@ body {
 }
 
 .navbar nav ul li a:hover {
-  color: black;
+  color: rgb(1, 119, 113);
 }
 
 /* HERO WELCOME */
@@ -64,7 +66,7 @@ body {
   background: 
     linear-gradient(to bottom, rgba(255,255,255,0) 50%, #fff 100%),
     url('https://images4.alphacoders.com/656/656354.jpg') no-repeat center center/cover;
-  height: 120vh;
+  height: 80vh;
   position: relative;
 }
 
@@ -78,8 +80,9 @@ body {
 
 .hero-content {
   text-align: left;
-  color: white;
+  color: #dedede;
   padding: 8rem;
+  text-shadow: 1px 1px 2px black;
   animation: fadeInUp 1.5s ease-in-out;
 }
 
@@ -89,7 +92,7 @@ body {
 }
 
 .hero-content p {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
 }
 
 /* MAIN SECTION */
@@ -100,13 +103,13 @@ body {
 }
 .feature h2 {
   font-size: 1.5rem;
-  color: orange;
+  color: rgb(1, 119, 113);
   text-shadow: 1px 1px 2px black;
 }
 .featured-card {
   position: relative;
   margin: 1rem;
-  width: 98%;
+  width: auto;
   max-width: 2000px;
   height: 250px;
   background-size: cover;
@@ -120,7 +123,7 @@ body {
 .featured-overlay {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  max-width: 100%;
   height: 100%;
   color: #fff;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.5));
@@ -129,18 +132,19 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  
 }
 
 .featured-overlay h2 {
   font-size: 2rem;
-  color: orange;
+  color: #00CEC3;
   text-shadow: 1px 1px 2px black;
   margin-bottom: 0.5rem;
 }
 
 .featured-overlay p {
-  color: orange;
-  font-size: 1.5rem;
+  color: #00CEC3;
+  font-size: 1.2rem;
   padding: 0rem 40rem 0rem 0rem ;
   text-shadow: 1px 1px 2px black;
   margin-bottom: 1rem;
@@ -151,7 +155,7 @@ body {
   padding: 0.5rem 0rem;
   background: transparent;
   border: none;
-  color: #f0a500;
+  color: #00CEC3;
   font-weight: bold;
   text-decoration: underline;
   text-shadow: 1px 1px 2px black;
@@ -160,7 +164,7 @@ body {
 }
 
 .details-btn:hover {
-  color: White;
+  color: rgb(1, 119, 113);
 }
 
 /* Responsive */
@@ -192,7 +196,7 @@ body {
 }
 .learn h2 {
   font-size: 1.5rem;
-  color: orange;
+  color: rgb(1, 119, 113);
   text-shadow: 1px 1px 2px black;
 }
 
@@ -224,7 +228,7 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  color: #ff9800;
+  color: #00CEC3;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
   text-align: center;
 }
@@ -240,7 +244,7 @@ body {
 .card-overlay p {
   margin: 0.5rem ;
   font-size: 1rem;
-  color: orange;
+  color: rgb(1, 119, 113);
   text-shadow: 1px 1px 2px black;
 }
 
