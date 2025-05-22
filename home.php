@@ -65,9 +65,9 @@ body {
 /* HERO WELCOME */
 .hero {
   background: 
-    linear-gradient(to bottom, rgba(255,255,255,0) 50%, #fff 100%),
+    linear-gradient(to bottom, rgba(255,255,255,0) 0%, #fff 100%),
     url('https://images4.alphacoders.com/656/656354.jpg') no-repeat center center/cover;
-  height: 70vh;
+  height: 80vh;
   position: relative;
 }
 

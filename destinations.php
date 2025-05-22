@@ -38,7 +38,6 @@ body {
   background-color: #00CEC3;
   padding: 1rem 2rem;
   color: white;
-  animation: slideDown 0.8s ease-in-out;
 }
 
 .logo {
@@ -169,15 +168,19 @@ body {
 }
 
 .details {
+  color: rgb(1, 119, 113);
   font-size: 1.5rem;
   margin-bottom: 2.5rem;
   font-weight: bold;
+  text-shadow: 1px 1px 2px black;
 }
 
 .desc {
+  color: rgb(1, 119, 113);
   font-size: 1.2rem;
   margin-bottom: 0.8rem;
   font-weight: bold;
+  text-shadow: 1px 1px 3px black;
 }
 
 .card-content a {

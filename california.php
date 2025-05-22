@@ -24,7 +24,7 @@
       background-color: #00CEC3;
       padding: 1rem 2rem;
       color: white;
-      animation: slideDown 1.2s ease-in-out;
+
     }
 
     .logo {
