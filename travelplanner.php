@@ -77,7 +77,7 @@ body, html {
   font-family: 'Segoe UI', sans-serif;
   background-color: #000;
   color: white;
-background: linear-gradient(to bottom, rgb(219, 136, 52) 20%,#000000  70%);
+background: linear-gradient(to bottom, #00CEC3 20%,white  70%);
 }
 
 /* Navbar */
@@ -185,10 +185,10 @@ background: linear-gradient(to bottom, rgb(219, 136, 52) 20%,#000000  70%);
 }
 
 body, html {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   background-color: #000;
-  color: rgb(219, 136, 52);
-  background: linear-gradient(to bottom, rgb(219, 136, 52) 20%, #000000 70%);
+  color: rgb(1, 119, 113);
+  background: linear-gradient(to bottom, #f0f0f0 20%, #00CEC3 70%);
 }
 
 /* Main Container */
@@ -198,9 +198,16 @@ body, html {
   margin: auto;
 }
 
+.form-label {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
 /* Form Sections */
 .form-section {
-  background-color: #00CEC3;
+  background-color: rgb(1, 119, 113);
   padding: 20px;
   margin-bottom: 25px;
   border-radius: 10px;
@@ -312,7 +319,7 @@ body, html {
 
 /* Submit Button */
 .btn-primary {
-  background-color: #00CEC3;
+  background-color: rgb(1, 119, 113);
   text-shadow: 1px 1px 5px black;
   color: white;
   font-weight: bold;
@@ -326,7 +333,7 @@ body, html {
 }
 
 .btn-primary:hover {
-  background-color: #00CEC3;
+  background-color:rgb(4, 70, 66);
 }
 
 .row .card {
@@ -341,9 +348,16 @@ body, html {
   box-shadow: 0 10px 35px rgba(0, 206, 195, 0.6);
 }
 
+.row h4 {
+  font-size: 2rem;
+  color: rgb(1, 119, 113);
+  margin-bottom: 20px;
+  font-weight: bold;
+} 
+
 .row .card h5 {
   font-size: 1.5rem;
-  color: #00CEC3;
+  color: rgb(1, 119, 113);
   margin-bottom: 0.5rem;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
 }
@@ -370,6 +384,7 @@ body, html {
   .activity-container,
   .info-container {
     flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -461,8 +476,9 @@ body, html {
 
     <hr>
 
-<h4>Results:</h4>
+
 <div class="row">
+    <h4>Results:</h4>
     <?php if (mysqli_num_rows($results) > 0): ?>
         <?php while ($package = mysqli_fetch_assoc($results)) : ?>
             <div class="col-md-4 mt-3">

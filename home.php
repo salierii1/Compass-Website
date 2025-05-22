@@ -24,6 +24,8 @@ body {
   font-family: Georgia, 'Times New Roman', Times, serif;
   background: #fff;
   overflow-x: hidden;
+  padding-top: 60px;
+
 }
 
 /* NAVBAR */
@@ -35,6 +37,14 @@ body {
   padding: 1rem 2rem;
   color: white;
 }
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
 
 .logo {
   font-size: 2rem;
@@ -398,6 +408,7 @@ body {
 </style>
 
 
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('toggleSidebar');
@@ -438,12 +449,15 @@ body {
     <div class="sidebar" id="sidebar">
   <h3>Quick Links</h3>
   <ul>
-    <li><a href="#">My Profile</a></li>
+    <li style="text-align: center;">
+      <img src="https://i.pravatar.cc/100" alt="Profile" style="border-radius: 50%; width: 80px; height: 80px; border: 2px solid white;">
+    </li>
     <li><a href="#">My Bookings</a></li>
     <li><a href="#">Saved Trips</a></li>
     <li><a href="#">Log Out</a></li>
   </ul>
 </div>
+
 
   </header>
 
