@@ -24,6 +24,6 @@ if (isset($_POST['submit'])) {
     $stmt->close();
     $conn->close();
 } else {
-    header("Location: index.php");
+    header("Location: CreatorWhite.php");
     exit();
 }

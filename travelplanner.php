@@ -19,19 +19,36 @@ if ($country_input != '') {
     $where[] = "country LIKE '%" . mysqli_real_escape_string($con, $country_input) . "%'";
 }
 
+$activity_condition = '';
+$info_condition = '';
+
 if (!empty($selected_activities)) {
     $ids = implode(",", array_map('intval', $selected_activities));
-    $where[] = "activity_id IN ($ids)";
+    $activity_condition = "activity_id IN ($ids)";
 }
 
 if (!empty($selected_infos)) {
     $ids = implode(",", array_map('intval', $selected_infos));
-    $where[] = "info_type_id IN ($ids)";
+    $info_condition = "info_type_id IN ($ids)";
+}
+
+if ($activity_condition && $info_condition) {
+    $where[] = "($activity_condition OR $info_condition)";
+} elseif ($activity_condition) {
+    $where[] = $activity_condition;
+} elseif ($info_condition) {
+    $where[] = $info_condition;
 }
 
 $where_sql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
 
 $results = mysqli_query($con, "SELECT * FROM travel_packages $where_sql");
+
+
+
+
+
+
 ?>
 
 
@@ -240,11 +257,6 @@ body, html {
   color: white;
   border-color: #00CEC3;
 }
-.activity-box:hover span {
-  background-color: rgb(1, 119, 113);
-  color: white;
-  border-color: #00CEC3;
-}
 
 
 /* Information Preferences: Each Preference in Separate Box */
@@ -283,11 +295,7 @@ body, html {
   color: white;
   border-color: #00CEC3;
 }
-.info-box:hover span {
-  background-color: rgb(1, 119, 113);
-  color: white;
-  border-color: #00CEC3;
-}
+
 
 /* Checkbox Group (Horizontal Layout) */
 .checkbox-group {
@@ -445,7 +453,7 @@ body, html {
     </div>
 </div>
 
-//button 
+
     <div class="text-center mt-3">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
@@ -453,22 +461,48 @@ body, html {
 
     <hr>
 
-    <h4>Results:</h4>
-    <div class="row">
-        <?php if (mysqli_num_rows($results) > 0): ?>
-            <?php while ($package = mysqli_fetch_assoc($results)) : ?>
-                <div class="col-md-4 mt-3">
-                    <div class="card border p-3">
-                        <h5><?= $package['city'] ?>, <?= $package['country'] ?></h5>
-                        <p><?= $package['description'] ?></p>
+<h4>Results:</h4>
+<div class="row">
+    <?php if (mysqli_num_rows($results) > 0): ?>
+        <?php while ($package = mysqli_fetch_assoc($results)) : ?>
+            <div class="col-md-4 mt-3">
+                <div class="card h-100 position-relative border p-3">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <?= htmlspecialchars($package['city']) ?>, <?= htmlspecialchars($package['country']) ?>
+                        </h5>
+                        <?php
+                        $descWords = explode(' ', $package['description']);
+                        $shortDesc = implode(' ', array_slice($descWords, 0, 10));
+                        if (count($descWords) > 10) {
+                            $shortDesc .= '...';
+                        }
+                        ?>
+                        <p class="card-text"><?= htmlspecialchars($shortDesc) ?></p>
+
+                        <?php
+                        // Redirect logic
+                        $redirects = [
+                            2 => 'zurich.php',
+                            3 => 'manila.php',
+                            4 => 'reykjavik.php',
+                            5 => 'pasig.php',
+                            6 => 'gateway.php'
+                        ];
+                        $targetPage = $redirects[$package['id']] ?? 'gateway.php?id=' . $package['id'];
+                        ?>
+                        <a href="<?= $targetPage ?>" class="stretched-link"></a>
                     </div>
                 </div>
-            <?php endwhile; ?>
-        <?php else: ?>
+            </div>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <div class="col-12">
             <p>No matching results found.</p>
-        <?php endif; ?>
-    </div>
+        </div>
+    <?php endif; ?>
 </div>
+
 
 
   </main>
