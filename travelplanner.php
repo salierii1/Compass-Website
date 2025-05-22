@@ -210,7 +210,7 @@ body, html {
   flex: 1;
   padding: 10px;
   border-radius: 6px;
-  border: rgb(1, 119, 113);
+  border: #00CEC3;
   font-size: 1rem;
 }
 
@@ -314,8 +314,9 @@ body, html {
 
 /* Submit Button */
 .btn-primary {
-  background-color: #fba434;
-  color: black;
+  background-color: #00CEC3;
+  text-shadow: 1px 1px 5px black;
+  color: white;
   font-weight: bold;
   padding: 12px 24px;
   border: none;
@@ -327,7 +328,7 @@ body, html {
 }
 
 .btn-primary:hover {
-  background-color: #e59429;
+  background-color: #00CEC3;
 }
 
 .row .card {
@@ -464,6 +465,11 @@ body, html {
         <?php endwhile; ?>
     </div>
 </div>
+
+//button 
+    <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
 
 
     <hr>

@@ -12,7 +12,7 @@
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Georgia, 'Times New Roman', Times, serif;
       background-color: #fff;
       color: #333;
     }
