@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sql = "INSERT INTO travel_logs (stdID, title, destination, travel_date, description, image_path) 
                     VALUES ('$userID', '$title', '$destination', '$travel_date', '$description', '$destPath')";
             if ($conn->query($sql) === TRUE) {
-                header("Location: travel_logs.php?success=1"); // Redirect back or to logs page
+                header("Location: travelog.php?success=1"); // Redirect back or to logs page
                 exit();
             } else {
                 echo "Database error: " . $conn->error;
