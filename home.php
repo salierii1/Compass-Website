@@ -574,7 +574,7 @@ body {
 <body>
 
   
-  <!-- NAVBAR -->
+
   <header class="navbar">
     <div class="logo">🧭 COMPASS</div>
     <nav>
@@ -672,7 +672,7 @@ body {
 
   </main>
 
-  <!-- Footer Section -->
+
 <footer class="site-footer">
     <div class="footer-content">
         <div class="footer-section">
@@ -708,7 +708,7 @@ body {
     </div>
 </footer>
 
-<!-- Add Font Awesome for social icons -->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 </body>
