@@ -8,8 +8,6 @@ if (!isset($_SESSION['stdID'])) {
 }
 
 $userID = $_SESSION['stdID'];
-
-// Fetch user logs
 $sql = "SELECT * FROM travel_logs WHERE stdID = '$userID' ORDER BY created_at DESC";
 $result = $conn->query($sql);
 
@@ -20,10 +18,6 @@ if ($result && $result->num_rows > 0) {
     }
 }
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -585,12 +579,6 @@ p a:hover {
     }
 }
 
-
-
-
-
-
-
     </style>
 </head>
 <body>
@@ -659,175 +647,156 @@ p a:hover {
   <main class="blog-container">
         <div id="blogFeedView">
             <button class="create-button" onclick="showCreateForm()">✏️ Create New Log</button>
-            <div class="blog-feed">
-                <!-- Hardcoded blog posts will be here -->
-            </div>
+            <div class="blog-feed"></div>
         </div>
 
         <div id="createFormView" style="display:none;">
-<form id="blogForm" action="submit_log.php" method="POST" enctype="multipart/form-data" class="create-form">
-    <div class="form-group">
-        <label for="title">Trip Title</label>
-        <input type="text" id="title" name="title" required>
-    </div>
-    <div class="form-group">
-        <label for="destination">Destination</label>
-        <input type="text" id="destination" name="destination" required>
-    </div>
-    <div class="form-group">
-        <label for="date">Date of Travel</label>
-        <input type="date" id="date" name="travel_date" required>
-    </div>
-    <div class="form-group">
-        <label for="description">Experience</label>
-        <textarea id="description" name="description" rows="5" required></textarea>
-    </div>
-    <div class="form-group">
-        <label for="image">Upload Image</label>
-        <input type="file" id="image" name="image" accept="image/*" required onchange="previewImage(event)">
-        <img id="imagePreview" style="display:none;">
-    </div>
-    <button type="submit" class="create-button">Publish Log</button>
-</form>
-
-
+            <form id="blogForm" action="submit_log.php" method="POST" enctype="multipart/form-data" class="create-form">
+                <div class="form-group">
+                    <label for="title">Trip Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input type="text" id="destination" name="destination" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date of Travel</label>
+                    <input type="date" id="date" name="travel_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Experience</label>
+                    <textarea id="description" name="description" rows="5" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="image">Upload Image</label>
+                    <input type="file" id="image" name="image" accept="image/*" required onchange="previewImage(event)">
+                    <img id="imagePreview" style="display:none;">
+                </div>
+                <button type="submit" class="create-button">Publish Log</button>
+            </form>
         </div>
-
-
-
-
-
-        
     </main>
 
+<script>
+// Combine PHP logs with hardcoded posts
+const blogPosts = [
+    // PHP logs
+    <?php foreach ($logs as $log): ?>
+    ,{
+        title: "<?= addslashes($log['title']) ?>",
+        destination: "<?= addslashes($log['destination']) ?>",
+        date: "<?= addslashes($log['travel_date']) ?>",
+        description: "<?= addslashes($log['description']) ?>",
+        image: "<?= addslashes($log['image_path']) ?>",
+        avatar: "https://i.pravatar.cc/150?img=1",
+        isUserPost: true
+    },
+    <?php endforeach; ?>
+    // Sample posts
+    ,{
+        title: "Mountain Climbing in Switzerland",
+        destination: "Swiss Alps",
+        date: "2024-02-15",
+        description: "An incredible journey through the majestic Swiss Alps...",
+        image: "pictures/swiss alps.jpg",
+        avatar: "https://i.pravatar.cc/150?img=1"
+    },
+    ,{
+        title: "Beach Paradise in Bali",
+        destination: "Nusa Dua, Bali",
+        date: "2024-02-10",
+        description: "Crystal clear waters, pristine beaches, and amazing local culture...",
+        image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3",
+        avatar: "https://i.pravatar.cc/150?img=2"
+    },
+    {
+        title: "Safari Adventure in Kenya",
+        destination: "Masai Mara",
+        date: "2024-01-28",
+        description: "Witnessing the great migration and encountering majestic wildlife...",
+        image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3",
+        avatar: "https://i.pravatar.cc/150?img=3"
+    },
+    {
+        title: "Ancient Temples of Japan",
+        destination: "Kyoto",
+        date: "2024-01-15",
+        description: "Exploring the serene and mystical temples during cherry blossom season...",
+        image: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3",
+        avatar: "https://i.pravatar.cc/150?img=4"
+    },
+    {
+        title: "Northern Lights in Iceland",
+        destination: "Reykjavik",
+        date: "2024-01-05",
+        description: "Chasing the aurora borealis through Iceland's stunning landscapes...",
+        image: "pictures/northern lights.jpg",
+        avatar: "https://i.pravatar.cc/150?img=5"
+    }
+];
 
-
-    <script>
-        // Initial blog data
-        const blogPosts = [
-            {
-                title: "Mountain Climbing in Switzerland",
-                destination: "Swiss Alps",
-                date: "2024-02-15",
-                description: "An incredible journey through the majestic Swiss Alps...",
-                image: "pictures/swiss alps.jpg",
-                avatar: "https://i.pravatar.cc/150?img=1"
-            },
-            {
-                title: "Beach Paradise in Bali",
-                destination: "Nusa Dua, Bali",
-                date: "2024-02-10",
-                description: "Crystal clear waters, pristine beaches, and amazing local culture...",
-                image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3",
-                avatar: "https://i.pravatar.cc/150?img=2"
-            },
-            {
-                title: "Safari Adventure in Kenya",
-                destination: "Masai Mara",
-                date: "2024-01-28",
-                description: "Witnessing the great migration and encountering majestic wildlife...",
-                image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3",
-                avatar: "https://i.pravatar.cc/150?img=3"
-            },
-            {
-                title: "Ancient Temples of Japan",
-                destination: "Kyoto",
-                date: "2024-01-15",
-                description: "Exploring the serene and mystical temples during cherry blossom season...",
-                image: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3",
-                avatar: "https://i.pravatar.cc/150?img=4"
-            },
-            {
-                title: "Northern Lights in Iceland",
-                destination: "Reykjavik",
-                date: "2024-01-05",
-                description: "Chasing the aurora borealis through Iceland's stunning landscapes...",
-                image: "pictures/northern lights.jpg",
-                avatar: "https://i.pravatar.cc/150?img=5"
-            }
-        ];
-
-        // Render blog posts
-        function renderBlogPosts() {
-            const feed = document.querySelector('.blog-feed');
-            feed.innerHTML = blogPosts.map(post => `
-                <article class="blog-card">
-                    <img src="${post.image}" alt="${post.title}" class="blog-image">
-                    <div class="blog-content">
-                        <div class="blog-header">
-                            <img src="${post.avatar}" alt="Author" class="author-avatar">
-                            <div class="blog-meta">${new Date(post.date).toLocaleDateString()}</div>
-                        </div>
-                        <h2 class="blog-title">${post.title}</h2>
-                        <div class="blog-destination">${post.destination}</div>
-                        <p class="blog-description">${post.description}</p>
+// Render blog posts
+function renderBlogPosts() {
+    const feed = document.querySelector('.blog-feed');
+    feed.innerHTML = blogPosts
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .map(post => `
+            <article class="blog-card">
+                <img src="${post.image}" alt="${post.title}" class="blog-image">
+                <div class="blog-content">
+                    <div class="blog-header">
+                        <img src="${post.avatar}" alt="Author" class="author-avatar">
+                        <div class="blog-meta">${new Date(post.date).toLocaleDateString()}</div>
                     </div>
-                </article>
-            `).join('');
-        }
+                    <h2 class="blog-title">${post.title}</h2>
+                    <div class="blog-destination">${post.destination}</div>
+                    <p class="blog-description">${post.description}</p>
+                </div>
+            </article>
+        `).join('');
+}
 
-        function showCreateForm() {
-            document.getElementById('blogFeedView').style.display = 'none';
-            document.getElementById('createFormView').style.display = 'block';
-        }
+// Show/hide form
+function showCreateForm() {
+    document.getElementById('blogFeedView').style.display = 'none';
+    document.getElementById('createFormView').style.display = 'block';
+}
 
-        function previewImage(event) {
-            const preview = document.getElementById('imagePreview');
-            const file = event.target.files[0];
-            const reader = new FileReader();
+// Image preview
+function previewImage(event) {
+    const preview = document.getElementById('imagePreview');
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
+}
 
-            reader.onload = function() {
-                preview.src = reader.result;
-                preview.style.display = 'block';
-            }
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    renderBlogPosts();
+    const toggleBtn = document.getElementById('toggleSidebar');
+    const sidebar = document.getElementById('sidebar');
 
-            if (file) {
-                reader.readAsDataURL(file);
-            }
-        }
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sidebar.classList.toggle('open');
+    });
 
-        function handleSubmit(event) {
-            event.preventDefault();
-            
-            const newPost = {
-                title: document.getElementById('title').value,
-                destination: document.getElementById('destination').value,
-                date: document.getElementById('date').value,
-                description: document.getElementById('description').value,
-                image: document.getElementById('imagePreview').src,
-                avatar: "https://i.pravatar.cc/150?img=" + Math.floor(Math.random() * 70)
-            };
-
-            blogPosts.unshift(newPost);
-            document.getElementById('blogForm').reset();
-            document.getElementById('imagePreview').style.display = 'none';
-            document.getElementById('createFormView').style.display = 'none';
-            document.getElementById('blogFeedView').style.display = 'block';
-            renderBlogPosts();
-        }
-
-        // Initial render
-        renderBlogPosts();
-    </script>
-
-
-    <?php if (count($logs) === 0): ?>
-        <p>No travel logs found. <a href="travelog.php">Create one now!</a></p>
-    <?php else: ?>
-        <?php foreach ($logs as $log): ?>
-            <div class="log-card">
-                <h2><?= htmlspecialchars($log['title']) ?></h2>
-                <p><strong>Destination:</strong> <?= htmlspecialchars($log['destination']) ?></p>
-                <p><strong>Date of Travel:</strong> <?= htmlspecialchars($log['travel_date']) ?></p>
-                <p><?= nl2br(htmlspecialchars($log['description'])) ?></p>
-                <img src="<?= htmlspecialchars($log['image_path']) ?>" alt="Travel Image" class="log-image">
-            </div>
-        <?php endforeach; ?>
-    <?php endif; ?>
+    document.addEventListener('click', (e) => {
+      // Close sidebar if click outside
+      if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+        sidebar.classList.remove('open');
+      }
+    });
+});
+</script>
 
 </body>
-
-
-
 </html>
 
