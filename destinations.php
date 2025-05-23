@@ -515,37 +515,25 @@ body {
     <br><button type="Search">Search</button>
 </form>
 
+
   <section class="destinations">
-    <div class="card">
-      <img src="https://www.mrporter.com/content/images/cms/ycm/resource/blob/476344/b6ef6d47026243d09813d1de1bc73623/e2be9882-43f0-471f-84d6-d3a6d414808e-data.jpg" alt="Surfing Safari" />
-      <div class="card-content">
-        <h2>California Surfing Safari  |  <span>$960</span></h2>
-        <p class="details">Includes lodging,<br>food,<br>and airfare</p>
-        <p class="desc">Be ready to go pro in a California surf town. We will catch some waves by morning and sip icy wet smoothies in the sun after lunch.</p>
-        <a href="california.php">MORE DETAILS...</a>
+  <?php if ($result && $result->num_rows > 0): ?>
+    <?php while ($row = $result->fetch_assoc()): ?>
+      <div class="card">
+        <img src="<?php echo htmlspecialchars($row['image']); ?>" alt="<?php echo htmlspecialchars($row['title']); ?>" />
+        <div class="card-content">
+          <h2><?php echo htmlspecialchars($row['title']); ?> | <span>$<?php echo htmlspecialchars($row['price']); ?></span></h2>
+          <p class="details">Includes lodging,<br>food,<br>and airfare</p>
+          <p class="desc"><?php echo htmlspecialchars($row['description']); ?></p>
+          <a href="destinationdetail.php?id=<?php echo $row['id']; ?>">MORE DETAILS...</a>
+        </div>
       </div>
-    </div>
+    <?php endwhile; ?>
+  <?php else: ?>
+    <p style="padding: 2rem; font-size: 1.2rem; color: #123499;">No destinations found matching your criteria.</p>
+  <?php endif; ?>
+</section>
 
-    <div class="card">
-      <img src="https://www.luxuryadventures.co.nz/wp-content/uploads/2023/03/NZMountainBiking4.jpg" alt="Bike New Zealand" />
-      <div class="card-content">
-        <h2>Bike New Zealand  |  <span>$1090</spanstyle=></h2>
-        <p class="details">Includes lodging,<br>food,<br>and airfare</p>
-        <p class="desc">Shred NZ’s scenery, mountains, and hidden trails suited for adrenaline-fueled riders. Push your legs to the limit.</p>
-        <a href="newzealand.php">MORE DETAILS...</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://i.natgeofe.com/n/422a0bc7-4e2f-479c-93dc-56672c035241/devils-tower.jpg" alt="Devil's Tower" />
-      <div class="card-content">
-        <h2>Devil’s Tower Rock Climb  |  <span>$740</span></h2>
-        <p class="details">Includes lodging,<br>food,<br>and airfare</p>
-        <p class="desc">Take on the steep pitch and test the impossible cliffs of the beautiful Devil’s Tower, Wyoming.</p>
-        <a href="gateway.php">MORE DETAILS...</a>
-      </div>
-    </div>
-  </section>
 
 </body>
 </html>
