@@ -108,7 +108,7 @@ $results = mysqli_query($con, "SELECT * FROM travel_packages $where_sql");
 <body>
 
 <style>
-    /* Base Reset */
+    
 * {
   margin: 0;
   padding: 0;
@@ -119,15 +119,15 @@ body, html {
   font-family: 'Segoe UI', sans-serif;
   background-color: #000;
   color: white;
-background: linear-gradient(to bottom, #00CEC3 20%,white  70%);
+  background: linear-gradient(to bottom, #00CEC3 2%,white  70%);
 }
 
-/* NAVBAR */
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #00CEC3;
+  background-color: #123499;
   padding: 1rem 2rem;
   color: white;
 }
@@ -164,7 +164,7 @@ background: linear-gradient(to bottom, #00CEC3 20%,white  70%);
 }
 
 .navbar nav ul li a:hover {
-  color: rgb(1, 119, 113);
+  color: #fcd639;
 }
 
 .sidebar-btn {
@@ -184,7 +184,7 @@ background: linear-gradient(to bottom, #00CEC3 20%,white  70%);
 }
 
 .sidebar-btn:hover {
-  color: rgb(1, 119, 113);
+  color: #fcd639;
 }
 
 .sidebar {
@@ -193,7 +193,7 @@ background: linear-gradient(to bottom, #00CEC3 20%,white  70%);
   right: -300px;
   width: 250px;
   height: 100%;
-  background-color: #00CEC3;
+  background-color: #123499;
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
   padding: 1rem 1rem;
   transition: right 0.3s ease-in-out;
@@ -277,11 +277,11 @@ background: linear-gradient(to bottom, #00CEC3 20%,white  70%);
 }
 
 .sidebar ul li a:hover {
-  color: #003f3c;
+  color: #fcd639;
 }
 
 
-/* Main Container */
+
 .planner-container {
   padding: 30px 20px;
   max-width: 1000px;
@@ -293,18 +293,18 @@ background: linear-gradient(to bottom, #00CEC3 20%,white  70%);
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 10px;
-  color: rgb(1, 119, 113);
+  color: #fcd639;
   text-shadow: 1px 1px 2px black;
 }
 
 .planner-container p {
   font-size: 1.5rem;
   margin-bottom: 20px;
-  color: rgb(1, 119, 113);
+  color: #123499;
   text-shadow: 1px 1px 2px black;
 }
 
-/* Map Styling */
+
 .map-container {
   text-align: center;
   margin-bottom: 25px;
@@ -344,7 +344,7 @@ background: linear-gradient(to bottom, #00CEC3 20%,white  70%);
 
 
 
-/* Base Reset */
+
 * {
   margin: 0;
   padding: 0;
@@ -355,10 +355,11 @@ body, html {
   font-family: Georgia, 'Times New Roman', Times, serif;
   background-color: #000;
   color: rgb(1, 119, 113);
-  background: linear-gradient(to bottom, #f0f0f0 20%, #00CEC3 70%);
+   background: 
+    linear-gradient(to top, rgba(255,255,255,0) 60%, #fff 100%),
+    url('https://images4.alphacoders.com/656/656354.jpg') no-repeat bottom center/cover;
 }
 
-/* Main Container */
 .container {
   padding: 30px 20px;
   max-width: 900px;
@@ -368,20 +369,20 @@ body, html {
 .form-label {
   font-size: 1.2rem;
   margin-bottom: 10px;
-  color: white;
-  text-shadow: 1px 1px 2px black;
+  color: #123499;
+  
 }
 
 /* Form Sections */
 .form-section {
-  background-color: rgb(1, 119, 113);
+  background-color:hsl(48, 97.00%, 60.60%, 0.6);
   padding: 20px;
   margin-bottom: 25px;
   border-radius: 10px;
   font-weight: bold;
 }
 
-/* Destination Box: City & Country Grouped */
+
 .destination-group {
   display: flex;
   gap: 15px;
@@ -395,7 +396,7 @@ body, html {
   font-size: 1rem;
 }
 
-/* Activity Section: Each Activity in Separate Box */
+
 .activity-container {
   display: flex;
   flex-wrap: wrap;
@@ -408,12 +409,12 @@ body, html {
   position: relative;
 }
 
-/* Hide the checkbox */
+
 .activity-box input[type="checkbox"] {
   display: none;
 }
 
-/* Style the visual button (span) */
+
 .activity-box span {
   display: inline-block;
   padding: 0.8rem 1.5rem;
@@ -425,7 +426,7 @@ body, html {
   transition: all 0.3s ease;
 }
 
-/* When checkbox is checked, keep color */
+
 .activity-box input[type="checkbox"]:checked + span {
   background-color: rgb(1, 119, 113);
   color: white;
@@ -433,7 +434,7 @@ body, html {
 }
 
 
-/* Information Preferences: Each Preference in Separate Box */
+
 .info-container {
   display: flex;
   flex-wrap: wrap;
@@ -446,12 +447,12 @@ body, html {
   position: relative;
 }
 
-/* Hide the checkbox */
+
 .info-box input[type="checkbox"] {
   display: none;
 }
 
-/* Style the visual button (span) */
+
 .info-box span {
   display: inline-block;
   padding: 0.8rem 1.5rem;
@@ -486,21 +487,22 @@ body, html {
 
 /* Submit Button */
 .btn-primary {
-  background-color: rgb(1, 119, 113);
-  text-shadow: 1px 1px 5px black;
-  color: white;
+  background-color: #fcd639;
+  color: #123499;
   font-weight: bold;
   padding: 12px 24px;
-  border: none;
+  border: 3px solid #123499;
   border-radius: 6px;
   cursor: pointer;
   font-size: 1rem;
   display: block;
   margin: 20px auto 0;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .btn-primary:hover {
-  background-color:rgb(4, 70, 66);
+  background-color:#123499;
+  transform: scale(1.05);
 }
 
 .row .card {

@@ -17,12 +17,11 @@
       color: #333;
     }
 
-/* NAVBAR */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #00CEC3;
+  background-color: #123499;
   padding: 1rem 2rem;
   color: white;
 }
@@ -59,7 +58,7 @@
 }
 
 .navbar nav ul li a:hover {
-  color: rgb(1, 119, 113);
+  color: #fcd639;
 }
 
 .sidebar-btn {
@@ -79,7 +78,7 @@
 }
 
 .sidebar-btn:hover {
-  color: rgb(1, 119, 113);
+  color: #fcd639;
 }
 
 .sidebar {
@@ -88,7 +87,7 @@
   right: -300px;
   width: 250px;
   height: 100%;
-  background-color: #00CEC3;
+  background-color: #123499;
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
   padding: 1rem 1rem;
   transition: right 0.3s ease-in-out;
@@ -172,7 +171,7 @@
 }
 
 .sidebar ul li a:hover {
-  color: #003f3c;
+  color: #fcd639;
 }
 
     .hero {
@@ -189,12 +188,12 @@
     .hero-text {
       flex: 1 1 300px;
       padding: 1px;
-      max-width: 900px;
+      max-width: 1000px;
       animation: fadeInLeft 1s ease-in-out;
     }
 
     .hero-text h1 {
-      color: rgb(1, 119, 113);
+      color: #123499;
       font-size: 4rem;
       margin-bottom: 10px;
       text-shadow: 1px 1px 2px black;
@@ -202,7 +201,7 @@
 
     .hero-text p {
       color: white;
-      font-size: 1.4rem;
+      font-size: 1.8rem;
       text-shadow: 1px 1px 2px black;
       margin-bottom: 20px;
     }
@@ -210,7 +209,7 @@
     .hero-text button {
       padding: 15px 17px;
       width: 200px;
-      background-color: #00CEC3;
+      background-color: #123499;
       color: white;
       text-shadow: 1px 1px 2px black;
       border: none;
@@ -241,7 +240,7 @@
       position: absolute;
       width: 100%;
       height: 80%;
-      background:rgba(0, 206, 196, 0.25);
+      background:hsl(48, 97.00%, 60.60%, 0.60);
       border-radius: 50%;
       z-index: 0;
       transform: translateX(-10%) scale(1.2);
@@ -266,7 +265,7 @@
     .card {
       background: white;
       border-radius: 10px;
-      box-shadow: 0 5px 30px #00CEC3;
+      box-shadow: 0 5px 30px #123499;
       height: 500px;
       width: 350px;
       overflow: hidden;
@@ -289,7 +288,7 @@
 
     .card h3 {
       font-size: 1.5rem;
-      color: #00CEC3;
+      color: #123499;
       margin-bottom: 10px;
     }
 
@@ -350,7 +349,7 @@
         }
 
         .create-button {
-            background-color: #00CEC3;
+            background-color: #fcd639;
             color: white;
             border: none;
             padding: 1rem 2rem;
@@ -360,11 +359,12 @@
             margin-bottom: 2rem;
             font-weight: bold;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         .create-button:hover {
-            background-color: rgb(1, 119, 113);
+            background-color: #123499;
+            transform: scale(1.05);
         }
 
         .blog-feed {
@@ -377,7 +377,7 @@
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 206, 195, 0.2);
+            box-shadow: 0 5px 15px rgba(19, 0, 161, 0.5);
             transition: transform 0.3s;
         }
 
@@ -414,15 +414,16 @@
         }
 
         .blog-title {
-            color: #00CEC3;
+            color: #123499;
             margin: 0.5rem 0;
             font-size: 1.5rem;
         }
 
         .blog-destination {
-            color: rgb(1, 119, 113);
+            color: #fcd639;
             font-weight: bold;
             margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
         .blog-description {
@@ -447,7 +448,7 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: rgb(1, 119, 113);
+            color: #123499;
             font-weight: bold;
         }
 

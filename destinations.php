@@ -30,12 +30,11 @@ body {
   overflow-x: hidden;
 }
 
-/* NAVBAR */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #00CEC3;
+  background-color: #123499;
   padding: 1rem 2rem;
   color: white;
 }
@@ -72,7 +71,7 @@ body {
 }
 
 .navbar nav ul li a:hover {
-  color: rgb(1, 119, 113);
+  color: #fcd639;
 }
 
 .sidebar-btn {
@@ -92,7 +91,7 @@ body {
 }
 
 .sidebar-btn:hover {
-  color: rgb(1, 119, 113);
+  color: #fcd639;
 }
 
 .sidebar {
@@ -101,7 +100,7 @@ body {
   right: -300px;
   width: 250px;
   height: 100%;
-  background-color: #00CEC3;
+  background-color: #123499;
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
   padding: 1rem 1rem;
   transition: right 0.3s ease-in-out;
@@ -185,7 +184,7 @@ body {
 }
 
 .sidebar ul li a:hover {
-  color: #003f3c;
+  color: #fcd639;
 }
 
 /* Hero Banner */
@@ -199,7 +198,7 @@ body {
   align-items: center;
   padding: 5rem;
   border-radius: 20px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   flex-wrap: wrap;
   animation: fadeIn 1.2s ease-in-out;
 }
@@ -234,7 +233,7 @@ body {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Destination Cards */
+
 .destinations {
   display: flex;
   flex-direction: column;
@@ -248,7 +247,7 @@ body {
   border-radius: 20px;
   display: flex;
   overflow: hidden;
-  box-shadow: 0 5px 30px #00CEC3;
+  box-shadow: 0 5px 30px #123499;
   transition: transform 0.5s ease, box-shadow 0.5s ease;
   min-width: 400px;
   
@@ -257,10 +256,6 @@ body {
   animation: fadeInCard 1s ease forwards;
 }
 
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 40px #00cec390;
-}
 
 .card:nth-child(1) { animation-delay: 0.2s; }
 .card:nth-child(2) { animation-delay: 0.4s; }
@@ -272,51 +267,67 @@ body {
   width: 300px;
   height: auto;
   object-fit: cover;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .card-content {
-  padding: 5rem;
+  padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .card-content h2 {
+  padding-left: 5rem;
   font-size: 3.3rem;
-  color: #00CEC3;
+  color: #123499;
   margin-bottom: 0.3rem;
-  text-shadow: 1px 1px 2px black;
+
+}
+
+.card-content span {
+  font-size: 3.3rem;
+  color: #fcd639;
+  margin-bottom: 0.3rem;
 }
 
 .details {
-  color: rgb(1, 119, 113);
+  padding: 1rem 0 0 5rem;
+  color: #fcd639;
   font-size: 1.5rem;
   margin-bottom: 2.5rem;
   font-weight: bold;
-  text-shadow: 1px 1px 2px black;
+  
 }
 
 .desc {
-  color: rgb(1, 119, 113);
+  color: #123499;
+  padding: 3rem 0 0 5rem;
   font-size: 1.2rem;
   margin-bottom: 0.8rem;
   font-weight: bold;
-  text-shadow: 1px 1px 3px black;
+ 
 }
 
 .card-content a {
+  margin: 10px 0 0 5rem;
+  font-size: 1.2rem;
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  background: #fcd639;
+  border-radius: 5px;
+  border: none;
+  color: white;
   font-weight: bold;
-  font-size: 1.3rem;
   text-decoration: none;
-  color: #00CEC3;
-  text-shadow: 1px 1px 2px black;
-  transition: all 0.3s ease;
+  text-shadow: 1px 1px 4px black;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .card-content a:hover {
-  color: rgb(1, 119, 113);
-  transform: translateX(5px);
+  background-color: #123499;
+  transform: scale(1.05);
 }
 
 /* Responsive */
@@ -410,22 +421,22 @@ body {
     </nav>
 
     <div class="sidebar" id="sidebar">
-  <h3>🧭</h3>
-  <h3>COMPASS</h3>
-  <ul>
-    <li style="text-align: center;">
-      <img src="https://i.pravatar.cc/100" alt="Profile" style="border-radius: 50%; width: 80px; height: 80px; border: 2px solid white;">
-    </li>
-    <h2>@USERNAME</h2>
-    <li><a href="home.php">Home</a></li>
-    <li><a href="travelplanner.php">Travel Planner</a></li>
-    <li><a href="destinations.php">Destinations</a></li>
-    <li><a href="travelog.php">Travel Logs</a></li>
-    <li><a href="triphistory.php">Trip History</a></li>
-    <li><a href="#" class="h">History</a></li>
-    <li><a href="#" class="logout">Log Out</a></li>
-  </ul>
-</div>
+      <h3>🧭</h3>
+      <h3>COMPASS</h3>
+      <ul>
+        <li style="text-align: center;">
+          <img src="https://i.pravatar.cc/100" alt="Profile" style="border-radius: 50%; width: 80px; height: 80px; border: 2px solid white;">
+        </li>
+        <h2>@USERNAME</h2>
+        <li><a href="home.php">Home</a></li>
+        <li><a href="travelplanner.php">Travel Planner</a></li>
+        <li><a href="destinations.php">Destinations</a></li>
+        <li><a href="travelog.php">Travel Logs</a></li>
+        <li><a href="triphistory.php">Trip History</a></li>
+        <li><a href="#" class="h">History</a></li>
+        <li><a href="#" class="logout">Log Out</a></li>
+      </ul>
+    </div>
 
 
   </header>
@@ -441,7 +452,7 @@ body {
     <div class="card">
       <img src="https://www.mrporter.com/content/images/cms/ycm/resource/blob/476344/b6ef6d47026243d09813d1de1bc73623/e2be9882-43f0-471f-84d6-d3a6d414808e-data.jpg" alt="Surfing Safari" />
       <div class="card-content">
-        <h2>California Surfing Safari <span style="color: rgb(1, 119, 113);">$960</span></h2>
+        <h2>California Surfing Safari  |  <span>$960</span></h2>
         <p class="details">Includes lodging,<br>food,<br>and airfare</p>
         <p class="desc">Be ready to go pro in a California surf town. We will catch some waves by morning and sip icy wet smoothies in the sun after lunch.</p>
         <a href="california.php">MORE DETAILS...</a>
@@ -451,7 +462,7 @@ body {
     <div class="card">
       <img src="https://www.luxuryadventures.co.nz/wp-content/uploads/2023/03/NZMountainBiking4.jpg" alt="Bike New Zealand" />
       <div class="card-content">
-        <h2>Bike New Zealand <span style="color: rgb(1, 119, 113);">$1090</span></h2>
+        <h2>Bike New Zealand  |  <span>$1090</spanstyle=></h2>
         <p class="details">Includes lodging,<br>food,<br>and airfare</p>
         <p class="desc">Shred NZ’s scenery, mountains, and hidden trails suited for adrenaline-fueled riders. Push your legs to the limit.</p>
         <a href="newzealand.php">MORE DETAILS...</a>
@@ -461,7 +472,7 @@ body {
     <div class="card">
       <img src="https://i.natgeofe.com/n/422a0bc7-4e2f-479c-93dc-56672c035241/devils-tower.jpg" alt="Devil's Tower" />
       <div class="card-content">
-        <h2>Devil’s Tower Rock Climb <span style="color: rgb(1, 119, 113);">$740</span></h2>
+        <h2>Devil’s Tower Rock Climb  |  <span>$740</span></h2>
         <p class="details">Includes lodging,<br>food,<br>and airfare</p>
         <p class="desc">Take on the steep pitch and test the impossible cliffs of the beautiful Devil’s Tower, Wyoming.</p>
         <a href="gateway.php">MORE DETAILS...</a>

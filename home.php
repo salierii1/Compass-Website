@@ -17,7 +17,7 @@
     opacity: 1;
   }
 
-  /* General Reset */
+
 body {
   margin: 0;
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -27,12 +27,11 @@ body {
 
 }
 
-/* NAVBAR */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #00CEC3;
+  background-color: #123499;
   padding: 1rem 2rem;
   color: white;
 }
@@ -69,7 +68,7 @@ body {
 }
 
 .navbar nav ul li a:hover {
-  color: rgb(1, 119, 113);
+  color: #fcd639;
 }
 
 .sidebar-btn {
@@ -89,7 +88,7 @@ body {
 }
 
 .sidebar-btn:hover {
-  color: rgb(1, 119, 113);
+  color: #fcd639;
 }
 
 .sidebar {
@@ -182,14 +181,13 @@ body {
 }
 
 .sidebar ul li a:hover {
-  color: #003f3c;
+  color: #fcd639;
 }
 
 
-/* HERO WELCOME */
 .hero {
   background: 
-    linear-gradient(to bottom, rgba(255,255,255,0) 50%, #fff 100%),
+    linear-gradient(to bottom, rgba(255,255,255,0) 60%, #fff 100%),
     url('https://images4.alphacoders.com/656/656354.jpg') no-repeat center center/cover;
   height: 80vh;
   position: relative;
@@ -216,10 +214,10 @@ body {
 }
 
 .hero-content p {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
 }
 
-/* MAIN SECTION */
+
 .feature {
   text-align: left;
   margin: 5rem 2rem 1rem;
@@ -227,7 +225,7 @@ body {
 }
 .feature h2 {
   font-size: 2.5rem;
-  color: rgb(1, 119, 113);
+  color: #123499;
   text-shadow: 1px 1px 2px black;
 }
 .featured-card {
@@ -249,7 +247,7 @@ body {
   bottom: 0;
   width: 100%;
   height: 100%;
-  color: #00CEC3;
+  color: #fcd639;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.5));
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0));
   padding: 2rem;
@@ -260,39 +258,43 @@ body {
 
 .featured-overlay h2 {
   font-size: 2rem;
-  color: #00CEC3;
+  color: white;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 2px black;
 }
 
 .featured-overlay p {
   color: orange;
   font-size: 1.5rem;
-  color: #00CEC3;
+  color: white;
   font-weight: bold;
   padding: 0rem 40rem 0rem 0rem ;
   text-shadow: 1px 1px 2px black;
   margin-bottom: 1rem;
 }
 
-.details-btn {
+.featured-overlay a  {
+  font-size: 1.2rem;
   align-self: flex-start;
-  padding: 0.5rem 0rem;
-  background: transparent;
+  padding: 0.5rem 1rem;
+  background: #fcd639;
+  border-radius: 5px;
   border: none;
-  color: #00CEC3;
+  color: white;
   font-weight: bold;
-  text-decoration: underline;
-  text-shadow: 1px 1px 2px black;
+  text-decoration: none;
+  text-shadow: 1px 1px 4px black;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .details-btn:hover {
-  color: White;
+  background-color: #123499;
+  transform: scale(1.05);
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
 .feature {
     font-size: 1rem;
@@ -320,8 +322,10 @@ body {
   margin: 5rem 2rem 1rem;
 }
 .learn h2 {
-  font-size: 1.5rem;
-  color: rgb(1, 119, 113);
+  font-size: 1.8rem;
+  color: #123499;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
 }
 
 .cards-section {
@@ -352,8 +356,7 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  color: #00CEC3;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+  color: white;
   text-align: center;
 }
 
@@ -366,10 +369,30 @@ body {
 }
 
 .card-overlay p {
-  margin: 0.5rem ;
-  font-size: 1.2rem;
-  color: rgb(1, 119, 113);
+  margin: 0.5rem 0.5rem 1.2rem 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
   text-shadow: 1px 1px 2px black;
+}
+
+.card-overlay a {
+  display: inline-block;
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #fcd639;
+  text-shadow: 1px 1px 2px black;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.card-overlay a:hover {
+  background-color: #123499;
+  transform: scale(1.05);
 }
 
 /* RESPONSIVE */
@@ -514,7 +537,7 @@ body {
 
   </header>
 
-  <!-- HERO WELCOME SECTION -->
+
   <section class="hero">
     <div class="hero-overlay">
       <div class="hero-content">
@@ -527,7 +550,7 @@ body {
     </div>
   </section>
 
-  <!-- MAIN SECTION -->
+
    <div class="feature">
     <h2>Featured Destination</h2>
   </div>
@@ -540,7 +563,7 @@ body {
         Experts only. Sign up now to scale El Capitan and Half Dome. Bring your own gear.
         We’ll provide food and a one hour video on scaling these amazing rocks.
       </p>
-      <a href="destinations.php" class="details-btn">More Details...</a>
+      <a href="destinations.php" class="details-btn">More Details</a>
     </div>
   </div>
 </section>
@@ -556,18 +579,21 @@ body {
     <div class="card-overlay">
       <h3>Fly Fishing in the Rocky Mountains</h3>
       <p>You’ll get a seasoned guide and lots of dehydrated ravioli</p>
+      <a href="">More Details</a>
     </div>
   </div>
   <div class="card" style="background-image: url('https://whitewatercolorado.com/wp-content/uploads/4250817.jpg')">
     <div class="card-overlay">
       <h3>Level 5 Rapids!</h3>
       <p>Put your helmet on and grab your wetsuit. It’s time to conquer Siberia</p>
+      <a href="">More Details</a>
     </div>
   </div>
   <div class="card" style="background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8Fl1dDtbMvx1gAKbeLFxwXoaY3TLdQ6b3HX_OqQmLUTSkRMPIWqZmW6BZRhGA222Zwpm49-ONPlkfGiGxE4wRA9QEdu_RHXHuSRs_mICNfNj41cJD6oIFm_3LH8TBVz4TsxW9u1wnjdk/s1600/DSCF1439.JPG')">
     <div class="card-overlay">
       <h3>Puget Sound Kayaking</h3>
       <p>One week of ocean kayaking in the Puget Sound.</p>
+      <a href="">More Details</a>
     </div>
   </div>
 </section>

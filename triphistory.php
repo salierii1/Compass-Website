@@ -37,89 +37,162 @@ if (isset($_POST['clear_all'])) {
             padding-top: 60px;
         }
 
-        /* NAVBAR */
         .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #00CEC3;
-            padding: 1rem 2rem;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 999;
-            color: white;
-        }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #123499;
+  padding: 1rem 2rem;
+  color: white;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
 
-        .navbar .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
 
-        .navbar nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-        }
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
+}
 
-        .navbar nav ul li {
-            display: inline;
-        }
+.navbar nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  padding: 0;
+  margin: 0;
+}
 
-        .navbar nav ul li a {
-            color: white;
-            font-weight: 500;
-            text-decoration: none;
-        }
+.navbar nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
+}
 
-        .navbar nav ul li a:hover {
-            text-decoration: underline;
-        }
+.navbar nav ul li a:hover {
+  color: #fcd639;
+}
 
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 250px;
-            background: #00CEC3;
-            color: white;
-            padding: 2rem;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-            z-index: 998;
-        }
+.sidebar-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
+  transition: color 0.3s;
+}
 
-        .sidebar.open {
-            transform: translateX(0);
-        }
+.navbar nav ul li {
+  display: flex;
+  align-items: center;
+}
 
-        .sidebar h3 {
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            text-align: center;
-        }
+.sidebar-btn:hover {
+  color: #fcd639;
+}
 
-        .sidebar ul {
-            padding: 0;
-            list-style: none;
-        }
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 250px;
+  height: 100%;
+  background-color: #123499;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+  padding: 1rem 1rem;
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+  color: white;
+}
 
-        .sidebar ul li {
-            margin: 1rem 0;
-        }
+.sidebar.open {
+  right: 0;
+}
 
-        .sidebar ul li a {
-            color: white;
-            font-weight: 500;
-            text-decoration: none;
-        }
 
-        .sidebar ul li a:hover {
-            text-decoration: underline;
-        }
+.sidebar h3 {
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  text-align: center;
+}
 
+.sidebar img {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  text-align: center;
+}
+
+.sidebar h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  text-align: center;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 1rem 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
+}
+
+.sidebar ul {
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  justify-content: flex-start;
+}
+
+.sidebar ul li:last-child,
+.sidebar ul li.logout-link {
+  margin-top: auto;
+}
+
+.sidebar ul li.h,
+.sidebar ul li.logout-link {
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .sidebar ul {
+    height: 60vh;
+  }
+}
+.sidebar ul li {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.sidebar ul li a:hover {
+  color: #fcd639;
+}
         .history-container {
             margin: 80px auto 0;
             padding: 2rem;
@@ -132,7 +205,7 @@ if (isset($_POST['clear_all'])) {
         }
 
         .history-header h1 {
-            color: rgb(1, 119, 113);
+            color: #123499;
             font-size: 3rem;
             text-shadow: 1px 1px 2px black;
         }
@@ -147,14 +220,14 @@ if (isset($_POST['clear_all'])) {
             background: white;
             border-radius: 15px;
             padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 206, 195, 0.2);
+            box-shadow: 0 5px 15px rgba(21, 0, 206, 0.4);
             transition: all 0.3s ease;
             margin-bottom: 1.5rem;
         }
 
         .trip-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 206, 195, 0.3);
+            box-shadow: 0 8px 25px rgba(31, 0, 206, 0.4);
         }
 
         .trip-detail {
@@ -166,38 +239,51 @@ if (isset($_POST['clear_all'])) {
 
         .trip-detail span {
             font-weight: bold;
-            color: #00CEC3;
+            color: #123499;
         }
 
         .no-trips {
+            font-size: 1.2rem;
             text-align: center;
             padding: 2rem;
-            color: rgb(1, 119, 113);
+            color: #fcd639;
+            text-shadow: 1px 1px 1px black;
         }
 
         .plan-trip-btn {
             display: inline-block;
-            background: #00CEC3;
+            background: #123499;
             color: white;
             padding: 1rem 2rem;
             text-decoration: none;
             border-radius: 8px;
             margin-top: 1rem;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         .plan-trip-btn:hover {
-            background: rgb(1, 119, 113);
+            background-color: #fcd639;
+            transform: scale(1.05);
         }
 
         .btn-danger {
-            background: #dc3545;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: #fcd639;
+            text-shadow: 1px 1px 2px black;
             color: white;
             border: none;
             padding: 0.5rem 1rem;
             border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-danger:hover {
+            background: #123499;
+            color: white;
+            transform: scale(1.05);
         }
 
         @media (max-width: 768px) {
@@ -249,10 +335,10 @@ if (isset($_POST['clear_all'])) {
         <div class="history-header">
             <h1>Your Trip History</h1>
             <form method="POST" style="margin-top: 1rem;">
-                <button type="submit" name="clear_all" class="btn-danger" 
+             <button type="submit" name="clear_all" class="btn-danger" 
                         onclick="return confirm('Are you sure you want to clear all trips?')">
                     Clear All Trips
-                </button>
+                </button>   
             </form>
         </div>
 
@@ -296,14 +382,14 @@ if (isset($_POST['clear_all'])) {
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <div class="no-trips">
-                    <p>No trips planned yet! Create your first adventure.</p>
-                    <a href="travelplanner.php" class="plan-trip-btn">Plan a Trip</a>
-                </div>
+                
             <?php endif; ?>
         </div>
     </main>
-
+        <div class="no-trips">
+                    <p>No trips planned yet! Create your first adventure.</p>
+                    <a href="travelplanner.php" class="plan-trip-btn">Plan a Trip</a>
+                </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const toggleBtn = document.getElementById('toggleSidebar');
