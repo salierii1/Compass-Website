@@ -230,37 +230,17 @@ if (isset($_POST['clear_all'])) {
             box-shadow: 0 8px 25px rgba(31, 0, 206, 0.4);
         }
 
-        .badge {
-    display: inline-block;
-    padding: 0.4rem 0.8rem;
-    margin: 0.2rem;
-    background: #123499;
-    color: white;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: bold;
-}
+        .trip-detail {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            color: #666;
+        }
 
-.trip-destination {
-    font-size: 1.8rem;
-    color: #123499;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
-}
-
-.trip-detail {
-    margin: 0.5rem 0;
-    padding: 0.5rem;
-    border-bottom: 1px solid #f0f0f0;
-    color: #666;
-}
-
-.trip-detail span.label {
-    font-weight: bold;
-    color: #123499;
-    margin-right: 0.5rem;
-}
+        .trip-detail span {
+            font-weight: bold;
+            color: #123499;
+        }
 
         .no-trips {
             font-size: 1.2rem;
@@ -370,37 +350,33 @@ if (isset($_POST['clear_all'])) {
                             🌎 <?= htmlspecialchars($trip['destination']) ?>
                         </div>
                         <div class="trip-detail">
-                            <span class="label">📅 Departure:</span> 
+                            <span>📅 Departure:</span> 
                             <?= htmlspecialchars($trip['departure_date']) ?>
                         </div>
                         <div class="trip-detail">
-                            <span class="label">⏱️ Duration:</span> 
+                            <span>⏱️ Duration:</span> 
                             <?= htmlspecialchars($trip['duration']) ?> days
                         </div>
                         <div class="trip-detail">
-                            <span class="label">💰 Budget:</span> 
+                            <span>💰 Budget:</span> 
                             $<?= htmlspecialchars($trip['budget']) ?>
                         </div>
-                        <?php if (!empty($trip['activities']) && is_array($trip['activities'])): ?>
+                        <?php if (!empty($trip['activities'])): ?>
                             <div class="trip-detail">
-                                <span class="label">🎯 Activities:</span><br>
-                                <?php foreach ($trip['activities'] as $activity): ?>
-                                    <span class="badge"><?= htmlspecialchars($activity) ?></span>
-                                <?php endforeach; ?>
+                                <span>🎯 Activities:</span><br>
+                                <?= nl2br(htmlspecialchars($trip['activities'])) ?>
                             </div>
                         <?php endif; ?>
-                        <?php if (!empty($trip['information']) && is_array($trip['information'])): ?>
+                        <?php if (!empty($trip['information'])): ?>
                             <div class="trip-detail">
-                                <span class="label">ℹ️ Information:</span><br>
-                                <?php foreach ($trip['information'] as $info): ?>
-                                    <span class="badge"><?= htmlspecialchars($info) ?></span>
-                                <?php endforeach; ?>
+                                <span>ℹ️ Information:</span><br>
+                                <?= nl2br(htmlspecialchars($trip['information'])) ?>
                             </div>
                         <?php endif; ?>
                         <?php if (!empty($trip['notes'])): ?>
                             <div class="trip-detail">
-                                <span class="label">📝 Notes:</span><br>
-                                <span style="color: #666;"><?= nl2br(htmlspecialchars($trip['notes'])) ?></span>
+                                <span>📝 Notes:</span><br>
+                                <?= nl2br(htmlspecialchars($trip['notes'])) ?>
                             </div>
                         <?php endif; ?>
                     </div>
