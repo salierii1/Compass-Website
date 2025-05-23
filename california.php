@@ -9,7 +9,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-    }
+  }
 
     body {
       font-family: Georgia, 'Times New Roman', Times, serif;
