@@ -178,7 +178,7 @@
     .hero {
       position: relative;
       background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-        url('https://endlesstrailexpeditions.com/wp-content/uploads/2020/06/7fe1e526-4109-493a-ba86-e1644164108b.jpeg?w=1024')
+        url('https://madera.objects.liquidweb.services/photos/21871-tunnel-view-for-vymc-website-header-2800x800-2800x800.png')
         no-repeat center center/cover;
       color: white;
       margin: 70px auto 0;
@@ -529,7 +529,7 @@
   </header>
 
   <section class="hero">
-    <h1>California Surfing Safari</h1>
+    <h1>Yosemite</h1>
     <div class="price">$1040</div>
     <a href="travelplanner.php"><button>Add to the Planner</button></a>
   </section>

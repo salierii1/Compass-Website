@@ -476,7 +476,7 @@ body {
 
 /* Add these styles to your existing <style> section */
 .site-footer {
-    background: linear-gradient(45deg, #FF8C00, #FF4500);
+    background: #123499;
     color: white;
     padding: 3rem 0;
     margin-top: 4rem;
@@ -573,7 +573,9 @@ body {
 
 
   <header class="navbar">
-    <div class="logo">🧭 COMPASS</div>
+    <div class="logo">
+      <img src="pictures/logo.png" alt="logo" style="height: 40px; width: auto;">
+    </div>
     <nav>
       <ul>
         <li><a href="#">Home</a></li>
@@ -586,8 +588,9 @@ body {
     </nav>
 
     <div class="sidebar" id="sidebar">
-  <h3>🧭</h3>
-  <h3>COMPASS</h3>
+  <div class="logo">
+      <img src="pictures/logo.png" alt="logo" style="height: 40px; width: auto;">
+    </div>
   <ul>
     <li style="text-align: center;">
       <img src="https://i.pravatar.cc/100" alt="Profile" style="border-radius: 50%; width: 80px; height: 80px; border: 2px solid white;">
@@ -631,7 +634,7 @@ body {
         Experts only. Sign up now to scale El Capitan and Half Dome. Bring your own gear.
         We’ll provide food and a one hour video on scaling these amazing rocks.
       </p>
-      <a href="destinations.php" class="details-btn">More Details</a>
+      <a href="yosemite.php" class="details-btn">More Details</a>
     </div>
   </div>
 </section>

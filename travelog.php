@@ -8,8 +8,11 @@ if (!isset($_SESSION['stdID'])) {
 }
 
 $userID = $_SESSION['stdID'];
-$sql = "SELECT * FROM travel_logs WHERE stdID = '$userID' ORDER BY created_at DESC";
-$result = $conn->query($sql);
+$stmt = $conn->prepare("SELECT * FROM travel_logs WHERE stdID = ? ORDER BY created_at DESC");
+$stmt->bind_param("s", $userID);
+$stmt->execute();
+$result = $stmt->get_result();
+
 
 $logs = [];
 if ($result && $result->num_rows > 0) {
@@ -579,30 +582,86 @@ p a:hover {
     }
 }
 
+.site-footer {
+    background: #123499;
+    color: white;
+    padding: 3rem 0;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+.footer-section {
+    flex: 1;
+    padding: 0 1rem;
+}
+
+.footer-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.footer-section p {
+    margin: 0.7rem 0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.social-icons {
+    margin-bottom: 1rem;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.3rem;
+    margin: 0 1rem;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: translateY(-3px);
+}
+
+.copyright {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-section {
+        margin: 1.5rem 0;
+    }
+}
+
     </style>
 </head>
 <body>
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const toggleBtn = document.getElementById('toggleSidebar');
-    const sidebar = document.getElementById('sidebar');
-
-    toggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      sidebar.classList.toggle('open');
-    });
-
-    document.addEventListener('click', (e) => {
-      // Close sidebar if click outside
-      if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
-        sidebar.classList.remove('open');
-      }
-    });
-  });
-</script>
-  <!-- NAVBAR -->
+<!-- Sidebar toggle logic is handled in the main script below; this duplicate block is removed to prevent conflicts -->
+ 
   <header class="navbar">
-    <div class="logo">🧭 COMPASS</div>
+    <div class="logo">
+      <img src="pictures/logo.png" alt="logo" class="logo" style="height: 40px; width: auto;">
+    </div>
     <nav>
       <ul>
         <li><a href="home.php">Home</a></li>
@@ -613,15 +672,16 @@ p a:hover {
         <li><button id="toggleSidebar" class="sidebar-btn">☰</button></li>
       </ul>
     </nav>
-
-    <div class="sidebar" id="sidebar">
-  <h3>🧭</h3>
-  <h3>COMPASS</h3>
+   
+<div class="sidebar" id="sidebar">
+  <div class="logo">
+    <img src="pictures/logo.png" alt="logo" class="logo" style="height: 40px; width: auto;">
+  </div>
   <ul>
     <li style="text-align: center;">
       <img src="https://i.pravatar.cc/100" alt="Profile" style="border-radius: 50%; width: 80px; height: 80px; border: 2px solid white;">
     </li>
-    <h2>@USERNAME</h2>
+    <li><h2>@Username</h2></li>
     <li><a href="home.php">Home</a></li>
     <li><a href="travelplanner.php">Travel Planner</a></li>
     <li><a href="destinations.php">Destinations</a></li>
@@ -677,6 +737,44 @@ p a:hover {
             </form>
         </div>
     </main>
+
+    <footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>CONTACT US</h3>
+            <p>Final Requirement, Compass Website</p>
+            <p>Contact Number: 09777699066</p>
+            <p>Email: compasswebsite@gmail.com</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>GROUP 8</h3>
+            <p>PRIVACY POLICIES</p>
+            <p>SUPPORT</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>ABOUT US</h3>
+            <p>JEROEN PAGHUNASAN</p>
+            <p>JIN ANTHONY PRADAS</p>
+            <p>ALEXANDRA NYANZA REYES</p>
+            <p>DENIEL SALCEDO</p>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p class="copyright">© Copyright. All rights reserved.</p>
+    </div>
+</footer>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 <script>
 // Combine PHP logs with hardcoded posts
@@ -774,6 +872,7 @@ function previewImage(event) {
             preview.style.display = 'block';
         };
         reader.readAsDataURL(file);
+        
     }
 }
 
@@ -783,20 +882,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('toggleSidebar');
     const sidebar = document.getElementById('sidebar');
 
+    // Ensure the sidebar stays open when toggle is clicked
     toggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       sidebar.classList.toggle('open');
     });
 
+    // Close sidebar only if click is outside sidebar and toggle button
     document.addEventListener('click', (e) => {
-      // Close sidebar if click outside
-      if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+      if (!sidebar.contains(e.target) && e.target !== toggleBtn) {
         sidebar.classList.remove('open');
       }
     });
+
+    // Prevent sidebar from closing when clicking inside it
+    sidebar.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
 });
 </script>
-
-</body>
-</html>
-
