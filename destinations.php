@@ -1,3 +1,46 @@
+<?php
+$host = 'localhost';
+$db = 'simple_page';
+$user = 'root';
+$pass = '';
+
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+
+$search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
+$selected_activities = isset($_GET['activity']) ? $_GET['activity'] : [];
+$selected_info = isset($_GET['information']) ? $_GET['information'] : [];
+
+
+$sql = "SELECT * FROM places WHERE 1=1";
+
+if (!empty($search)) {
+    $sql .= " AND (title LIKE '%$search%' OR description LIKE '%$search%' OR activity_tags LIKE '%$search%' OR info_tags LIKE '%$search%')";
+}
+
+if (!empty($selected_activities)) {
+    foreach ($selected_activities as $activity) {
+        $activity_safe = $conn->real_escape_string($activity);
+        $sql .= " AND activity_tags LIKE '%$activity_safe%'";
+    }
+}
+
+if (!empty($selected_info)) {
+    foreach ($selected_info as $info) {
+        $info_safe = $conn->real_escape_string($info);
+        $sql .= " AND info_tags LIKE '%$info_safe%'";
+    }
+}
+
+$result = $conn->query($sql);
+
+$activity_options = ['Beach', 'Hiking', 'City', 'Nature'];
+$info_options = ['Family-friendly', 'Budget', 'Luxury', 'Pet-friendly'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -446,6 +489,31 @@ body {
       <p>Compass works hard to bring you the best possible trips for your rugged lifestyle. Here's our latest travel packages suited for the adventurous spirit.</p>
     </div>
   </section>
+
+<form method="GET" action="destination.php" class="search-form">
+    <input type="text" name="search" placeholder="Search Destinations..." 
+           value="<?php echo htmlspecialchars($search); ?>" />
+
+    <h3>Filter by Activity:</h3>
+    <?php foreach ($activity_options as $option): ?>
+        <label>
+            <input type="checkbox" name="activity[]" value="<?php echo $option; ?>"
+                <?php echo in_array($option, $selected_activities) ? 'checked' : ''; ?>>
+            <?php echo $option; ?>
+        </label><br>
+    <?php endforeach; ?>
+
+    <h3>Filter by Information:</h3>
+    <?php foreach ($info_options as $option): ?>
+        <label>
+            <input type="checkbox" name="information[]" value="<?php echo $option; ?>"
+                <?php echo in_array($option, $selected_info) ? 'checked' : ''; ?>>
+            <?php echo $option; ?>
+        </label><br>
+    <?php endforeach; ?>
+
+    <br><button type="Search">Search</button>
+</form>
 
   <section class="destinations">
     <div class="card">
