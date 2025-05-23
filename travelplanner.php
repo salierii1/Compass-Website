@@ -1,4 +1,46 @@
 <?php
+session_start();
+
+// Clean up invalid trips (one-time cleanup)
+if (isset($_SESSION['trips'])) {
+    $_SESSION['trips'] = array_filter($_SESSION['trips'], function($trip) {
+        return !empty($trip['destination']);
+    });
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Validate all required fields including destination
+    $required_fields = ['selectedCountry', 'departure_date', 'duration', 'budget'];
+    $is_valid = true;
+    
+    foreach ($required_fields as $field) {
+        if (empty($_POST[$field])) {
+            $is_valid = false;
+            break;
+        }
+    }
+
+    if ($is_valid) {
+        $trip = [
+            'destination' => $_POST['selectedCountry'],  // Store as 'destination' for consistency
+            'departure_date' => $_POST['departure_date'],
+            'duration' => $_POST['duration'],
+            'budget' => $_POST['budget'],
+            'activities' => $_POST['activities'] ?? '',
+            'information' => $_POST['information'] ?? '',
+            'notes' => $_POST['notes'] ?? '',
+            'date_added' => date('Y-m-d H:i:s')
+        ];
+
+        if (!isset($_SESSION['trips'])) {
+            $_SESSION['trips'] = [];
+        }
+        array_unshift($_SESSION['trips'], $trip);
+        header('Location: triphistory.php');
+        exit;
+    }
+}
+
 $con = mysqli_connect("localhost", "root", "", "simple_page");
 
 $activities = mysqli_query($con, "SELECT * FROM activities");
@@ -581,179 +623,110 @@ body, html {
         <li><a href="travelplanner.php">Travel Planner</a></li>
         <li><a href="destinations.php">Destinations</a></li>
         <li><a href="travelog.php">Travel Logs</a></li>
+        <li><a href="triphistory.php">Trip History</a></li>
         <li><button id="toggleSidebar" class="sidebar-btn">☰</button></li>
       </ul>
     </nav>
 
     <div class="sidebar" id="sidebar">
-  <h3>🧭</h3>
-  <h3>COMPASS</h3>
-  <ul>
-    <li style="text-align: center;">
-      <img src="https://i.pravatar.cc/100" alt="Profile" style="border-radius: 50%; width: 80px; height: 80px; border: 2px solid white;">
-    </li>
-    <h2>@USERNAME</h2>
-    <li><a href="home.php">Home</a></li>
-    <li><a href="travelplanner.php">Travel Planner</a></li>
-    <li><a href="destinations.php">Destinations</a></li>
-    <li><a href="travelog.php">Travel Logs</a></li>
-    <li><a href="#" class="h">History</a></li>
-    <li><a href="#" class="logout">Log Out</a></li>
-  </ul>
-</div>
+      <h3>🧭</h3>
+      <h3>COMPASS</h3>
+      <ul>
+        <li style="text-align: center;">
+          <img src="https://i.pravatar.cc/100" alt="Profile" style="border-radius: 50%; width: 80px; height: 80px; border: 2px solid white;">
+        </li>
+        <h2>@USERNAME</h2>
+        <li><a href="home.php">Home</a></li>
+        <li><a href="travelplanner.php">Travel Planner</a></li>
+        <li><a href="destinations.php">Destinations</a></li>
+        <li><a href="travelog.php">Travel Logs</a></li>
+        <li><a href="triphistory.php">Trip History</a></li>
+        <li><a href="#" class="h">History</a></li>
+        <li><a href="#" class="logout">Log Out</a></li>
+      </ul>
+    </div>
 
 
   </header>
 
   <main class="planner-container">
     <h1>ADVENTURE PLANNER</h1>
-    <p>Either select a region on the map above or type it into the fields below:</p>
+    <p>Click on any country in the map to start planning your trip:</p>
 
     <!-- Clickable Map -->
     <div class="map-container">
-    <object id="worldMap" type="image/svg+xml" data="pictures/world.svg"></object>
-</div>
+        <object id="worldMap" type="image/svg+xml" data="pictures/world.svg"></object>
+    </div>
 
- 
-    <div id="products"></div>
-
-<div class="container py-4">
-
-    <form method="GET">
-        <div class="mb-3 form-section">
-            <label class="form-label">Destination</label>
-            <div class="destination-group">
-                <input type="text" name="city" id="city" class="form-control" placeholder="City or closest major city"
-                       value="<?= htmlspecialchars($city_input) ?>">
-                <input type="text" name="country" id="country" class="form-control" placeholder="Country or Region"
-                       value="<?= htmlspecialchars($country_input) ?>">
+    <div class="container py-4">
+        <form method="POST" class="form-section" onsubmit="return validateForm()">
+            <div class="mb-3">
+                <label class="form-label">Destination</label>
+                <input type="text" name="selectedCountry" id="selectedCountry" class="form-control" readonly required>
             </div>
-        </div>
-
-        <div class="mb-3 form-section">
-    <label class="form-label">Activity</label>
-    <div class="activity-container">
-        <?php while ($row = mysqli_fetch_assoc($activities)) : ?>
-            <label class="activity-box">
-  <input type="checkbox" name="activities[]" value="<?= $row['id'] ?>"
-    <?= in_array($row['id'], $selected_activities) ? 'checked' : '' ?>>
-  <span><?= $row['name'] ?></span>
-</label>
-
-        <?php endwhile; ?>
-    </div>
-</div>
-
-
-        <div class="mb-3 form-section">
-    <label class="form-label">Information</label>
-    <div class="info-container">
-        <?php while ($row = mysqli_fetch_assoc($infos)) : ?>
-            <label class="info-box">
-                <input type="checkbox" name="info[]" value="<?= $row['id'] ?>"
-                    <?= in_array($row['id'], $selected_infos) ? 'checked' : '' ?>>
-                <span><?= $row['name'] ?></span>
-            </label>
-        <?php endwhile; ?>
-    </div>
-</div>
-
-
-    <div class="text-center mt-3">
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-
-
-    <hr>
-
-
-<div class="row">
-    <h4>Results:</h4>
-    <?php if (mysqli_num_rows($results) > 0): ?>
-        <?php while ($package = mysqli_fetch_assoc($results)) : ?>
-            <div class="col-md-4 mt-3">
-                <div class="card h-100 position-relative border p-3">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <?= htmlspecialchars($package['city']) ?>, <?= htmlspecialchars($package['country']) ?>
-                        </h5>
-                        <?php
-                        $descWords = explode(' ', $package['description']);
-                        $shortDesc = implode(' ', array_slice($descWords, 0, 10));
-                        if (count($descWords) > 10) {
-                            $shortDesc .= '...';
-                        }
-                        ?>
-                        <p class="card-text"><?= htmlspecialchars($shortDesc) ?></p>
-
-                        <?php
-                        // Redirect logic
-                        $redirects = [
-                            6 => 'gateway.php',
-                            7 => 'newzealand.php'
-                        ];
-                        $targetPage = $redirects[$package['id']] ?? 'gateway.php?id=' . $package['id'];
-                        ?>
-                        <a href="<?= $targetPage ?>" class="stretched-link"></a>
-                    </div>
-                </div>
+            <div class="mb-3">
+                <label class="form-label">Departure Date</label>
+                <input type="date" name="departure_date" class="form-control" required>
             </div>
-        <?php endwhile; ?>
-    <?php else: ?>
-        <div class="col-12">
-            <p>No matching results found.</p>
-        </div>
-    <?php endif; ?>
-</div>
+            <div class="mb-3">
+                <label class="form-label">Duration (days)</label>
+                <input type="number" name="duration" class="form-control" min="1" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Budget ($)</label>
+                <input type="number" name="budget" class="form-control" min="0" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Activities</label>
+                <textarea name="activities" class="form-control" rows="3" placeholder="List your planned activities..."></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Personal Information</label>
+                <textarea name="information" class="form-control" rows="3" placeholder="Any relevant personal information..."></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Additional Notes</label>
+                <textarea name="notes" class="form-control" rows="3" placeholder="Optional notes about your trip..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Trip Plan</button>
+        </form>
+    </div>
+</main>
 
-
-
-  </main>
-
-
-  <script>
+<script>
 const objectEl = document.getElementById('worldMap');
 
 objectEl.addEventListener('load', () => {
-  const svgDoc = objectEl.contentDocument;
-  const paths = svgDoc.querySelectorAll('path');
+    const svgDoc = objectEl.contentDocument;
+    const paths = svgDoc.querySelectorAll('path');
+    const selectedCountry = document.getElementById('selectedCountry');
 
-  paths.forEach(path => {
-    path.style.cursor = 'pointer';
-    path.style.transition = 'fill 0.2s ease';
+    paths.forEach(path => {
+        path.style.cursor = 'pointer';
+        path.style.transition = 'fill 0.2s ease';
 
-    // Store original fill
-    const originalFill = path.getAttribute('fill') || '';
+        // Store original fill
+        const originalFill = path.getAttribute('fill') || '';
 
-    path.addEventListener('mouseenter', () => {
-      path.setAttribute('data-original-fill', originalFill); // backup
-      path.setAttribute('fill', '#ffa500'); // orange on hover
+        path.addEventListener('mouseenter', () => {
+            path.setAttribute('data-original-fill', originalFill); // backup
+            path.setAttribute('fill', '#ffa500'); // orange on hover
+        });
+
+        path.addEventListener('mouseleave', () => {
+            const prev = path.getAttribute('data-original-fill');
+            if (prev) {
+                path.setAttribute('fill', prev);
+            } else {
+                path.removeAttribute('fill'); // fallback
+            }
+        });
+
+        path.addEventListener('click', () => {
+            const country = path.getAttribute('title') || path.id || 'Unknown';
+            selectedCountry.value = country;
+        });
     });
-
-    path.addEventListener('mouseleave', () => {
-      const prev = path.getAttribute('data-original-fill');
-      if (prev) {
-        path.setAttribute('fill', prev);
-      } else {
-        path.removeAttribute('fill'); // fallback
-      }
-    });
-
-    path.addEventListener('click', () => {
-      const country = path.getAttribute('title') || path.id || 'Unknown';
-
-      // Fill in the country field
-      const countryInput = document.getElementById('country');
-      if (countryInput) {
-        countryInput.value = country;
-
-        // Submit the form
-        countryInput.form.submit();
-      } else {
-        alert('Country input field not found.');
-      }
-    });
-  });
 });
 </script>
 

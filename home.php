@@ -488,6 +488,7 @@ body {
         <li><a href="travelplanner.php">Travel Planner</a></li>
         <li><a href="destinations.php">Destinations</a></li>
         <li><a href="travelog.php">Travel Logs</a></li>
+        <li><a href="triphistory.php">Trip History</a></li>
         <li><button id="toggleSidebar" class="sidebar-btn">☰</button></li>
       </ul>
     </nav>
@@ -504,6 +505,7 @@ body {
     <li><a href="travelplanner.php">Travel Planner</a></li>
     <li><a href="destinations.php">Destinations</a></li>
     <li><a href="travelog.php">Travel Logs</a></li>
+    <li><a href="triphistory.php">Trip History</a></li>
     <li><a href="#" class="h">History</a></li>
     <li><a href="#" class="logout">Log Out</a></li>
   </ul>
