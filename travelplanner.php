@@ -21,13 +21,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($is_valid) {
+        // Collect selected activities and information
+        $selected_activities = isset($_POST['activities']) ? $_POST['activities'] : [];
+        $selected_info = isset($_POST['information']) ? $_POST['information'] : [];
+        
         $trip = [
-            'destination' => $_POST['selectedCountry'],  // Store as 'destination' for consistency
+            'destination' => $_POST['selectedCountry'],
             'departure_date' => $_POST['departure_date'],
             'duration' => $_POST['duration'],
             'budget' => $_POST['budget'],
-            'activities' => $_POST['activities'] ?? '',
-            'information' => $_POST['information'] ?? '',
+            'activities' => $selected_activities, // Will be array of selected activities
+            'information' => $selected_info, // Will be array of selected info types
             'notes' => $_POST['notes'] ?? '',
             'date_added' => date('Y-m-d H:i:s')
         ];
@@ -369,8 +373,38 @@ body, html {
 .form-label {
   font-size: 1.2rem;
   margin-bottom: 10px;
-  color: #123499;
-  
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+.form-control {
+  color: #333;  /* Keep input text dark for readability */
+  font-weight: bold;
+}
+
+.form-control::placeholder {
+  color: #666;
+}
+
+.checkbox-group label span {
+  color: #333;
+  font-weight: bold;
+}
+
+.checkbox-group input[type="checkbox"]:checked + span {
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.activity-box span, .info-box span {
+  color: #333;
+  font-weight: bold;
+}
+
+.activity-box input[type="checkbox"]:checked + span,
+.info-box input[type="checkbox"]:checked + span {
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
 /* Form Sections */
@@ -679,11 +713,61 @@ body, html {
             </div>
             <div class="mb-3">
                 <label class="form-label">Activities</label>
-                <textarea name="activities" class="form-control" rows="3" placeholder="List your planned activities..."></textarea>
+                <div class="checkbox-group">
+                    <label class="activity-box">
+                        <input type="checkbox" name="activities[]" value="Hiking">
+                        <span>Hiking</span>
+                    </label>
+                    <label class="activity-box">
+                        <input type="checkbox" name="activities[]" value="Mountain Biking">
+                        <span>Mountain Biking</span>
+                    </label>
+                    <label class="activity-box">
+                        <input type="checkbox" name="activities[]" value="Kayaking">
+                        <span>Kayaking</span>
+                    </label>
+                    <label class="activity-box">
+                        <input type="checkbox" name="activities[]" value="Skiing">
+                        <span>Skiing</span>
+                    </label>
+                    <label class="activity-box">
+                        <input type="checkbox" name="activities[]" value="Fishing">
+                        <span>Fishing</span>
+                    </label>
+                    <label class="activity-box">
+                        <input type="checkbox" name="activities[]" value="Surfing">
+                        <span>Surfing</span>
+                    </label>
+                </div>
             </div>
             <div class="mb-3">
-                <label class="form-label">Personal Information</label>
-                <textarea name="information" class="form-control" rows="3" placeholder="Any relevant personal information..."></textarea>
+                <label class="form-label">Information Required</label>
+                <div class="checkbox-group">
+                    <label class="info-box">
+                        <input type="checkbox" name="information[]" value="Transportation">
+                        <span>Transportation</span>
+                    </label>
+                    <label class="info-box">
+                        <input type="checkbox" name="information[]" value="Health">
+                        <span>Health</span>
+                    </label>
+                    <label class="info-box">
+                        <input type="checkbox" name="information[]" value="Weather">
+                        <span>Weather</span>
+                    </label>
+                    <label class="info-box">
+                        <input type="checkbox" name="information[]" value="Gear">
+                        <span>Gear</span>
+                    </label>
+                    <label class="info-box">
+                        <input type="checkbox" name="information[]" value="Political Info">
+                        <span>Political Info</span>
+                    </label>
+                    <label class="info-box">
+                        <input type="checkbox" name="information[]" value="Activity Specific">
+                        <span>Activity Specific</span>
+                    </label>
+                </div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Additional Notes</label>
