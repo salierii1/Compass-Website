@@ -1,3 +1,30 @@
+<?php
+session_start();
+include 'connect.php';
+
+if (!isset($_SESSION['stdID'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$userID = $_SESSION['stdID'];
+
+// Fetch user logs
+$sql = "SELECT * FROM travel_logs WHERE stdID = '$userID' ORDER BY created_at DESC";
+$result = $conn->query($sql);
+
+$logs = [];
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $logs[] = $row;
+    }
+}
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -475,6 +502,95 @@
             display: none;
             margin-top: 1rem;
         }
+
+
+
+
+
+
+
+
+
+
+/* Travel Log Card Container */
+.log-card {
+    background-color: #ffffff;             /* White background */
+    border-radius: 10px;                   /* Smooth rounded corners */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    padding: 24px 28px;                    /* Comfortable padding inside card */
+    margin-bottom: 24px;                   /* Space below each card */
+    max-width: 650px;                      /* Limit card width */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: default;
+}
+
+.log-card:hover {
+    transform: translateY(-6px);           /* Slight lift on hover */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Title */
+.log-card h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #222222;
+}
+
+/* Paragraphs */
+.log-card p {
+    margin: 6px 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444444;
+}
+
+/* Strong labels */
+.log-card strong {
+    color: #111111;
+}
+
+/* Travel Image */
+.log-image {
+    display: block;
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+/* Link inside no-logs message */
+p a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive: smaller cards on narrow screens */
+@media (max-width: 700px) {
+    .log-card {
+        padding: 18px 20px;
+        max-width: 100%;
+    }
+    .log-card h2 {
+        font-size: 1.5rem;
+    }
+}
+
+
+
+
+
+
+
     </style>
 </head>
 <body>
@@ -550,32 +666,42 @@
         </div>
 
         <div id="createFormView" style="display:none;">
-            <form id="blogForm" onsubmit="handleSubmit(event)" class="create-form">
-                <div class="form-group">
-                    <label for="title">Trip Title</label>
-                    <input type="text" id="title" required>
-                </div>
-                <div class="form-group">
-                    <label for="destination">Destination</label>
-                    <input type="text" id="destination" required>
-                </div>
-                <div class="form-group">
-                    <label for="date">Date of Travel</label>
-                    <input type="date" id="date" required>
-                </div>
-                <div class="form-group">
-                    <label for="description">Experience</label>
-                    <textarea id="description" rows="5" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="image">Upload Image</label>
-                    <input type="file" id="image" accept="image/*" required onchange="previewImage(event)">
-                    <img id="imagePreview">
-                </div>
-                <button type="submit" class="create-button">Publish Log</button>
-            </form>
+<form id="blogForm" action="submit_log.php" method="POST" enctype="multipart/form-data" class="create-form">
+    <div class="form-group">
+        <label for="title">Trip Title</label>
+        <input type="text" id="title" name="title" required>
+    </div>
+    <div class="form-group">
+        <label for="destination">Destination</label>
+        <input type="text" id="destination" name="destination" required>
+    </div>
+    <div class="form-group">
+        <label for="date">Date of Travel</label>
+        <input type="date" id="date" name="travel_date" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Experience</label>
+        <textarea id="description" name="description" rows="5" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="image">Upload Image</label>
+        <input type="file" id="image" name="image" accept="image/*" required onchange="previewImage(event)">
+        <img id="imagePreview" style="display:none;">
+    </div>
+    <button type="submit" class="create-button">Publish Log</button>
+</form>
+
+
         </div>
+
+
+
+
+
+        
     </main>
+
+
 
     <script>
         // Initial blog data
@@ -684,5 +810,25 @@
         // Initial render
         renderBlogPosts();
     </script>
+
+
+    <?php if (count($logs) === 0): ?>
+        <p>No travel logs found. <a href="travelog.php">Create one now!</a></p>
+    <?php else: ?>
+        <?php foreach ($logs as $log): ?>
+            <div class="log-card">
+                <h2><?= htmlspecialchars($log['title']) ?></h2>
+                <p><strong>Destination:</strong> <?= htmlspecialchars($log['destination']) ?></p>
+                <p><strong>Date of Travel:</strong> <?= htmlspecialchars($log['travel_date']) ?></p>
+                <p><?= nl2br(htmlspecialchars($log['description'])) ?></p>
+                <img src="<?= htmlspecialchars($log['image_path']) ?>" alt="Travel Image" class="log-image">
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
 </body>
+
+
+
 </html>
+
