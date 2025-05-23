@@ -212,7 +212,7 @@ if (isset($_POST['clear_all'])) {
         }
     </style>
 </head>
-<body>
+<body>  
     <!-- NAVBAR -->
     <header class="navbar">
         <div class="logo">🧭 COMPASS</div>

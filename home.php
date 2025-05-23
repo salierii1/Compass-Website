@@ -451,6 +451,78 @@ body {
 
 
 
+/* Add these styles to your existing <style> section */
+.site-footer {
+    background: linear-gradient(45deg, #FF8C00, #FF4500);
+    color: white;
+    padding: 3rem 0;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+.footer-section {
+    flex: 1;
+    padding: 0 1rem;
+}
+
+.footer-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.footer-section p {
+    margin: 0.7rem 0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.social-icons {
+    margin-bottom: 1rem;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.3rem;
+    margin: 0 1rem;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: translateY(-3px);
+}
+
+.copyright {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-section {
+        margin: 1.5rem 0;
+    }
+}
+
 </style>
 
 
@@ -573,5 +645,45 @@ body {
 </section>
 
   </main>
+
+  <!-- Footer Section -->
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>CONTACT US</h3>
+            <p>Final Requirement, Compass Website</p>
+            <p>Contact Number: 09777699066</p>
+            <p>Email: compasswebsite@gmail.com</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>GROUP 8</h3>
+            <p>PRIVACY POLICIES</p>
+            <p>SUPPORT</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>ABOUT US</h3>
+            <p>JEROEN PAGHUNASAN</p>
+            <p>JIN ANTHONY PRADAS</p>
+            <p>ALEXANDRA NYANZA REYES</p>
+            <p>DENIEL SALCEDO</p>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p class="copyright">© Copyright. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Add Font Awesome for social icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 </body>
 </html>
