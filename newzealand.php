@@ -22,7 +22,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #00CEC3;
+  background-color: #123499;
   padding: 1rem 2rem;
   color: white;
 }
@@ -59,7 +59,7 @@
 }
 
 .navbar nav ul li a:hover {
-  color: rgb(1, 119, 113);
+  color: #fcd639;
 }
 
 .sidebar-btn {
@@ -79,7 +79,7 @@
 }
 
 .sidebar-btn:hover {
-  color: rgb(1, 119, 113);
+  color: #fcd639;
 }
 
 .sidebar {
@@ -88,7 +88,7 @@
   right: -300px;
   width: 250px;
   height: 100%;
-  background-color: #00CEC3;
+  background-color: #123499;
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
   padding: 1rem 1rem;
   transition: right 0.3s ease-in-out;
@@ -172,13 +172,13 @@
 }
 
 .sidebar ul li a:hover {
-  color: #003f3c;
+  color: #fcd639;
 }
 
     .hero {
       position: relative;
       background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-        url('https://endlesstrailexpeditions.com/wp-content/uploads/2020/06/7fe1e526-4109-493a-ba86-e1644164108b.jpeg?w=1024')
+        url('https://i0.wp.com/wyomingmountainguides.com/wp-content/uploads/2022/04/img_4365.jpg?fit=4032%2C3024&ssl=1')
         no-repeat center center/cover;
       color: white;
       margin: 70px auto 0;
@@ -198,7 +198,7 @@
 
     .price {
       font-size: 2.8rem;
-      color: #00CEC3;
+      color: #fcd639;
       text-shadow: 1px 1px 5px black;
       font-weight: bold;
       animation: pop 1s ease-in-out;
@@ -207,7 +207,7 @@
     .hero button {
       margin-top: 1rem;
       padding: 0.75rem 1.5rem;
-      background-color: #00CEC3;
+      background-color: #123499;
       border: none;
       border-radius: 6px;
       color: white;
@@ -215,11 +215,12 @@
       font-size: 1.3rem;
       font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background-color 0.3s, transform 0.3s;
     }
 
     .hero button:hover {
-      background-color: rgb(1, 119, 113);
+      background-color: #fcd639;
+      transform: scale(1.05);
     }
 
     .photo-strip {
@@ -258,14 +259,18 @@
 
     .view-text a {
       font-size: 1.2rem;
-      color: rgb(1, 119, 113);
+      background-color: #123499;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      color: white;
       font-weight: bold;
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: background-color 0.3s, transform 0.3s;
     }
 
     .view-text a:hover {
-      color: #00CEC3;
+      background-color: #fcd639;
+      transform: scale(1.05);
     }
 
     .description-section {
@@ -285,7 +290,7 @@
       flex: 1 1 300px;
       font-size: 1.5rem;
       line-height: 1.5;
-      border-right: 2px solid rgb(1, 119, 113);
+      border-right: 2px solid #123499;
       padding-right: 1rem;
     }
 
@@ -302,6 +307,8 @@
     }
 
     .package h3 {
+      color: #fcd639;
+      text-shadow: 1px 1px 5px black;
       font-size: 2rem;
       margin-bottom: 2.2rem;
     }
@@ -314,7 +321,7 @@
 
     .badge {
       padding: 1rem 2rem;
-      background-color: rgb(1, 119, 113);
+      background-color:#123499;
       font-size: 1.4rem;
       color: white;
       border-radius: 30px;
