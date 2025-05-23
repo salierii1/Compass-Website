@@ -97,7 +97,7 @@ body {
   right: -300px;
   width: 250px;
   height: 100%;
-  background-color: #00CEC3;
+  background-color: #123499; /* Updated to match navbar */
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
   padding: 1rem 1rem;
   transition: right 0.3s ease-in-out;
@@ -569,11 +569,8 @@ body {
   });
 </script>
 
-
-
 <body>
 
-  
 
   <header class="navbar">
     <div class="logo">🧭 COMPASS</div>
@@ -601,8 +598,7 @@ body {
     <li><a href="destinations.php">Destinations</a></li>
     <li><a href="travelog.php">Travel Logs</a></li>
     <li><a href="triphistory.php">Trip History</a></li>
-    <li><a href="#" class="h">History</a></li>
-    <li><a href="#" class="logout">Log Out</a></li>
+    <li><a href="logout.php" class="logout">Log Out</a></li>
   </ul>
 </div>
 
