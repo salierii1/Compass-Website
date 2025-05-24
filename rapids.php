@@ -3,22 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>California Surfing Safari</title>
+  <title>Bike New Zealand</title>
   <style>
     * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      background-color: #fff;
-      color: #333;
-    }
-
-        /* NAVBAR */
-* {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -191,7 +178,7 @@
     .hero {
       position: relative;
       background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-        url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6FtW_xxtck3E57XjJjkiV76ZTDkbJvCCf1pUbAq10G-U5z0Y6TYVxaGU0Zi6CMsv0VflWJBMQeb3Q0533MIPm0A6A9GvFHCnr6LlnIbLCkDbBp87zhqpTLEwJl_TVN1RND80edvJOOXM/s1600/Western+USA+2015+Pics+751_RockClimbers2_mm.JPG')
+        url('https://res.cloudinary.com/simpleview/image/upload/v1559153332/clients/estespark-redesign/estes1653FlyRGB_80919682-e91a-420a-b69f-1f82b8d59c52.jpg')
         no-repeat center center/cover;
       color: white;
       margin: 70px auto 0;
@@ -345,7 +332,6 @@
     .badge:hover {
       transform: scale(1.05);
     }
-
 
     @keyframes pop {
       0% {
@@ -513,7 +499,7 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo">
-      <img src="pictures/logo.png" alt="logo" class="logo" style="height: 40px; width: auto;">
+      <img src="pictures/logo.png" alt="logo" style="height: 40px; width: auto;">
     </div>
     <nav>
       <ul>
@@ -543,26 +529,25 @@
   </header>
 
   <section class="hero">
-    <h1>Devil's Tower Gateway Rock Climb</h1>
-    <div class="price">$740</div>
-     <a href="travelplanner.php"><button>Add to the Planner</button></a>
+    <h1>Fly Fishing in the Rocky Mountains</h1>
+    <div class="price">$580</div>
+    <a href="travelplanner.php"><button>Add to the Planner</button></a>
   </section>
 
   <div class="photo-strip">
-    <img src="https://i0.wp.com/wyomingmountainguides.com/wp-content/uploads/2022/04/img_4365.jpg?fit=4032%2C3024&ssl=1" alt="Surf 1">
-    <img src="https://acoupledaystravel.com/wp-content/uploads/2021/04/Devils-2.jpg" alt="Surf 2">
-    <img src="https://cdn.climbing.com/wp-content/uploads/2014/04/GettyImages-562479501-scaled.jpg" alt="Surf 3">
-    <img src="https://www.mensjournal.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTk2MTM2NjkzMTA4MDU3MjMz/gettyimages-auroc8302000046-e503662d-6816-4d76-ade4-1be300ae8aa6.jpg" alt="Surf 4">
+    <img src="https://momentumriverexpeditions.com/wp-content/uploads/2016/02/Greenwall-on-the-Illinois-scaled-1920x933.jpg" alt="Surf 1">
+    <img src="https://miro.medium.com/v2/resize:fit:1400/1*s07jmFXUx3WhWry5vwX4UQ.jpeg" alt="Surf 2">
+    <img src="https://smokymtnriverrat.com/nitropack_static/sjNDYflJxOlVBjYMKZOuIchGHlwfrXYG/assets/images/optimized/rev-816aa72/smokymtnriverrat.com/wp-content/uploads/2024/03/RRW-_-Family-Upper-_-8-_-faded-bottom-white.webp" alt="Surf 3">
+    <img src="https://www.nwrafting.com/wp-content/uploads/2018/12/Mushroom-Rapid-Cherry-Creek.jpg" alt="Surf 4">
     <div class="view-text"><a href="#">View Photos &gt;&gt;</a></div>
   </div>
 
   <section class="description-section">
     <div>
-      Wyoming's climbing Mecca, Devil's Tower, stands at 865 feet and offers the beginner or the expert climber 200 fun and challenging routes. (In fact, a 6-year-old boy conquered the Tower in 1994.) The array of cracks in the walls allows you to use your imagination as you test your climbing skills.
+      Tackling Level 5 rapids is the ultimate adrenaline rush for experienced whitewater enthusiasts. These intense, turbulent waters demand precise navigation, quick reflexes, and fearless determination. With massive drops, powerful waves, and complex obstacles, every second on the river is a heart-pounding challenge.
     </div>
     <div>
-      President Teddy Roosevelt named Devils Tower the first national monument in 1906. Today, the park hosts approximately 450,000 visitors annually. And 5,000 of those visitors are climbers. But beware, environmentalists are trying to limit that number, so treat the park with respect.
-
+      This level of rafting is not for the faint of heart—it's a test of skill, teamwork, and mental grit. Surrounded by roaring water and rugged terrain, paddlers must stay focused and trust their crew. Conquering a Level 5 rapid delivers a surge of triumph like no other, leaving you soaked, breathless, and exhilarated.                  
     </div>
   </section>
 
@@ -576,7 +561,7 @@
     </div>
   </section>
 
-  <footer class="site-footer">
+<footer class="site-footer">
     <div class="footer-content">
         <div class="footer-section">
             <h3>CONTACT US</h3>
@@ -613,5 +598,6 @@
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 </body>
 </html>

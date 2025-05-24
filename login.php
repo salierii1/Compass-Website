@@ -6,309 +6,221 @@
     <title>Login Page</title>
     <style>
         body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background: url('https://www.travelandleisure.com/thmb/xieEX63911EUWlO90w3wiuaVYAU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/georgia-hogpen-gap-FALLROADTRIP0817-deb62bb6ce6f4533bfc63dfe6a1fe7ed.jpg') no-repeat center center/cover;
+    color: white;
+    height: 100%;
 
-        body {
-            background-image: url('./pictures/background.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            position: relative;
-        }
-
-        .header {
-            background-color: #1f1f1f;
-            padding: 30px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: white;
-            justify-content: space-between;
-        }
-
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 10px; 
+    background-image: url('https://www.travelandleisure.com/thmb/xieEX63911EUWlO90w3wiuaVYAU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/georgia-hogpen-gap-FALLROADTRIP0817-deb62bb6ce6f4533bfc63dfe6a1fe7ed.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-.user-section {
+/* === FLEX CONTAINER FOR BOTH SECTIONS === */
+.container {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    gap: 10px; 
+    height: 100vh;
+    gap: 40px;
+    padding: 0 40px;
 }
 
-        .header2 {
-            background-color: rgb(255, 255, 255);
-            padding: 30px 20px;
-            color: white;
-        }
+/* === WELCOME TEXT STYLE === */
+.welcome-text {
+    max-width: 800px;
+    padding: 1rem;
+    text-shadow: 1px 1px 2px black;
+}
 
-        .logo {
-            height: 80px;
-        }
+.welcome-text h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
 
-                .logo2 {
-            height: 40px;
-        }
+.welcome-text p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ddd;
+}
 
-        .COMPASS {
-            height: 80px;
-        }
+.signup a {
+    color:rgb(252, 214, 57);
+    text-decoration: underline;
+}
 
-        .header h1,
-        .header2 h1 {
-            color: #f0a500;
-            font-weight: normal;
-            margin: 0;
-            font-size: 30px;
-        }
-
-        .login-container {
-           display: flex;
-            justify-content: center;
-            align-items: center;
-            height: calc(100vh - 60px); 
-        }
-
-        .login-box {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 50px;
-            border-radius: 10px;
-            width: 500px;
-            height: auto;
-        }
-
+/* === LOGIN FORM STYLES === */
+.login-box {
+    
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
 
 .login-box label {
     display: block;
     margin-top: 15px;
     margin-bottom: 5px;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
-    color: #f0a500; 
+    color: #123499;
 }
-
 
 .login-box input {
-    width: 478px;
+    width: 95%;
     padding: 10px;
-    border: 1px solid #ccc; 
+    border-color: 3px solid #123499;
     border-radius: 6px;
-    background-color: #fff; 
-    font-size: 14px;
-    transition: all 0.3s ease-in-out;
+    background-color: white;
+    font-size: 18px;
+    
 }
 
-
 .login-box input:focus {
-    border-color: #f0a500; 
+    width: 10px;
     outline: none;
-    box-shadow: 0 0 5px rgba(240, 165, 0, 0.5);
+    box-shadow: 0 0 6px rgba(240, 205, 0, 0.6);
+}
+.login-box input {
+    width: 100%;
+    padding: 10px;
+    border: 3px solid #123499;
+    border-radius: 6px;
+    background-color: white;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+/* Prevent password input from shrinking on focus */
+.login-box input:focus {
+    width: 100%;
+    outline: none;
+    box-shadow: 0 0 6px rgba(240, 205, 0, 0.6);
+}
+.password-container{
+    align-items: center;
+    gap: 10px;
+}
+
+#togglePassword {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background: #123499;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: #fcd639;
+    transform: scale(1.05);
 }
 
 .create-account,
 .forgot-password {
     display: block;
     margin-top: 10px;
-    font-size: 12px;
-    color: #ccc;
+    font-size: 16px;
+    color: #c79e00;
+    font-weight: bold;
+    text-align: left;
     text-decoration: none;
-    transition: color 0.3s ease-in-out;
 }
-
 
 .create-account:hover,
 .forgot-password:hover {
+    color: #123499;
     text-decoration: underline;
-    color: #f0a500; 
-}
-
-
-button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 15px;
-    border: none;
-    border-radius: 6px;
-    background: linear-gradient(45deg, #f0a500, #d18b00); 
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-
-button:hover {
-    background: linear-gradient(45deg, #d18b00, #b37400);
-    transform: scale(1.05); 
-}
-
-
-button:active {
-    transform: scale(0.98); 
-}
-
-.COMPASS {
-    height: 40px;
-    width: auto; 
-}
-
-.signin {
-    height: 40px; 
-    width: auto; 
-}
-
-.tagline {
-    font-size: 16px;
-    color: #ccc;
-    margin-left: 10px;
-    font-style: italic;
-}
-
-
-
-.user-section {
-    display: flex;
-    align-items: center; 
-    gap: 10px; 
-}
-
-.user-section img {
-    height: 40px;
-}
-
-.user-section a {
-    font-size: 16px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    display: flex;
-    align-items: center; 
-    height: 40px; 
-}
-
-.header2 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    border-bottom: 2px solid #ccc; 
-}
-
-.signin {
-    height: 40px;
-    width: auto;
-}
-
-.welcome-text {
-    font-size: 18px;
-    font-weight: bold;
-    color: black;
-}
-
-.password-container {
-    display: flex;
-    align-items: center;
-    width: 478px;
-}
-
-#password {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-#togglePassword {
-    cursor: pointer;
-    font-size: 18px;
-    color: #666;
-    background: none;
-    border: none;
-    outline: none;
-    width: 10px;
 }
 
 .error-message {
-        background-color: rgba(255, 0, 0, 0.1);
-        border: 1px solid #ff0000;
-        color: #ff0000;
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 15px;
-        text-align: center;
-        font-size: 14px;
-    }
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 1px solid red;
+    color: red;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 14px;
+}
 
 @media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        height: auto;
+    }
+
+    .welcome-text {
+        text-align: center;
+        padding: 1rem 0;
+    }
+
     .login-box {
-        width: 1200px;
+        width: 100%;
         max-width: 400px;
         padding: 30px;
-        margin-left: auto; 
-        margin-right: auto;
-    }
-
-    .form-row {
-        flex-direction: column; 
-        gap: 10px;
-    }
-
-    .form-column {
-        width: 100%; 
     }
 
     .password-container {
-        flex-direction: row; 
+        flex-direction: row;
         justify-content: space-between;
-        width: 400px; 
+        align-items: center;
     }
 
     .register-form input, .login-box input {
-        width: 370px;
-        font-size: 16px; 
+        width: 100%;
+        font-size: 16px;
     }
 
     .register-button, button {
         width: 100%;
-        padding: 14px; 
+        padding: 14px;
     }
 
     .login-container {
-        height: auto;
-        padding: 20px;
+        width: 100%;
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
     }
 }
+
+
+
 
     </style>
 </head>
 <body>
 
-<div class="header">
-    <div class="logo-container">
-        <img src="./pictures/compasslogo.png" alt="Compass Logo" class="logo">
-        <img src="./pictures/COMPASS.png" alt="Compass" class="COMPASS">
-        <p class="tagline">Navigate your way with COMPASS</p>
+<div class="container">
+    <div class="welcome-text">
+      <h1>WELCOME TO<br><span>COMPASS – YOUR JOURNEY STARTS HERE!</span></h1>
+      <p>Explore destinations, plan unforgettable adventures, and manage your travels—all in one place.</p>
+      <p class="signup"><a href="signup.php"></a></p>
     </div>
 
-    <div class="user-section">
-        <img src="./pictures/users.png" alt="users" class="logo2">
-        <a href="" class="logo2">User</a>
-    </div>
-</div>
-
-<div class="header2">
-    <img src="./pictures/signin.png" alt="signin" class="signin">~
-    <p class="welcome-text">Welcome back, User</p>
-</div>
 
 <div class="login-container">
     <form class="login-box" action="login2.php" method="POST">
@@ -326,12 +238,14 @@ button:active {
 
         <div class="password-container">
             <input type="password" id="password" name="password" placeholder="Password" required>
+            
             <button type="button" id="togglePassword">👁️</button>
+            
         </div>
-
+        <a href="forget.php" class="forgot-password">Forgot Password?</a>
         <button type="submit">Login</button>
 
-        <a href="forget.php" class="forgot-password">Forgot Password?</a>
+        
     </form>
 </div>
 

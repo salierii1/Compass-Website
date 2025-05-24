@@ -192,7 +192,7 @@ body {
   background-image: url('https://cdn.tatlerasia.com/asiatatler/i/my/2018/11/05085630-thegreatoceanroad_cover_1920x1200.jpg');
   background-size: cover;
   min-height: 550px;
-  margin: 7rem 2rem 0 2rem;
+  margin: 7rem 2rem 2rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -234,101 +234,67 @@ body {
 }
 
 
-.destinations {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 2rem;
-}
+.filters, .search-box {
+      display: flex;
+      gap: 10px;
+      margin: 2rem 2rem 0 2rem;
+      flex-wrap: wrap;
+    }
 
-.card {
-  background: white;
-  padding: 2rem;
-  border-radius: 20px;
-  display: flex;
-  overflow: hidden;
-  box-shadow: 0 5px 30px #123499;
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
-  min-width: 400px;
-  
-  width: 100%;
-  opacity: 0;
-  animation: fadeInCard 1s ease forwards;
-}
+    input, select {
+      font-size: 1rem;
+      color: #123499;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
 
+    .card {
+      padding: 2rem 4rem 2rem 4rem;
+      display: flex;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(16, 0, 197, 0.3);
+      margin: 2rem 2rem 0 2rem;
+      overflow: hidden;
+    }
 
-.card:nth-child(1) { animation-delay: 0.2s; }
-.card:nth-child(2) { animation-delay: 0.4s; }
-.card:nth-child(3) { animation-delay: 0.6s; }
+    .card img {
+      width: 280px;
+      height: 220px;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
 
+    .card-content {
+      color: #123499;
+      font-size: 2rem;
+      padding: 1rem 2rem 1rem 2rem;
+      flex: 1;
+    }
 
+    .tags span {
+      background: #123499;
+      color: white;
+      padding: 4px 8px;
+      margin: 2px;
+      border-radius: 4px;
+      font-size: 12px;
+      display: inline-block;
+    }
 
-.card img {
-  width: 300px;
-  height: auto;
-  object-fit: cover;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
+    .price {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: green;
+      margin-top: 5px;
+    }
 
-.card-content {
-  padding: 1rem 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.card-content h2 {
-  padding-left: 5rem;
-  font-size: 3.3rem;
-  color: #123499;
-  margin-bottom: 0.3rem;
-
-}
-
-.card-content span {
-  font-size: 3.3rem;
-  color: #fcd639;
-  margin-bottom: 0.3rem;
-}
-
-.details {
-  padding: 1rem 0 0 5rem;
-  color: #fcd639;
-  font-size: 1.5rem;
-  margin-bottom: 2.5rem;
-  font-weight: bold;
-  
-}
-
-.desc {
-  color: #123499;
-  padding: 3rem 0 0 5rem;
-  font-size: 1.2rem;
-  margin-bottom: 0.8rem;
-  font-weight: bold;
- 
-}
-
-.card-content a {
-  margin: 10px 0 0 5rem;
-  font-size: 1.2rem;
-  align-self: flex-start;
-  padding: 0.5rem 1rem;
-  background: #fcd639;
-  border-radius: 5px;
-  border: none;
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-  text-shadow: 1px 1px 4px black;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.card-content a:hover {
-  background-color: #123499;
-  transform: scale(1.05);
-}
+    .info-line {
+      margin-top: 5px;
+      font-size: 1rem;
+      color: #666;
+    }
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -521,37 +487,251 @@ body {
     </div>
   </section>
 
-  <section class="destinations">
-    <div class="card">
-      <img src="https://www.mrporter.com/content/images/cms/ycm/resource/blob/476344/b6ef6d47026243d09813d1de1bc73623/e2be9882-43f0-471f-84d6-d3a6d414808e-data.jpg" alt="Surfing Safari" />
-      <div class="card-content">
-        <h2>California Surfing Safari  |  <span>$960</span></h2>
-        <p class="details">Includes lodging,<br>food,<br>and airfare</p>
-        <p class="desc">Be ready to go pro in a California surf town. We will catch some waves by morning and sip icy wet smoothies in the sun after lunch.</p>
-        <a href="california.php">MORE DETAILS...</a>
-      </div>
-    </div>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search destinations...">
+    <select id="priceFilter">
+      <option value="">Price Range</option>
+      <option value="low">Budget (₱0-₱14,999)</option>
+      <option value="mid">Mid-range (₱15,000-₱29,999)</option>
+      <option value="high">Luxury (₱30,000+)</option>
+    </select>
+    <select id="durationFilter">
+      <option value="">Duration</option>
+      <option value="short">Short (1-7 days)</option>
+      <option value="long">Long (8+ days)</option>
+    </select>
+    <select id="activityFilter">
+      <option value="">Activities</option>
+      <option value="Hiking">Hiking</option>
+      <option value="Mountain Biking">Mountain Biking</option>
+      <option value="Skiing">Skiing</option>
+      <option value="Fishing">Fishing</option>
+      <option value="Surfing">Surfing</option>
+    </select>
+    <select id="infoFilter">
+      <option value="">Information Needs</option>
+      <option value="Transportation">Transportation</option>
+      <option value="health">Health</option>
+      <option value="Weather">Weather</option>
+      <option value="Gear">Gear</option>
+      <option value="Political Info">Political Info</option>
+      <option value="Activity Specific">Activity Specific</option>
+    </select>
+  </div>
 
-    <div class="card">
-      <img src="https://www.luxuryadventures.co.nz/wp-content/uploads/2023/03/NZMountainBiking4.jpg" alt="Bike New Zealand" />
-      <div class="card-content">
-        <h2>Bike New Zealand  |  <span>$1090</spanstyle=></h2>
-        <p class="details">Includes lodging,<br>food,<br>and airfare</p>
-        <p class="desc">Shred NZ’s scenery, mountains, and hidden trails suited for adrenaline-fueled riders. Push your legs to the limit.</p>
-        <a href="newzealand.php">MORE DETAILS...</a>
-      </div>
-    </div>
+  <div id="results"></div>
 
-    <div class="card">
-      <img src="https://i.natgeofe.com/n/422a0bc7-4e2f-479c-93dc-56672c035241/devils-tower.jpg" alt="Devil's Tower" />
-      <div class="card-content">
-        <h2>Devil’s Tower Rock Climb  |  <span>$740</span></h2>
-        <p class="details">Includes lodging,<br>food,<br>and airfare</p>
-        <p class="desc">Take on the steep pitch and test the impossible cliffs of the beautiful Devil’s Tower, Wyoming.</p>
-        <a href="gateway.php">MORE DETAILS...</a>
-      </div>
-    </div>
-  </section>
+  <script>
+    const packages = [
+      {
+        destination: "Bangkok",
+        date: "October 5, 2025 - October 12, 2025",
+        route: "Manila - Bangkok",
+        price: 28500,
+        image: "https://linkstravelandtours.co.uk/wp-content/uploads/2018/12/bangkok-temple-dawn-thailand.jpg",
+        activities: ["hiking"],
+        duration: 7,
+        tags: ["Thailand"],
+        info: ["transportation", "health", "political-info"]
+      },
+      {
+        destination: "Boracay",
+        date: "November 1, 2025 - November 6, 2025",
+        route: "Manila - Boracay",
+        price: 12000,
+        image: "https://lp-cms-production.imgix.net/2019-06/GettyImages-483535221_super.jpg",
+        activities: ["Surfing"],
+        duration: 6,
+        tags: ["Philippines"],
+        info: ["health"]
+      },
+      {
+        destination: "Tokyo",
+        date: "December 10, 2025 - December 20, 2025",
+        route: "Manila - Tokyo",
+        price: 35000,
+        image: "https://www.qantas.com/content/travelinsider/en/travel-tips/things-to-know-before-you-go-to-tokyo/jcr:content/parsysTop/hero.img.full.medium.jpg/1708575449205.jpg",
+        activities: ["Skiing"],
+        duration: 10,
+        tags: ["Japan"],
+        info: ["transportation", "political-info"]
+      },
+
+
+
+  {
+    "destination": "Kyoto, Japan",
+    "date": "March 24, 2025 - March 30, 2025",
+    "route": "Tokyo - Kyoto",
+    "price": 28000,
+    "image": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a3lvdG98ZW58MHx8MHx8fDA%3D",
+    "activities": ["Hiking", "Fishing"],
+    "duration": 15,
+    "tags": ["Japan", "Culture"],
+    "info": ["Gear"]
+  },
+  {
+    "destination": "Bali, Indonesia",
+    "date": "July 10, 2025 - July 16, 2025",
+    "route": "Jakarta - Bali",
+    "price": 19000,
+    "image": "https://www.outlooktravelmag.com/media/bali-1-1582544096.profileImage.2x-1536x884.webp",
+    "activities": ["Surfing", "Kayaking"],
+    "duration": 12,
+    "tags": ["Beach", "Relaxation"],
+    "info": ["Weather"]
+  },
+  {
+    "destination": "Paris, France",
+    "date": "June 1, 2025 - June 7, 2025",
+    "route": "London - Paris",
+    "price": 36000,
+    "image": "https://img.static-af.com/transform/45cb9a13-b167-4842-8ea8-05d0cc7a4d04/",
+    "activities": ["Mountain Biking", "Hiking"],
+    "duration": 8,
+    "tags": ["Europe", "Romance"],
+    "info": ["Transportation"]
+  },
+  {
+    "destination": "Queenstown, New Zealand",
+    "date": "December 5, 2025 - December 12, 2025",
+    "route": "Auckland - Queenstown",
+    "price": 32000,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Queenstown_1_%288168013172%29.jpg/1200px-Queenstown_1_%288168013172%29.jpg",
+    "activities": ["Skiing", "Kayaking"],
+    "duration": 8,
+    "tags": ["Adventure", "Nature"],
+    "info": ["Health"]
+  },
+  {
+    "destination": "Reykjavík, Iceland",
+    "date": "February 12, 2025 - February 17, 2025",
+    "route": "London - Reykjavík",
+    "price": 40000,
+    "image": "https://silversea-discover.imgix.net/2021/06/REYKJAVIK-shutterstock_613997816.jpg?auto=compress%2Cformat&ixlib=php-3.3.1",
+    "activities": ["Skiing", "Fishing"],
+    "duration": 6,
+    "tags": ["Cold", "Scandinavia"],
+    "info": ["Gear"]
+  },
+  {
+    "destination": "Santorini, Greece",
+    "date": "September 18, 2025 - September 24, 2025",
+    "route": "Athens - Santorini",
+    "price": 25000,
+    "image": "https://greeceinsiders.travel/wp-content/uploads/2021/02/Santorini-Oia.jpg",
+    "activities": ["Kayaking", "Surfing"],
+    "duration": 10,
+    "tags": ["Romantic", "Europe"],
+    "info": ["Political Info"]
+  },
+  {
+    "destination": "Marrakech, Morocco",
+    "date": "October 8, 2025 - October 13, 2025",
+    "route": "Casablanca - Marrakech",
+    "price": 21500,
+    "image": "https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/05/03/15/marrakech-hero.jpg",
+    "activities": ["Mountain Biking", "Hiking"],
+    "duration": 6,
+    "tags": ["Africa", "Cultural"],
+    "info": ["Activity Specific"]
+  },
+  {
+    "destination": "Cape Town, South Africa",
+    "date": "April 4, 2025 - April 11, 2025",
+    "route": "Johannesburg - Cape Town",
+    "price": 27000,
+    "image": "https://cdn.craft.cloud/101e4579-0e19-46b6-95c6-7eb27e4afc41/assets/uploads/Guides/cape-town-frommers.jpg",
+    "activities": ["Hiking", "Fishing"],
+    "duration": 8,
+    "tags": ["Africa", "Scenic"],
+    "info": ["Health"]
+  },
+  {
+    "destination": "Barcelona, Spain",
+    "date": "May 10, 2025 - May 16, 2025",
+    "route": "Madrid - Barcelona",
+    "price": 23000,
+    "image": "https://statemag.state.gov/wp-content/uploads/2024/05/0624POM-A-3-scaled.jpg",
+    "activities": ["Mountain Biking", "Kayaking"],
+    "duration": 7,
+    "tags": ["Spain", "Art"],
+    "info": ["Transportation"]
+  },
+  {
+    "destination": "Seoul, South Korea",
+    "date": "November 3, 2025 - November 9, 2025",
+    "route": "Busan - Seoul",
+    "price": 26000,
+    "image": "https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg",
+    "activities": ["Surfing", "Hiking"],
+    "duration": 7,
+    "tags": ["Asia", "Trendy"],
+    "info": ["Activity Specific"]
+  }
+    ];
+
+    function filterPackages() {
+      const search = document.getElementById("searchInput").value.toLowerCase();
+      const price = document.getElementById("priceFilter").value;
+      const duration = document.getElementById("durationFilter").value;
+      const activity = document.getElementById("activityFilter").value;
+      const info = document.getElementById("infoFilter").value;
+
+      const filtered = packages.filter(pkg => {
+        const matchesSearch = pkg.destination.toLowerCase().includes(search);
+        const matchesPrice = 
+          price === "" ||
+          (price === "low" && pkg.price < 15000) ||
+          (price === "mid" && pkg.price >= 15000 && pkg.price < 30000) ||
+          (price === "high" && pkg.price >= 30000);
+        const matchesDuration = 
+          duration === "" ||
+          (duration === "short" && pkg.duration <= 7) ||
+          (duration === "long" && pkg.duration > 7);
+        const matchesActivity = activity === "" || pkg.activities.includes(activity);
+        const matchesInfo = info === "" || pkg.info.includes(info);
+        return matchesSearch && matchesPrice && matchesDuration && matchesActivity && matchesInfo;
+      });
+
+      displayPackages(filtered);
+    }
+
+    function displayPackages(data) {
+      const container = document.getElementById("results");
+      container.innerHTML = "";
+      if (data.length === 0) {
+        container.innerHTML = "<p>No results found.</p>";
+        return;
+      }
+      data.forEach(pkg => {
+        const tags = [...pkg.activities, pkg.duration + " days", ...pkg.tags]
+          .map(tag => `<span>${tag}</span>`).join(" ");
+        const infoLine = `Info: ${pkg.info.join(", ")}`;
+        container.innerHTML += `
+          <div class="card">
+            <img src="${pkg.image}" alt="${pkg.destination}">
+            <div class="card-content">
+              <h3>${pkg.destination}</h3>
+              <div class="info-line">${pkg.date}</div>
+              <div class="info-line">${pkg.route}</div>
+              <div class="tags">${tags}</div>
+              <div class="info-line">${infoLine}</div>
+              <div class="price">₱${pkg.price.toLocaleString()}</div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // Event listeners
+    document.querySelectorAll("input, select").forEach(el => {
+      el.addEventListener("input", filterPackages);
+    });
+
+    // Initial display
+    filterPackages();
+  </script>
 
 <footer class="site-footer">
     <div class="footer-content">

@@ -650,14 +650,14 @@ body {
     <div class="card-overlay">
       <h3>Fly Fishing in the Rocky Mountains</h3>
       <p>You’ll get a seasoned guide and lots of dehydrated ravioli</p>
-      <a href="">More Details</a>
+      <a href="fishing.php">More Details</a>
     </div>
   </div>
   <div class="card" style="background-image: url('https://whitewatercolorado.com/wp-content/uploads/4250817.jpg')">
     <div class="card-overlay">
       <h3>Level 5 Rapids!</h3>
       <p>Put your helmet on and grab your wetsuit. It’s time to conquer Siberia</p>
-      <a href="">More Details</a>
+      <a href="rapids.php">More Details</a>
     </div>
   </div>
   <div class="card" style="background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8Fl1dDtbMvx1gAKbeLFxwXoaY3TLdQ6b3HX_OqQmLUTSkRMPIWqZmW6BZRhGA222Zwpm49-ONPlkfGiGxE4wRA9QEdu_RHXHuSRs_mICNfNj41cJD6oIFm_3LH8TBVz4TsxW9u1wnjdk/s1600/DSCF1439.JPG')">

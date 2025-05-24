@@ -530,24 +530,24 @@
 
   <section class="hero">
     <h1>Yosemite</h1>
-    <div class="price">$1040</div>
+    <div class="price">$860</div>
     <a href="travelplanner.php"><button>Add to the Planner</button></a>
   </section>
 
   <div class="photo-strip">
-    <img src="https://tpwmagazine.com/archive/2022/nov/scout1_adventures/img/Mustang%20Island_3321.jpg" alt="Surf 1">
-    <img src="https://endlesstrailexpeditions.com/wp-content/uploads/2020/06/246b38b0-9e22-47a2-abab-48d425f44cc9_1_201_a.jpeg?w=1024" alt="Surf 2">
-    <img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/slocal/acacia_productions_VISIT_SLOCAL_surf_gems_0008_68562bf3_c961_4f6f_9505_f143fe21e350_8efe4aed-3d88-4676-b194-721820d4e9e6.jpg" alt="Surf 3">
-    <img src="https://cdn.outsideonline.com/wp-content/uploads/2025/04/Kaimana.sallasH.jpg" alt="Surf 4">
+    <img src="https://images.squarespace-cdn.com/content/v1/5a5986b2cf81e095e172ce87/1714187980400-R8VF3EN2O7ZFVE0VO8QW/flyingdawnmarie-yosemite-waterfalls-spring-2024-13.jpg" alt="Surf 1">
+    <img src="https://npf-prod.imgix.net/uploads/half-dome-edit-itokHT4e47FB.jpg?auto=compress%2Cformat&fit=max&q=80&w=1600" alt="Surf 2">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcgc96bngznpi0Edo8Gcux60lCMqRZYNd27g&s" alt="Surf 3">
+    <img src="https://drupal-prod.visitcalifornia.com/sites/default/files/styles/fluid_1920/public/2023-12/VC_Yosemite-Reservations_gty-1133651765-EditRF_1280x640.jpg.webp?itok=BIYxO0kt" alt="Surf 4">
     <div class="view-text"><a href="#">View Photos &gt;&gt;</a></div>
   </div>
 
   <section class="description-section">
     <div>
-      The Karapoti Trail, home to the Trek Karapoti Classic, twists around the Akatarawa Range and delivers 31 miles of technical single track and challenging fire road climbs. During the ride, there are several vistas to soothe those eyes while you reward your burning legs by taking a quick breather.
+      Yosemite National Park, located in California’s Sierra Nevada mountains, is renowned for its breathtaking granite cliffs, ancient sequoia trees, and dramatic waterfalls. Visitors flock to iconic landmarks like El Capitan and Half Dome, which rise majestically above the valley floor. The park offers stunning views year-round, with lush meadows in summer and snow-dusted peaks in winter.
     </div>
     <div>
-      Upper Hutt is New Zealand's mountain biking hub, and if you're looking for a group ride, stop by Mountain Trails bike shop. Or if you want a number plate on your handlebar, the Trek Karapoti Classic is scheduled for March 4, 2001.
+      Beyond the scenic beauty, Yosemite is a haven for outdoor enthusiasts and nature lovers. Hikers, climbers, and photographers can explore over 750 miles of trails and countless natural wonders. With its rich biodiversity and serene landscapes, Yosemite continues to inspire awe and adventure in all who visit.                  
     </div>
   </section>
 
