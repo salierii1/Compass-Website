@@ -165,6 +165,16 @@ button:hover {
     font-size: 14px;
 }
 
+.success-message {
+    background: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -230,6 +240,11 @@ button:hover {
                 <?php echo htmlspecialchars($_GET['error']); ?>
             </div>
         <?php endif; ?>
+        <?php if (isset($_GET['success']) && $_GET['success'] == 'registered'): ?>
+        <div class="success-message">
+          Registration completed successfully! You can now log in.
+        </div>
+      <?php endif; ?>
         <label for="username">Username:</label>
         <input type="text" name="username" placeholder="Username" required>
 

@@ -185,7 +185,7 @@
         }
 
         .login-container {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(0, 0, 0, 0.2);
            display: flex;
             justify-content: center;
             align-items: center;
@@ -333,6 +333,25 @@
             color: #fcd639;
         }
 
+        .error-message {
+            background: #f44336;
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .success-message {
+            background: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
 
 
 
@@ -428,6 +447,12 @@
 
 <div class="login-container">
     <form class="login-box" action="register2.php" method="POST">
+        <?php if (isset($_GET['error'])): ?>
+            <div class="error-message">
+                <?= htmlspecialchars($_GET['error']) ?>
+            </div>
+        <?php endif; ?>
+        
         <div class="form-row">
             <div class="form-column">
                 <label for="first_name">First Name:</label>

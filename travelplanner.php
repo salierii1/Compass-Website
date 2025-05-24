@@ -1,48 +1,47 @@
 <?php
 session_start();
 
-// Clean up invalid trips (one-time cleanup)
-if (isset($_SESSION['trips'])) {
-    $_SESSION['trips'] = array_filter($_SESSION['trips'], function($trip) {
-        return !empty($trip['destination']);
-    });
+// Check if user is logged in
+if (!isset($_SESSION['stdID'])) {
+    header('Location: login.php');
+    exit;
 }
 
+// Database connection for username
+$servername = "localhost";
+$username_db = "root";
+$password_db = "";
+$dbname = "simple_page";
+
+$conn_user = new mysqli($servername, $username_db, $password_db, $dbname);
+
+// Check connection
+if ($conn_user->connect_error) {
+    die("Connection failed: " . $conn_user->connect_error);
+}
+
+// Fetch username from database
+$stdID = $_SESSION['stdID'];
+$stmt = $conn_user->prepare("SELECT username FROM users WHERE stdID = ?");
+$stmt->bind_param("s", $stdID);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$current_username = "User"; // Default fallback
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+    $current_username = $user['username'];
+}
+
+$stmt->close();
+$conn_user->close();
+
+// Remove all session-based trip logic - we'll use database instead
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validate all required fields including destination
-    $required_fields = ['selectedCountry', 'departure_date', 'duration', 'budget'];
-    $is_valid = true;
-    
-    foreach ($required_fields as $field) {
-        if (empty($_POST[$field])) {
-            $is_valid = false;
-            break;
-        }
-    }
-
-    if ($is_valid) {
-        // Collect selected activities and information
-        $selected_activities = isset($_POST['activities']) ? $_POST['activities'] : [];
-        $selected_info = isset($_POST['information']) ? $_POST['information'] : [];
-        
-        $trip = [
-            'destination' => $_POST['selectedCountry'],
-            'departure_date' => $_POST['departure_date'],
-            'duration' => $_POST['duration'],
-            'budget' => $_POST['budget'],
-            'activities' => $selected_activities, // Will be array of selected activities
-            'information' => $selected_info, // Will be array of selected info types
-            'notes' => $_POST['notes'] ?? '',
-            'date_added' => date('Y-m-d H:i:s')
-        ];
-
-        if (!isset($_SESSION['trips'])) {
-            $_SESSION['trips'] = [];
-        }
-        array_unshift($_SESSION['trips'], $trip);
-        header('Location: triphistory.php');
-        exit;
-    }
+    // Redirect to save_trip.php to handle the form submission
+    header('Location: save_trip.php');
+    exit;
 }
 
 $con = mysqli_connect("localhost", "root", "", "simple_page");
@@ -121,9 +120,6 @@ $results = mysqli_query($con, "SELECT * FROM travel_packages $where_sql");
 
 body, html {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #000;
-  color: white;
-  background: linear-gradient(to bottom, #00CEC3 2%,white  70%);
 }
 
 
@@ -274,6 +270,7 @@ body, html {
   .sidebar ul {
     height: 60vh;
   }
+  
 }
 .sidebar ul li {
   margin: 1rem 0;
@@ -282,7 +279,10 @@ body, html {
 
 .sidebar ul li a:hover {
   color: #fcd639;
+  
 }
+
+
 
 
 
@@ -573,7 +573,21 @@ body, html {
 /* Responsive */
 @media (max-width: 768px) {
   .container {
-    padding: 1rem;
+    width: 100%;
+      max-width: 100%;
+      overflow: visible;
+  }
+
+  .form-section {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+
+  .planner-container {
+    align-items: center;
+    flex-direction: column;
+    
   }
 
   .destination-group {
@@ -622,7 +636,9 @@ body, html {
 .planner-container {
   opacity: 0;
   animation: fadeSlideUp 1s ease-out 0.3s forwards;
+  width: 100%;
 }
+
 
 .sidebar {
   opacity: 0;
@@ -698,6 +714,8 @@ body, html {
     .footer-section {
         margin: 1.5rem 0;
     }
+
+    
 }
 
 
@@ -724,7 +742,7 @@ body, html {
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo">
-      <img src="pictures/logo.png" alt="logo" class="logo" style="height: 40px; width: auto;">
+      <img src="pictures/WALOGO.png" alt="logo" class="logo" style="height: 40px; width: auto;">
     </div>
     <nav>
       <ul>
@@ -739,13 +757,13 @@ body, html {
 
     <div class="sidebar" id="sidebar">
       <div class="logo">
-      <img src="pictures/logo.png" alt="logo" class="logo" style="height: 40px; width: auto;">
-    </div>
+        <img src="pictures/WALOGO.png" alt="logo" class="logo" style="height: 20px; width: auto;">
+      </div>
       <ul>
         <li style="text-align: center;">
           <img src="https://i.pravatar.cc/100" alt="Profile" style="border-radius: 50%; width: 80px; height: 80px; border: 2px solid white;">
         </li>
-        <h2>@USERNAME</h2>
+        <h2>@<?= htmlspecialchars($current_username) ?></h2>
         <li><a href="home.php">Home</a></li>
         <li><a href="travelplanner.php">Travel Planner</a></li>
         <li><a href="destinations.php">Destinations</a></li>
@@ -754,8 +772,6 @@ body, html {
         <li><a href="logout.php" class="logout">Log Out</a></li>
       </ul>
     </div>
-
-
   </header>
 
   <main class="planner-container">
@@ -767,89 +783,89 @@ body, html {
         <object id="worldMap" type="image/svg+xml" data="pictures/world.svg"></object>
     </div>
 
-    <div class="container py-4">
-        <form method="POST" class="form-section" onsubmit="return validateForm()">
-            <div class="mb-3">
-                <label class="form-label">Destination</label>
-                <input type="text" name="selectedCountry" id="selectedCountry" class="form-control" readonly required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Departure Date</label>
-                <input type="date" name="departure_date" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Duration (days)</label>
-                <input type="number" name="duration" class="form-control" min="1" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Budget ($)</label>
-                <input type="number" name="budget" class="form-control" min="0" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Activities</label>
-                <div class="checkbox-group">
-                    <label class="activity-box">
-                        <input type="checkbox" name="activities[]" value="Hiking">
-                        <span>Hiking</span>
-                    </label>
-                    <label class="activity-box">
-                        <input type="checkbox" name="activities[]" value="Mountain Biking">
-                        <span>Mountain Biking</span>
-                    </label>
-                    <label class="activity-box">
-                        <input type="checkbox" name="activities[]" value="Kayaking">
-                        <span>Kayaking</span>
-                    </label>
-                    <label class="activity-box">
-                        <input type="checkbox" name="activities[]" value="Skiing">
-                        <span>Skiing</span>
-                    </label>
-                    <label class="activity-box">
-                        <input type="checkbox" name="activities[]" value="Fishing">
-                        <span>Fishing</span>
-                    </label>
-                    <label class="activity-box">
-                        <input type="checkbox" name="activities[]" value="Surfing">
-                        <span>Surfing</span>
-                    </label>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Information Required</label>
-                <div class="checkbox-group">
-                    <label class="info-box">
-                        <input type="checkbox" name="information[]" value="Transportation">
-                        <span>Transportation</span>
-                    </label>
-                    <label class="info-box">
-                        <input type="checkbox" name="information[]" value="Health">
-                        <span>Health</span>
-                    </label>
-                    <label class="info-box">
-                        <input type="checkbox" name="information[]" value="Weather">
-                        <span>Weather</span>
-                    </label>
-                    <label class="info-box">
-                        <input type="checkbox" name="information[]" value="Gear">
-                        <span>Gear</span>
-                    </label>
-                    <label class="info-box">
-                        <input type="checkbox" name="information[]" value="Political Info">
-                        <span>Political Info</span>
-                    </label>
-                    <label class="info-box">
-                        <input type="checkbox" name="information[]" value="Activity Specific">
-                        <span>Activity Specific</span>
-                    </label>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Additional Notes</label>
-                <textarea name="notes" class="form-control" rows="3" placeholder="Optional notes about your trip..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Save Trip Plan</button>
-        </form>
-    </div>
+     <div class="container py-4">
+       <form method="POST" action="save_trip.php" class="form-section" onsubmit="return validateForm()">
+           <div class="mb-3">
+               <label class="form-label">Destination</label>
+               <input type="text" name="selectedCountry" id="selectedCountry" class="form-control" readonly required>
+           </div>
+           <div class="mb-3">
+               <label class="form-label">Departure Date</label>
+               <input type="date" name="departure_date" class="form-control" required>
+           </div>
+           <div class="mb-3">
+               <label class="form-label">Duration (days)</label>
+               <input type="number" name="duration" class="form-control" min="1" required>
+           </div>
+           <div class="mb-3">
+               <label class="form-label">Budget ($)</label>
+               <input type="number" name="budget" class="form-control" min="0" required>
+           </div>
+           <div class="mb-3">
+               <label class="form-label">Activities</label>
+               <div class="checkbox-group">
+                   <label class="activity-box">
+                       <input type="checkbox" name="activities[]" value="Hiking">
+                       <span>Hiking</span>
+                   </label>
+                   <label class="activity-box">
+                       <input type="checkbox" name="activities[]" value="Mountain Biking">
+                       <span>Mountain Biking</span>
+                   </label>
+                   <label class="activity-box">
+                       <input type="checkbox" name="activities[]" value="Kayaking">
+                       <span>Kayaking</span>
+                   </label>
+                   <label class="activity-box">
+                       <input type="checkbox" name="activities[]" value="Skiing">
+                       <span>Skiing</span>
+                   </label>
+                   <label class="activity-box">
+                       <input type="checkbox" name="activities[]" value="Fishing">
+                       <span>Fishing</span>
+                   </label>
+                   <label class="activity-box">
+                       <input type="checkbox" name="activities[]" value="Surfing">
+                       <span>Surfing</span>
+                   </label>
+               </div>
+           </div>
+           <div class="mb-3">
+               <label class="form-label">Information Required</label>
+               <div class="checkbox-group">
+                   <label class="info-box">
+                       <input type="checkbox" name="information[]" value="Transportation">
+                       <span>Transportation</span>
+                   </label>
+                   <label class="info-box">
+                       <input type="checkbox" name="information[]" value="Health">
+                       <span>Health</span>
+                   </label>
+                   <label class="info-box">
+                       <input type="checkbox" name="information[]" value="Weather">
+                       <span>Weather</span>
+                   </label>
+                   <label class="info-box">
+                       <input type="checkbox" name="information[]" value="Gear">
+                       <span>Gear</span>
+                   </label>
+                   <label class="info-box">
+                       <input type="checkbox" name="information[]" value="Political Info">
+                       <span>Political Info</span>
+                   </label>
+                   <label class="info-box">
+                       <input type="checkbox" name="information[]" value="Activity Specific">
+                       <span>Activity Specific</span>
+                   </label>
+               </div>
+           </div>
+           <div class="mb-3">
+               <label class="form-label">Additional Notes</label>
+               <textarea name="notes" class="form-control" rows="3" placeholder="Optional notes about your trip..."></textarea>
+           </div>
+           <button type="submit" class="btn btn-primary">Save Trip Plan</button>
+       </form>
+   </div>
 </main>
 
 <footer class="site-footer">

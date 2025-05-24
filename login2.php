@@ -10,7 +10,7 @@ if (!isset($_SESSION['login_attempts'])) {
 
 // Check if account is locked
 if ($_SESSION['login_attempts'] >= 3) {
-    $lockout_time = 300; // 5 minutes lockout
+    $lockout_time = 0; // 5 minutes lockout
     $time_passed = time() - $_SESSION['last_attempt_time'];
     
     if ($time_passed < $lockout_time) {

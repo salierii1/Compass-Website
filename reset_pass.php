@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->execute();
 
         // Update this line to match your project's URL path
-        $resetLink = "http://localhost/Compass%20Website/set_newpass.php?token=$token";
+        $resetLink = "http://localhost/php/COMPASS-WEBSITE/set_newpass.php?token=$token";
 
         //Send reset email using PHPMailer
         $mail = new PHPMailer(true);

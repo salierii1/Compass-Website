@@ -499,7 +499,7 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo">
-      <img src="pictures/logo.png" alt="logo" style="height: 40px; width: auto;">
+      <img src="pictures/WALOGO.png" alt="logo" style="height: 40px; width: auto;">
     </div>
     <nav>
       <ul>
@@ -513,7 +513,7 @@
 
     <div class="sidebar" id="sidebar">
   <div class="logo">
-      <img src="pictures/logo.png" alt="logo" class="logo" style="height: 40px; width: auto;">
+      <img src="pictures/WALOGO.png" alt="logo" class="logo" style="height: 20px; width: auto;">
     </div>
   <ul>
     <li style="text-align: center;">

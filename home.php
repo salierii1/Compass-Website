@@ -1,3 +1,41 @@
+<?php
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['stdID'])) {
+    header('Location: login.php');
+    exit;
+}
+
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "simple_page";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch username from database
+$stdID = $_SESSION['stdID'];
+$stmt = $conn->prepare("SELECT username FROM users WHERE stdID = ?");
+$stmt->bind_param("s", $stdID);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$current_username = "User"; // Default fallback
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+    $current_username = $user['username'];
+}
+
+$stmt->close();
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,40 +47,37 @@
 
 <style>
 
-  body {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  body.loaded {
-    opacity: 1;
-  }
-
-
+ /* Base styles */
 body {
+  opacity: 0;
+  transition: opacity 0.3s ease;
   margin: 0;
   font-family: Georgia, 'Times New Roman', Times, serif;
   background: #fff;
   overflow-x: hidden;
   padding-top: 60px;
-
+  animation: fadeSlideDown 0.8s ease-out both;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #123499;
-  padding: 1rem 2rem;
-  color: white;
+body.loaded {
+  opacity: 1;
 }
+
+/* Navbar */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #123499;
+  padding: 1rem 2rem;
+  color: white;
+  flex-wrap: wrap; /* Allow wrapping */
 }
-
 
 .logo {
   font-size: 2rem;
@@ -50,27 +85,38 @@ body {
   text-shadow: 1px 1px 2px black;
 }
 
+/* Nav list - horizontal by default */
 .navbar nav ul {
   list-style: none;
   display: flex;
   gap: 2rem;
   padding: 0;
   margin: 0;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
+/* Nav list items */
+.navbar nav ul li {
+  display: flex;
+  align-items: center;
+}
+
+/* Nav links */
 .navbar nav ul li a {
   text-decoration: none;
   color: white;
   font-size: 1.2rem;
-  transition: color 0.3s;
   font-weight: bold;
   text-shadow: 1px 1px 2px black;
+  transition: color 0.3s;
 }
 
 .navbar nav ul li a:hover {
   color: #fcd639;
 }
 
+/* Sidebar button (hamburger) */
 .sidebar-btn {
   background: none;
   border: none;
@@ -80,84 +126,77 @@ body {
   font-weight: bold;
   text-shadow: 1px 1px 2px black;
   transition: color 0.3s;
-}
-
-.navbar nav ul li {
-  display: flex;
-  align-items: center;
+  margin-left: 1rem;
+  flex-shrink: 0;
 }
 
 .sidebar-btn:hover {
   color: #fcd639;
 }
 
+/* Sidebar panel */
 .sidebar {
   position: fixed;
   top: 0;
   right: -300px;
   width: 250px;
+  max-width: 80vw; /* Prevent overflow on small screens */
   height: 100%;
-  background-color: #123499; /* Updated to match navbar */
+  background-color: #123499;
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
   padding: 1rem 1rem;
   transition: right 0.3s ease-in-out;
   z-index: 1000;
   color: white;
+  overflow-y: auto; /* Allow vertical scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
+/* Sidebar open state */
 .sidebar.open {
   right: 0;
 }
 
-
-.sidebar h3 {
-  margin-bottom: 1rem;
-  font-size: 2.5rem;
+/* Sidebar headers and content */
+.sidebar h3,
+.sidebar h2 {
+  text-align: center;
   color: white;
   text-shadow: 1px 1px 2px black;
-  text-align: center;
+  margin-bottom: 1rem;
 }
 
-.sidebar img {
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  color: white;
-  text-shadow: 1px 1px 2px black;
-  text-align: center;
+.sidebar h3 {
+  font-size: 2.5rem;
 }
 
 .sidebar h2 {
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.sidebar img {
+  display: block;
+  margin: 1.5rem auto 1rem;
   font-size: 1.5rem;
   color: white;
   text-shadow: 1px 1px 2px black;
   text-align: center;
 }
 
+/* Sidebar menu */
 .sidebar ul {
   list-style: none;
   padding: 0;
-}
-
-.sidebar ul li {
-  margin: 1rem 0;
-}
-
-.sidebar ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: color 0.2s;
-  font-weight: bold;
-  text-shadow: 1px 1px 2px black;
-}
-
-.sidebar ul {
   display: flex;
   flex-direction: column;
   height: 70vh;
   justify-content: flex-start;
+  margin: 0;
+}
+
+.sidebar ul li {
+  margin: 1rem 0;
+  text-align: center;
 }
 
 .sidebar ul li:last-child,
@@ -170,23 +209,22 @@ body {
   margin-bottom: 1.5rem;
 }
 
-@media (max-width: 600px) {
-  .sidebar ul {
-    height: 60vh;
-  }
-}
-.sidebar ul li {
-  margin: 1rem 0;
-  text-align: center;
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
+  transition: color 0.2s;
 }
 
 .sidebar ul li a:hover {
   color: #fcd639;
 }
 
-
+/* Hero section */
 .hero {
-  background: 
+  background:
     linear-gradient(to bottom, rgba(255,255,255,0) 60%, #fff 100%),
     url('https://images4.alphacoders.com/656/656354.jpg') no-repeat center center/cover;
   height: 80vh;
@@ -205,7 +243,7 @@ body {
   text-align: left;
   color: white;
   padding: 8rem;
-  animation: fadeInUp 1.5s ease-in-out;
+  animation: fadeSlideDown 1s ease-out both;
 }
 
 .hero-content h1 {
@@ -217,20 +255,21 @@ body {
   font-size: 1.5rem;
 }
 
-
+/* Features */
 .feature {
   text-align: left;
   margin: 5rem 2rem 1rem;
-  
 }
+
 .feature h2 {
   font-size: 2.5rem;
   color: #123499;
   text-shadow: 1px 1px 2px black;
 }
+
 .featured-card {
   position: relative;
-  margin: 1rem;
+  margin: 1rem auto;
   width: 98%;
   max-width: 2000px;
   height: 250px;
@@ -239,7 +278,7 @@ body {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  
+  animation: fadeSlideUp 1.2s ease-out both;
 }
 
 .featured-overlay {
@@ -247,34 +286,30 @@ body {
   bottom: 0;
   width: 100%;
   height: 100%;
-  color: #fcd639;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.5));
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0));
   padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0));
+  color: white;
 }
 
 .featured-overlay h2 {
   font-size: 2rem;
-  color: white;
   font-weight: bold;
   margin-bottom: 0.5rem;
   text-shadow: 1px 1px 2px black;
 }
 
 .featured-overlay p {
-  color: orange;
   font-size: 1.5rem;
-  color: white;
   font-weight: bold;
-  padding: 0rem 40rem 0rem 0rem ;
-  text-shadow: 1px 1px 2px black;
+  padding-right: 40rem;
   margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px black;
 }
 
-.featured-overlay a  {
+.featured-overlay a {
   font-size: 1.2rem;
   align-self: flex-start;
   padding: 0.5rem 1rem;
@@ -294,33 +329,15 @@ body {
   transform: scale(1.05);
 }
 
-
-@media (max-width: 768px) {
-.feature {
-    font-size: 1rem;
-  }
-
-  .featured-card {
-    height: 220px;
-  }
-
-  .featured-overlay {
-    padding: 1rem;
-  }
-
-  .featured-overlay h2 {
-    font-size: 1.5rem;
-  }
-
-  .featured-overlay p {
-    font-size: 0.9rem;
-  }
-}
-
+/* Learn section */
 .learn {
   text-align: left;
   margin: 5rem 2rem 1rem;
+  opacity: 0;
+  animation: fadeSlideUp 1s ease forwards;
+  animation-delay: 1.2s;
 }
+
 .learn h2 {
   font-size: 1.8rem;
   color: #123499;
@@ -328,6 +345,7 @@ body {
   text-shadow: 1px 1px 2px black;
 }
 
+/* Cards section */
 .cards-section {
   display: flex;
   gap: 1.5rem;
@@ -345,7 +363,8 @@ body {
   overflow: hidden;
   position: relative;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  opacity: 0;
+  animation: zoomFadeIn 0.8s ease forwards;
 }
 
 .card:hover {
@@ -395,14 +414,66 @@ body {
   transform: scale(1.05);
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .cards-section {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
+/* Footer */
+.site-footer {
+  background: #123499;
+  color: white;
+  padding: 3rem 0;
+  margin-top: 4rem;
 }
 
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.footer-section {
+  flex: 1;
+  padding: 0 1rem;
+}
+
+.footer-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.footer-section p {
+  margin: 0.7rem 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.social-icons {
+  margin-bottom: 1rem;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 1.3rem;
+  margin: 0 1rem;
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: translateY(-3px);
+}
+
+.copyright {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
 
 /* === ANIMATION KEYFRAMES === */
 @keyframes fadeSlideDown {
@@ -438,29 +509,6 @@ body {
   }
 }
 
-/* === ANIMATED ELEMENTS === */
-body {
-  animation: fadeSlideDown 0.8s ease-out both;
-}
-
-.hero-content {
-  animation: fadeSlideDown 1s ease-out both;
-}
-
-.featured-card {
-  animation: fadeSlideUp 1.2s ease-out both;
-}
-
-.card {
-  opacity: 0;
-  animation: zoomFadeIn 0.8s ease forwards;
-}
-
-.learn {
-  opacity: 0;
-  animation: fadeSlideUp 1s ease forwards;
-  animation-delay: 1.2s;
-}
 /* Staggered animation delay for cards */
 .cards-section .card:nth-child(1) {
   animation-delay: 1.4s;
@@ -472,79 +520,189 @@ body {
   animation-delay: 1.8s;
 }
 
+/* === RESPONSIVE BREAKPOINTS === */
 
-
-/* Add these styles to your existing <style> section */
-.site-footer {
-    background: #123499;
-    color: white;
-    padding: 3rem 0;
-    margin-top: 4rem;
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
+/* Small tablets and large phones */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: row;
     justify-content: space-between;
-    padding: 0 2rem;
-}
+  }
+  
+  .navbar nav ul {
+    gap: 1rem;
+  }
+  
+  /* Cards stack vertically */
+  .cards-section {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .featured-card {
+    height: 220px;
+  }
 
-.footer-section {
-    flex: 1;
-    padding: 0 1rem;
-}
+  .featured-overlay {
+    padding: 1rem;
+  }
 
-.footer-section h3 {
+  .featured-overlay h2 {
     font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-}
+  }
 
-.footer-section p {
-    margin: 0.7rem 0;
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.social-icons {
-    margin-bottom: 1rem;
-}
-
-.social-icons a {
-    color: white;
-    font-size: 1.3rem;
-    margin: 0 1rem;
-    transition: transform 0.3s ease;
-}
-
-.social-icons a:hover {
-    transform: translateY(-3px);
-}
-
-.copyright {
+  .featured-overlay p {
     font-size: 0.9rem;
-    opacity: 0.8;
+    padding-right: 1rem;
+  }
+  
+  .learn {
+    margin: 3rem 1rem 1rem;
+  }
+  
+  .learn h2 {
+    font-size: 1.5rem;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .footer-section {
+    margin: 1.5rem 0;
+  }
+}
+
+/* Mobile phones and very small devices */
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .logo {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Nav menu becomes vertical */
+  .navbar nav ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+  
+  .navbar nav ul li {
+    width: 100%;
+  }
+  
+  .navbar nav ul li a {
+    font-size: 1.1rem;
+    display: block;
+    padding: 0.5rem 0;
+    width: 100%;
+  }
+  
+  /* Sidebar button aligns right top */
+  .sidebar-btn {
+    align-self: center;
+    margin: 0;
+  }
+  
+  /* Sidebar width shrinks */
+  .sidebar {
+    overflow-x: hidden;
+  }
+  
+  .sidebar h3 {
+    font-size: 2rem;
+  }
+  
+  .sidebar h2 {
+    font-size: 1.2rem;
+  }
+
+ 
+  
+  .featured-overlay p {
+    padding-right: 1rem;
+  }
+  
+  .hero-content {
+    padding: 3rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+  }
+  
+  .feature h2 {
+    font-size: 2rem;
+  }
+  
+  .card {
+    height: 350px;
+  }
+
+  .card-overlay h3 {
+    font-size: 1.5rem;
+  }
+
+  .card-overlay p {
+    font-size: 1rem;
+  }
+}
+
+/* Extra small devices - prevent horizontal overflow */
+@media (max-width: 320px) {
+  body {
+    padding-top: 50px;
+  }
+  
+  .navbar nav ul li a {
+    font-size: 1rem;
+  }
+  
+  .sidebar {
+    overflow-x: hidden  ;
+  }
 }
 
 @media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .footer-section {
-        margin: 1.5rem 0;
-    }
+  .navbar {
+    position: static;
+  }
+  
+  html, body {
+  background: #fff;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
+
+.sidebar {
+  display: none;
+  right: -300px;
+}
+
+/* Show sidebar when open */
+.sidebar.open {
+  display: block;
+  right: 0;
+}
+}
+/* Remove unwanted white box above navbar */
+
+/* Hide sidebar by default */
+
 
 </style>
 
@@ -574,7 +732,7 @@ body {
 
   <header class="navbar">
     <div class="logo">
-      <img src="pictures/logo.png" alt="logo" style="height: 40px; width: auto;">
+      <img src="pictures/WALOGO.png" alt="logo" style="height: 40px; width: auto;">
     </div>
     <nav>
       <ul>
@@ -589,13 +747,13 @@ body {
 
     <div class="sidebar" id="sidebar">
   <div class="logo">
-      <img src="pictures/logo.png" alt="logo" style="height: 40px; width: auto;">
+      <img src="pictures/WALOGO.png" alt="logo" style="height: 20px; width: auto;">
     </div>
   <ul>
     <li style="text-align: center;">
       <img src="https://i.pravatar.cc/100" alt="Profile" style="border-radius: 50%; width: 80px; height: 80px; border: 2px solid white;">
     </li>
-    <h2>@USERNAME</h2>
+    <h2>@<?= htmlspecialchars($current_username) ?></h2>
     <li><a href="home.php">Home</a></li>
     <li><a href="travelplanner.php">Travel Planner</a></li>
     <li><a href="destinations.php">Destinations</a></li>

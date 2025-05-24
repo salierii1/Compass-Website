@@ -1,3 +1,41 @@
+<?php
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['stdID'])) {
+    header('Location: login.php');
+    exit;
+}
+
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "simple_page";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch username from database
+$stdID = $_SESSION['stdID'];
+$stmt = $conn->prepare("SELECT username FROM users WHERE stdID = ?");
+$stmt->bind_param("s", $stdID);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$current_username = "User"; // Default fallback
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+    $current_username = $user['username'];
+}
+
+$stmt->close();
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,15 +75,13 @@ body {
   background-color: #123499;
   padding: 1rem 2rem;
   color: white;
-}
-.navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 999;
+  flex-wrap: wrap;
 }
-
 
 .logo {
   font-size: 2rem;
@@ -59,18 +95,26 @@ body {
   gap: 2rem;
   padding: 0;
   margin: 0;
+  flex-wrap: wrap;
+}
+
+.navbar nav ul li {
+  display: flex;
+  align-items: center;
 }
 
 .navbar nav ul li a {
   text-decoration: none;
   color: white;
   font-size: 1.2rem;
-  transition: color 0.3s;
   font-weight: bold;
   text-shadow: 1px 1px 2px black;
+  transition: color 0.3s;
 }
 
-.navbar nav ul li a:hover {
+.navbar nav ul li a:hover,
+.sidebar-btn:hover,
+.sidebar ul li a:hover {
   color: #fcd639;
 }
 
@@ -85,15 +129,6 @@ body {
   transition: color 0.3s;
 }
 
-.navbar nav ul li {
-  display: flex;
-  align-items: center;
-}
-
-.sidebar-btn:hover {
-  color: #fcd639;
-}
-
 .sidebar {
   position: fixed;
   top: 0;
@@ -102,7 +137,7 @@ body {
   height: 100%;
   background-color: #123499;
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
-  padding: 1rem 1rem;
+  padding: 1rem;
   transition: right 0.3s ease-in-out;
   z-index: 1000;
   color: white;
@@ -112,26 +147,10 @@ body {
   right: 0;
 }
 
-
-.sidebar logo {
-  margin-bottom: 1rem;
-  font-size: 2.5rem;
-  color: white;
-  text-shadow: 1px 1px 2px black;
-  text-align: center;
-}
-
-.sidebar img {
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  color: white;
-  text-shadow: 1px 1px 2px black;
-  text-align: center;
-}
-
+.sidebar-logo,
+.sidebar img,
 .sidebar h2 {
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   font-size: 1.5rem;
   color: white;
   text-shadow: 1px 1px 2px black;
@@ -141,26 +160,15 @@ body {
 .sidebar ul {
   list-style: none;
   padding: 0;
-}
-
-.sidebar ul li {
-  margin: 1rem 0;
-}
-
-.sidebar ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: color 0.2s;
-  font-weight: bold;
-  text-shadow: 1px 1px 2px black;
-}
-
-.sidebar ul {
   display: flex;
   flex-direction: column;
   height: 70vh;
   justify-content: flex-start;
+}
+
+.sidebar ul li {
+  margin: 1rem 0;
+  text-align: center;
 }
 
 .sidebar ul li:last-child,
@@ -173,24 +181,20 @@ body {
   margin-bottom: 1.5rem;
 }
 
-@media (max-width: 600px) {
-  .sidebar ul {
-    height: 60vh;
-  }
-}
-.sidebar ul li {
-  margin: 1rem 0;
-  text-align: center;
-}
-
-.sidebar ul li a:hover {
-  color: #fcd639;
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
+  transition: color 0.2s;
 }
 
 /* Hero Banner */
 .featured-hero {
   background-image: url('https://cdn.tatlerasia.com/asiatatler/i/my/2018/11/05085630-thegreatoceanroad_cover_1920x1200.jpg');
   background-size: cover;
+  background-position: center;
   min-height: 550px;
   margin: 7rem 2rem 2rem 2rem;
   display: flex;
@@ -211,7 +215,7 @@ body {
 }
 
 .hero-text h1 {
-  font-size: 4.5rem;
+  font-size: 4rem;
   margin-bottom: 1rem;
 }
 
@@ -233,75 +237,187 @@ body {
   animation: float 3s ease-in-out infinite;
 }
 
+.filters,
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin: 2rem;
+  flex-wrap: wrap;
+}
 
-.filters, .search-box {
-      display: flex;
-      gap: 10px;
-      margin: 2rem 2rem 0 2rem;
-      flex-wrap: wrap;
-    }
+input,
+select {
+  font-size: 1rem;
+  color: #123499;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
 
-    input, select {
-      font-size: 1rem;
-      color: #123499;
-      padding: 8px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
+.card {
+  padding: 2rem;
+  display: flex;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(16, 0, 197, 0.3);
+  margin: 2rem;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
 
-    .card {
-      padding: 2rem 4rem 2rem 4rem;
-      display: flex;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(16, 0, 197, 0.3);
-      margin: 2rem 2rem 0 2rem;
-      overflow: hidden;
-    }
+.card img {
+  width: 280px;
+  height: 220px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
 
-    .card img {
-      width: 280px;
-      height: 220px;
-      object-fit: cover;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
+.card-content {
+  color: #123499;
+  font-size: 2rem;
+  padding: 1rem 2rem;
+  flex: 1;
+}
 
-    .card-content {
-      color: #123499;
-      font-size: 2rem;
-      padding: 1rem 2rem 1rem 2rem;
-      flex: 1;
-    }
+.tags span {
+  background: #123499;
+  color: white;
+  padding: 4px 8px;
+  margin: 2px;
+  border-radius: 4px;
+  font-size: 12px;
+  display: inline-block;
+}
 
-    .tags span {
-      background: #123499;
-      color: white;
-      padding: 4px 8px;
-      margin: 2px;
-      border-radius: 4px;
-      font-size: 12px;
-      display: inline-block;
-    }
+.price {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: green;
+  margin-top: 5px;
+}
 
-    .price {
-      font-size: 1.6rem;
-      font-weight: bold;
-      color: green;
-      margin-top: 5px;
-    }
+.info-line {
+  margin-top: 5px;
+  font-size: 1rem;
+  color: #666;
+}
 
-    .info-line {
-      margin-top: 5px;
-      font-size: 1rem;
-      color: #666;
-    }
+/* Footer */
+.site-footer {
+  background: #123499;
+  color: white;
+  padding: 3rem 0;
+  margin-top: 4rem;
+}
 
-/* Responsive */
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  flex: 1;
+  padding: 0 1rem;
+  min-width: 200px;
+}
+
+.footer-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.footer-section p {
+  margin: 0.7rem 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-icons {
+  margin-bottom: 1rem;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 1.3rem;
+  margin: 0 1rem;
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: translateY(-3px);
+}
+
+.copyright {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Responsive Breakpoints */
 @media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+  .navbar nav ul {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    align-items: flex-start;
+  }
+  .sidebar {
+    overflow-x: hidden;
+    width: 20%;
+    right: -100%;
+    transition: right 0.3s ease-in-out;
+  }
+  .sidebar.open {
+    right: 0;
+  }
+  .sidebar ul {
+    align-items: flex-start;
+  }
+  .sidebar-btn {
+    align-self: flex-end;
+  }
   .featured-hero {
     flex-direction: column;
-    text-align: left;
-    padding: 2rem;
+    text-align: center;
+    align-items: center;
+    padding: 2rem 1rem 2rem 1rem; 
+  }
+
+  .hero-text h1 {
+    font-size: 1.5rem;
   }
 
   .hero-img {
@@ -316,109 +432,56 @@ body {
   .card img {
     width: 100%;
     height: auto;
-    margin-bottom: 1rem;
   }
 
   .card-content {
-    padding: 2rem;
+    padding: 1rem;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-section {
+    margin: 1.5rem 0;
   }
 }
 
-.site-footer {
-    background: #123499;
-    color: white;
-    padding: 3rem 0;
-    margin-top: 4rem;
-}
+@media (max-width: 480px) {
+  .navbar nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
 
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 2rem;
-}
+  .navbar nav ul li {
+    margin: 0.5rem 0;
+  }
 
-.footer-section {
-    flex: 1;
-    padding: 0 1rem;
-}
+  .hero-text p {
+    font-size: 1.2rem;
+  }
 
-.footer-section h3 {
+  .filters,
+  .search-box {
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem;
+  }
+
+  .sidebar {
+    width: 80%;
+  }
+
+  .logo {
     font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  }
 }
 
-.footer-section p {
-    margin: 0.7rem 0;
-    font-size: 1rem;
-    line-height: 1.6;
+.navbar {
+  position: static;
 }
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.social-icons {
-    margin-bottom: 1rem;
-}
-
-.social-icons a {
-    color: white;
-    font-size: 1.3rem;
-    margin: 0 1rem;
-    transition: transform 0.3s ease;
-}
-
-.social-icons a:hover {
-    transform: translateY(-3px);
-}
-
-.copyright {
-    font-size: 0.9rem;
-    opacity: 0.8;
-}
-
-@media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .footer-section {
-        margin: 1.5rem 0;
-    }
-} 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInCard {
-  to { opacity: 1; transform: translateY(0); }
-  from { opacity: 0; transform: translateY(30px); }
-}
-
-@keyframes slideDown {
-  from { transform: translateY(-100%); }
-  to { transform: translateY(0); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
 
 
 </style>
@@ -446,7 +509,7 @@ body {
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo">
-      <img src="pictures/logo.png" alt="logo" class="logo" style="height: 40px; width: auto;">
+      <img src="pictures/WALOGO.png" alt="logo" class="logo" style="height: 40px; width: auto;">
     </div>
     <nav>
       <ul>
@@ -461,13 +524,13 @@ body {
 
     <div class="sidebar" id="sidebar">
       <div class="logo">
-      <img src="pictures/logo.png" alt="logo" style="height: 40px; width: auto;">
+      <img src="pictures/WALOGO.png" alt="logo" style="height: 20px; width: auto;">
     </div>
       <ul>
         <li style="text-align: center;">
           <img src="https://i.pravatar.cc/100" alt="Profile" style="border-radius: 50%; width: 80px; height: 80px; border: 2px solid white;">
         </li>
-        <h2>@USERNAME</h2>
+        <h2>@<?= htmlspecialchars($current_username) ?></h2>
         <li><a href="home.php">Home</a></li>
         <li><a href="travelplanner.php">Travel Planner</a></li>
         <li><a href="destinations.php">Destinations</a></li>
@@ -596,7 +659,7 @@ body {
     "destination": "Queenstown, New Zealand",
     "date": "December 5, 2025 - December 12, 2025",
     "route": "Auckland - Queenstown",
-    "price": 32000,
+    "price": "32000",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Queenstown_1_%288168013172%29.jpg/1200px-Queenstown_1_%288168013172%29.jpg",
     "activities": ["Skiing", "Kayaking"],
     "duration": 8,
