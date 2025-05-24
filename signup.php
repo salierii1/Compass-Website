@@ -8,25 +8,30 @@
 </head>
 <body>
 <style>
-    * {
+ * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 body, html {
   height: 100%;
   width: 100%;
+  color: white;
+  background-image: url('https://images.unsplash.com/photo-1560719168-32825e16d2c6?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlJTIwcm9hZHxlbnwwfHwwfHx8MA%3D%3D&fbclid=IwZXh0bgNhZW0CMTEAAR6XGnKn29vcV9Ym8HxAkkOVEuTwA7i0hawTCH-hhrEYvnmzL056V6NHGQqA3Q_aem_Ch-4l-d8kWvyRyXDuioNvQ');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .background {
-  background: url('https://images.unsplash.com/photo-1560719168-32825e16d2c6?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlJTIwcm9hZHxlbnwwfHwwfHx8MA%3D%3D&fbclid=IwZXh0bgNhZW0CMTEAAR6XGnKn29vcV9Ym8HxAkkOVEuTwA7i0hawTCH-hhrEYvnmzL056V6NHGQqA3Q_aem_Ch-4l-d8kWvyRyXDuioNvQ') no-repeat center center/cover;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  min-height: 100vh;
 }
 
 .signup-container {
@@ -35,7 +40,6 @@ body, html {
   border-radius: 20px;
   width: 100%;
   max-width: 500px;
-  color: white;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
@@ -49,6 +53,8 @@ h2 {
   font-size: 2rem;
   margin-bottom: 2rem;
   letter-spacing: 1px;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px black;
 }
 
 form {
@@ -72,33 +78,38 @@ input[type="text"],
 input[type="email"],
 input[type="password"] {
   padding: 0.9rem 1rem;
-  border: none;
+  border: 3px solid #123499;
   border-radius: 8px;
   font-size: 1rem;
-  background-color: #f0f0f0;
+  background-color: white;
   color: #333;
   transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px orange;
+  box-shadow: 0 0 6px rgba(240, 205, 0, 0.6);
 }
 
 button {
-  background-color: #FFA500;
-  color: black;
+  background-color: #123499;
+  color: white;
   padding: 1rem;
   font-weight: bold;
   font-size: 1.1rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
+  width: 100%;
 }
 
 button:hover {
-  background-color: #ff8c00;
+  background-color: #fcd639;
+  color: black;
+  transform: scale(1.05);
 }
 
 @media (max-width: 600px) {
@@ -110,6 +121,7 @@ button:hover {
     flex-direction: column;
   }
 }
+
 
 </style>
 

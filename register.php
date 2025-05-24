@@ -12,59 +12,18 @@
         }
 
         body {
-            background-image: url('./pictures/background.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            position: relative;
-        }
-
-        .header {
-            background-color: #1f1f1f;
-            padding: 30px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: white;
-            justify-content: space-between;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px; 
-        }
-
-        .user-section {
-            display: flex;
-            align-items: center;
-            gap: 10px; 
-        }
-
-        .header2 {
-            background-color: rgb(255, 255, 255);
-            padding: 30px 20px;
-            color: white;
-        }
-
-        .logo {
-            height: 80px;
-        }
-
-        .logo2 {
-            height: 40px;
-        }
-
-        .COMPASS {
-            height: 80px;
-        }
-
-        .header h1,
-        .header2 h1 {
-            color: #f0a500;
-            font-weight: normal;
             margin: 0;
-            font-size: 30px;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background: url('https://www.travelandleisure.com/thmb/xieEX63911EUWlO90w3wiuaVYAU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/georgia-hogpen-gap-FALLROADTRIP0817-deb62bb6ce6f4533bfc63dfe6a1fe7ed.jpg') no-repeat center center/cover;
+    color: white;
+    height: 100%;
+
+    background-image: url('https://www.travelandleisure.com/thmb/xieEX63911EUWlO90w3wiuaVYAU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/georgia-hogpen-gap-FALLROADTRIP0817-deb62bb6ce6f4533bfc63dfe6a1fe7ed.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
         }
 
         .create-account,
@@ -106,61 +65,6 @@
             transform: scale(0.98); 
         }
 
-        .COMPASS {
-            height: 40px;
-            width: auto; 
-        }
-
-        .signin {
-            height: 40px; 
-            width: auto; 
-        }
-
-        .tagline {
-            font-size: 16px;
-            color: #ccc;
-            margin-left: 10px;
-            font-style: italic;
-        }
-
-        .user-section {
-            display: flex;
-            align-items: center; 
-            gap: 10px; 
-        }
-
-        .user-section img {
-            height: 40px;
-        }
-
-        .user-section a {
-            font-size: 16px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            display: flex;
-            align-items: center; 
-            height: 40px; 
-        }
-
-        .header2 {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-            border-bottom: 2px solid #ccc; 
-        }
-
-        .signin {
-            height: 40px;
-            width: auto;
-        }
-
-        .welcome-text {
-            font-size: 18px;
-            font-weight: bold;
-            color: black;
-        }
 
         .password-container {
             display: flex;
@@ -171,15 +75,21 @@
         #password {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 3px solid #123499;
             border-radius: 4px;
+        }
+
+        #password:focus {
+            border-color: #f0a500;
+            outline: none;
+            box-shadow: 0 0 5px rgba(240, 165, 0, 0.5);
         }
 
         #togglePassword {
             cursor: pointer;
             font-size: 18px;
             color: #666;
-            background: #f0a500;
+            background:#123499;
             border: none;
             outline: none;
             width: -1000px;
@@ -275,34 +185,37 @@
         }
 
         .login-container {
+            background-color: rgba(255, 255, 255, 0.2);
            display: flex;
             justify-content: center;
             align-items: center;
-            height: calc(100vh - 60px); 
         }
 
         .login-box {
-            background-color: rgba(0, 0, 0, 0.7);
+           
             padding: 50px;
             border-radius: 10px;
             width: 500px;
-            height: auto; 
-            margin-bottom: 300px;
+            height: 1000px; 
+            margin-bottom: 400px;
         }
-
+        .login-box {
+            height: 1200px;
+        }
         .login-box label {
             display: block;
             margin-top: 15px;
             margin-bottom: 5px;
             font-size: 14px;
             font-weight: bold;
-            color: #f0a500; 
+            color:rgb(230, 162, 36); 
+            text-shadow: 1px 1px 8px rgba(0,0,0,0.4);
         }
 
         .login-box input {
             width: 320px;
             padding: 10px;
-            border: 1px solid #ccc; 
+            border: 3px solid #123499; 
             border-radius: 6px;
             background-color: #fff; 
             font-size: 14px;
@@ -316,6 +229,7 @@
         }
 
         .username-status {
+            columns: white;
             font-size: 12px;
             margin-top: 5px;
         }
@@ -329,7 +243,7 @@
         .password-requirements {
             font-size: 12px;
             margin-top: 5px;
-            color: #ccc;
+            color: white;
         }
 
         .requirement {
@@ -337,6 +251,7 @@
             align-items: center;
             gap: 5px;
             margin: 2px 0;
+            color: white;
         }
 
         .requirement.valid {
@@ -381,7 +296,7 @@
             margin-top: 20px;
             border: none;
             border-radius: 6px;
-            background: linear-gradient(45deg, #f0a500, #d18b00);
+            background: #123499;
             color: white;
             font-size: 16px;
             font-weight: bold;
@@ -402,18 +317,20 @@
             text-align: center;
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .login-link a {
-            color: #f0a500;
+            color: #123499;
+            font-weight: bold;
             text-decoration: none;
             font-size: 14px;
             transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         .login-link a:hover {
-            color: #ffffff;
+            color: #fcd639;
         }
 
 
@@ -508,27 +425,6 @@
 
 
 <body>
-
-
-<div class="header">
-    <div class="logo-container">
-        <img src="./pictures/compasslogo.png" alt="Compass Logo" class="logo">
-        <img src="./pictures/COMPASS.png" alt="Compass" class="COMPASS">
-        <p class="tagline">Navigate your way with COMPASS</p>
-    </div>
-
-
-    <div class="user-section">
-        <img src="./pictures/users.png" alt="users" class="logo2">
-        <a href="" class="logo2">User</a>
-    </div>
-</div>
-
-<div class="header2">
-    <img src="./pictures/signup.png" alt="signin" class="signin">
-    <p class="welcome-text">Hello there, new user! Please fill out the sign-up form.</p>
-</div>
-
 
 <div class="login-container">
     <form class="login-box" action="register2.php" method="POST">

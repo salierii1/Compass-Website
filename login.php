@@ -57,9 +57,8 @@
 
 /* === LOGIN FORM STYLES === */
 .login-box {
-    
     background-color: white;
-    padding: 40px;
+    padding: 50px 40px 50px 40px;
     border-radius: 12px;
     width: 100%;
     max-width: 400px;
@@ -103,7 +102,9 @@
 .login-box input:focus {
     width: 100%;
     outline: none;
+   border: 3px solid #c79e00;
     box-shadow: 0 0 6px rgba(240, 205, 0, 0.6);
+    
 }
 .password-container{
     align-items: center;
