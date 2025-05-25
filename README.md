@@ -16,8 +16,8 @@ Local server environment (XAMPP, WAMP, MAMP, etc.)
 
 Current Status
 ✅ Frontend implementation complete
-🟨 Backend development in progress
-⬜ Database design in progress
+✅ Backend development
+✅ Database 
 
 Reference Materials
 Original compass website provided by professor
